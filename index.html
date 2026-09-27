@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Socra Tutor 奨学生募集</title>
+<meta name="description" content="勉強垢で専用リンクをシェアするだけで、登録者数×100円がもらえる！">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Figma 원본은 폭 440px 프레임. 모든 치수는 440 기준 px이며,
+   .col 에 zoom(--z)을 걸어 화면 폭에 맞게 확대/축소한다. (script 참고) */
+:root{
+  --z:1;
+  --blue-50:#fafdff; --blue-300:#b8e2ff; --blue-500:#4c9ef3; --blue-550:#3a82db; --blue-700:#0e2759;
+  --gray-300:#b5b7c6; --gray-700:#5d617c; --gray-800:#464a65; --gray-900:#30344f;
+  --pink-700:#d42396; --red-500:#f95c78; --green-700:#0faf6a;
+  --line:rgba(58,130,219,.55); --line-shadow:rgba(58,130,219,.18);
+  --ff:'Noto Sans JP',sans-serif;
+  --ff-plex:'IBM Plex Sans KR','Noto Sans JP',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#fff;font-family:var(--ff);color:var(--gray-900);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ol{list-style:none}
+
+.band{position:relative;width:100%}
+.col{position:relative;width:440px;margin:0 auto;zoom:var(--z)}
+.abs{position:absolute}
+.fill{position:absolute;inset:0;width:100%;height:100%}
+
+/* ---------- Header ---------- */
+.header{background:#fff;z-index:10}
+.header .col{height:52px}
+.nav-item{position:absolute;transform:translate(-50%,-50%);font-size:8px;font-weight:700;letter-spacing:-.16px;color:var(--gray-800);white-space:nowrap;line-height:1}
+.nav-apply{left:132.5px;top:25.5px;color:var(--red-500)}
+.nav-guide{left:221px;top:26px}
+.nav-terms{left:310px;top:26px}
+.brand{position:absolute;left:19px;top:16px;width:59px}
+.brand-logo{width:59px;height:7px}
+.brand-sub{position:absolute;left:2px;top:16px;width:53px;transform:translateY(-50%);text-align:center;font-family:var(--ff-plex);font-weight:700;font-size:10px;line-height:1;color:var(--blue-700)}
+.try{position:absolute;left:368px;top:17px;width:49.867px;height:20px}
+.try-logo{width:49.867px;height:6px}
+.try-txt{position:absolute;left:23px;top:13px;transform:translate(-50%,-50%);font-size:8px;font-weight:700;letter-spacing:-.16px;line-height:14px;color:var(--gray-800);white-space:nowrap}
+
+.dropdown{position:absolute;left:277px;top:40px;width:69px;height:61px;border-radius:7px;border:.3px solid var(--gray-300);
+  background:rgba(255,255,255,.1);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  opacity:0;visibility:hidden;transform:translateY(-3px);transition:opacity .18s,transform .18s,visibility .18s}
+.terms-wrap:hover .dropdown,.terms-wrap:focus-within .dropdown,.terms-wrap.open .dropdown{opacity:1;visibility:visible;transform:none}
+.terms-wrap .hit{position:absolute;left:276px;top:14px;width:68px;height:26px}
+.dropdown a{position:absolute;left:32.94px;transform:translate(-50%,-50%);font-size:8px;font-weight:700;letter-spacing:-.16px;color:var(--gray-800);white-space:nowrap;line-height:1}
+.dropdown .d1{top:18px}
+.dropdown .d2{top:44px}
+/* 체크 표시: 커서가 올라간 항목 텍스트 바로 뒤에 표시 */
+.dropdown .check{position:absolute;left:100%;top:50%;width:5px;height:5px;margin:-3px 0 0 2.6px;opacity:0;transform:scale(.6);transition:opacity .15s,transform .15s}
+.dropdown .check>span{position:absolute;inset:-10% -10% -19.62% -10%}
+.dropdown .check img{width:100%;height:100%}
+.dropdown a:hover .check,.dropdown a:focus-visible .check{opacity:1;transform:none}
+
+/* ---------- Hero ---------- */
+.hero{background:linear-gradient(150.21deg,#fdfdfd 2.29%,#b3e0ff 99.7%);overflow:hidden}
+.hero .col{height:331px}
+.badge{position:absolute;left:54px;top:33px;width:49px;height:23px;border:1px solid var(--pink-700);border-radius:30px;background:rgba(255,255,255,.1)}
+.badge i{position:absolute;left:6px;top:8px;width:6px;height:6px;animation:blink 1.4s ease-in-out infinite}
+/* 반짝임: 점이 깜빡이며 바깥으로 퍼지는 링 */
+.badge i::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--pink-700);animation:ripple 1.4s ease-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes ripple{0%{transform:scale(1);opacity:.55}100%{transform:scale(2.6);opacity:0}}
+@media (prefers-reduced-motion:reduce){.badge i,.badge i::after{animation:none}}
+.badge span{position:absolute;left:15px;top:3px;font-size:9px;font-weight:500;line-height:1.6;letter-spacing:-.54px;color:var(--pink-700);white-space:nowrap}
+.hero-logo{position:absolute;left:54px;top:68px;width:186px;height:22px}
+.hero-h1{position:absolute;left:52px;top:96px;font-size:26px;font-weight:900;line-height:38px;letter-spacing:-.78px;color:var(--blue-700);white-space:nowrap}
+.hero-h2{position:absolute;left:52px;top:134px;font-size:26px;font-weight:900;line-height:34px;letter-spacing:-.26px;color:var(--blue-550);white-space:nowrap}
+.hero-h2 .l2{letter-spacing:-.48px}
+.hero-sub{position:absolute;left:55px;top:212px;width:209px;font-size:11px;font-weight:600;line-height:1.6;letter-spacing:-.132px;color:var(--gray-900);white-space:nowrap}
+.more-btn{position:absolute;left:121px;top:268px;width:199px;height:27px;border-radius:8px;border:1px solid var(--blue-300);
+  background:linear-gradient(171.74deg,#2766c4 11.9%,#0e2759 86.07%);display:flex;align-items:center;justify-content:center;gap:2px;
+  color:#fff;font-size:9px;font-weight:700;letter-spacing:-.108px;line-height:1.6;transition:filter .15s}
+.more-btn:hover{filter:brightness(1.12)}
+.more-btn .chev{position:relative;width:7px;height:4px;margin-top:1px}
+.more-btn .chev>span{position:absolute;inset:-12.5% -7.14% -18.98% -7.14%}
+.more-btn .chev img{width:100%;height:100%}
+
+.bubble{position:absolute;border-radius:232px;overflow:hidden;border:.5px solid #e4e4e4;box-shadow:0 0 10.4px rgba(0,0,0,.13)}
+.b-ig{left:285px;top:89px;width:66px;height:66px;background:rgba(255,255,255,.8)}
+.b-ig img{position:absolute;left:11.5px;top:12.5px;width:40px;height:40px;object-fit:cover;opacity:.8}
+.b-x{left:365px;top:132px;width:41px;height:41px;background:rgba(255,255,255,.45);border-width:.25px}
+.b-x img{position:absolute;left:10.75px;top:11.75px;width:19px;height:17px;object-fit:cover;opacity:.45}
+.b-tt{left:365px;top:30px;width:79px;height:79px;background:rgba(255,255,255,.6)}
+.b-tt .clip{position:absolute;left:16.5px;top:16.5px;width:44px;height:44px;overflow:hidden;opacity:.6}
+.b-tt .clip img{position:absolute;left:-7.66%;top:-7.59%;width:118.02%;height:117.09%}
+.b-yt{left:310px;top:173px;width:41px;height:41px;background:rgba(255,255,255,.3)}
+.b-yt img{position:absolute;left:7.5px;top:11.5px;width:25.705px;height:18px;object-fit:cover;opacity:.3}
+
+/* ---------- Section common ---------- */
+.sec-head{display:flex;align-items:flex-start;height:17px;padding-left:48px}
+.sec-head .icon{width:12px;height:12px;margin-top:4px;object-fit:cover}
+.sec-head .icon.y{width:13px;height:13px;margin-top:4px}
+.sec-head h2{margin-left:3px;font-size:13px;font-weight:700;line-height:1.42;letter-spacing:-.26px;color:var(--gray-900);white-space:nowrap}
+.sec-head .icon.y + h2{margin-left:2px}
+.sec-head .sub{margin:6px 0 0 8px;font-size:6px;font-weight:600;line-height:1.42;letter-spacing:-.12px;color:var(--gray-700);white-space:pre}
+
+/* ---------- About ---------- */
+.about{padding-top:26px}
+.diagram{position:relative;height:162px;margin-top:14px} /* 원본 y=440 기준 */
+.stat{position:absolute;left:48px;width:97px;height:30px;border-radius:5px;background:#f4f6f9}
+.stat b{position:absolute;left:8px;top:5px;font-size:7.5px;font-weight:700;line-height:1.52;letter-spacing:-.15px;color:var(--green-700);white-space:nowrap}
+.stat small{position:absolute;left:8px;top:17px;font-size:4px;font-weight:500;line-height:1.52;letter-spacing:-.08px;color:var(--gray-700);white-space:nowrap}
+.stat.s150 b{font-weight:600}
+.stat.s26 b,.stat.s26 small{left:7px}
+.feat{position:absolute;left:294px;width:100px;height:32px;border-radius:6px;border:.3px solid var(--line);
+  background:linear-gradient(to right,#fff,#eaf3ff);box-shadow:0 2px 6px var(--line-shadow)}
+.feat b{position:absolute;left:7.7px;top:4.7px;font-size:8.5px;font-weight:700;line-height:1.52;letter-spacing:-.17px;color:#1f6fd6;white-space:nowrap}
+.feat b small{font-size:3.5px}
+.feat > small{position:absolute;left:7.7px;top:18.2px;font-size:4px;font-weight:500;line-height:1.52;letter-spacing:-.08px;color:#3b4660;white-space:nowrap}
+.svgbox{position:absolute}
+.svgbox>span{position:absolute}
+.svgbox img{width:100%;height:100%}
+.center-copy{position:absolute;left:151px;top:64px;width:143px;font-size:9px;font-weight:700;line-height:1.44;letter-spacing:-.18px;color:var(--gray-800);text-align:center}
+.center-copy .ln{display:flex;justify-content:center;align-items:center;height:12.96px;gap:1px}
+.center-copy .blue{color:var(--blue-550)}
+
+/* ---------- What you get ---------- */
+.get-head{margin-top:35px}
+.get{position:relative;height:78px;margin-top:4px}
+.get-card{position:absolute;top:11px;width:172px;height:67px;border-radius:5px;background:var(--blue-50);box-shadow:1px 1px 4px rgba(0,0,0,.17)}
+.get-card.c1{left:45px}
+.get-card.c2{left:221px}
+.get-card .ill{position:absolute;object-fit:cover}
+.c1 .ill{left:12px;top:18px;width:34px;height:34px}
+.c2 .ill{left:11px;top:16px;width:38px;height:38px}
+.get-card h3{position:absolute;top:13px;font-size:9px;font-weight:600;line-height:1.32;letter-spacing:-.18px;color:var(--blue-700);white-space:nowrap}
+.get-card p{position:absolute;top:28px;width:108px;font-size:6px;font-weight:500;line-height:1.52;letter-spacing:-.12px;color:#3b4660;white-space:nowrap}
+.c1 h3,.c1 p{left:53px}
+.c2 h3,.c2 p{left:57px}
+.first100{position:absolute;left:336px;top:0;width:49px;height:18px;border-radius:34px;
+  background:url("data:image/svg+xml;utf8,<svg viewBox='0 0 49 18' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(1.6941 2.9942 -4.509 1.125 0.26064 -9.1731)'><stop stop-color='rgba(212,35,150,1)' offset='0'/><stop stop-color='rgba(225,74,172,1)' offset='0.5'/><stop stop-color='rgba(238,112,194,1)' offset='1'/></radialGradient></defs></svg>")}
+.first100 span{position:absolute;left:8px;top:3px;font-size:7px;font-weight:700;line-height:1.6;letter-spacing:-.084px;color:#fff;white-space:nowrap}
+
+/* ---------- Who can join ---------- */
+.who-head{margin-top:42px}
+.who{margin:14px 0 0 48px;width:345px;display:flex;flex-direction:column;gap:3px}
+.box{border:.3px solid var(--line);border-radius:6px;filter:drop-shadow(0 2px 3px var(--line-shadow));background:#fff}
+.who-row{height:28px;display:flex;align-items:center;padding-left:12px;gap:5px}
+.who-row img,.who-last .hd img{width:8px;height:8px}
+.who-row span,.who-last .hd span{font-size:7px;font-weight:500;line-height:1.32;letter-spacing:-.14px;color:var(--blue-700);white-space:pre}
+.who-last{height:74px;padding-top:7px}
+.who-last .hd{display:flex;align-items:center;gap:5px;height:13px;padding-left:12px}
+.tags{margin:8px 0 0 19px;display:flex;flex-direction:column;gap:2px}
+.tags div{display:flex;gap:2px}
+.tag{height:12px;padding:1px 0 0 4px;border-radius:3px;background:var(--blue-300);font-size:6px;font-weight:400;line-height:1.52;letter-spacing:-.12px;color:#000;white-space:nowrap;overflow:hidden}
+
+/* ---------- How it works ---------- */
+.how-head{margin-top:46px}
+.steps{margin:15.5px 0 0 48px;width:345px}
+.step{position:relative;display:flex;align-items:center;height:34px}
+.step.s32{height:32px}
+.step .pill{position:absolute;left:9.5px;width:35px;height:15px;border-radius:34px;background:var(--blue-500);display:flex;align-items:center;justify-content:center;
+  font-family:var(--ff-plex);font-size:7px;font-weight:600;line-height:1.6;letter-spacing:-.084px;color:#fff;white-space:nowrap}
+.step p{position:absolute;left:61px;font-size:6px;font-weight:500;line-height:1.32;letter-spacing:-.12px;color:var(--blue-700);white-space:pre}
+.step p b{font-weight:700}
+/* STEP 6 행은 원본에서 다른 행보다 높음(42.5px) */
+.step.tall{height:42.5px}
+.step.tall p{width:284px;display:flex;white-space:normal}
+.step.tall p b,.step.tall p .sep{flex:none;white-space:pre}
+/* 0.3px 선은 브라우저에서 사라지므로 최소 1 CSS px 로 그린다 */
+.step .rule{position:absolute;left:0;bottom:0;width:345px;height:calc(1px / var(--z));transform:translateY(50%)}
+.step .rule>span{position:absolute;inset:0}
+.step .rule img{width:100%;height:100%}
+
+/* ---------- FAQ ---------- */
+.faq-head{margin-top:36px}
+.faq{margin:17px 0 0 48px;width:345px;display:flex;flex-direction:column;gap:4px}
+.qa{position:relative}
+.qa button{display:flex;align-items:center;width:100%;height:28px;text-align:left;padding-left:13px;cursor:pointer}
+.qa .q{font-size:7px;font-weight:500;line-height:1.32;letter-spacing:-.14px;color:var(--blue-700)}
+.qa .pm{position:absolute;right:21px;top:14px;transform:translate(50%,-50%);font-size:15px;font-weight:300;line-height:1.32;letter-spacing:-.3px;color:var(--blue-700);opacity:.75;transition:transform .2s}
+.qa.open .pm{transform:translate(50%,-50%) rotate(45deg)}
+.qa .a{display:none;padding:0 100px 7.5px 22px;margin-top:-8.5px;font-size:7px;font-weight:500;line-height:1.42;letter-spacing:-.14px;color:var(--gray-800)}
+.qa.open .a{display:block}
+
+/* ---------- CTA ---------- */
+.cta{padding:42px 0 68px}
+.cta h2{height:57.6px;text-align:center;transform:translateX(5px);font-size:20px;font-weight:900;line-height:1.44;letter-spacing:-.4px;color:var(--blue-700);white-space:nowrap}
+.cta h2 span{color:var(--blue-550)}
+.cta-btn{display:flex;align-items:center;justify-content:center;width:277px;height:48px;margin:21.4px auto 0;border-radius:8px;border:1px solid var(--blue-300);
+  background:linear-gradient(158.79deg,#b7a3ff 0%,#4c9ef3 50%,#82c0f9 100%);color:#fff;font-size:15px;font-weight:700;line-height:1.6;letter-spacing:-.18px;
+  transform:translateX(-.5px);transition:filter .15s}
+.cta-btn:hover{filter:brightness(1.07)}
+
+/* ---------- Footer ---------- */
+.footer{background:#060e20}
+.footer .col{height:203px;padding:37px 27px 39px}
+.footer .inner{width:367px;display:flex;flex-direction:column;gap:20px}
+.footer .logo{width:148px;height:18px}
+.footer p{font-family:var(--ff-plex);font-size:15px;font-weight:400;line-height:1.5;color:var(--gray-300)}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="band header">
+  <div class="col">
+    <a class="brand" href="#top" aria-label="Socra Tutor 奨学生">
+      <img class="brand-logo" src="assets/logo-header.svg" alt="Socra Tutor" width="59" height="7">
+      <span class="brand-sub">奨学生</span>
+    </a>
+    <a class="nav-item nav-apply" href="#apply">応募する</a>
+    <a class="nav-item nav-guide" href="#how">ご利用ガイド</a>
+    <div class="terms-wrap">
+      <button class="hit" type="button" aria-haspopup="true" aria-expanded="false" aria-label="規約・ポリシー"></button>
+      <span class="nav-item nav-terms">規約・ポリシー</span>
+      <div class="dropdown" role="menu">
+        <!-- TODO: 약관 페이지 URL로 교체 -->
+        <a class="d1" href="#" role="menuitem">利用規約<span class="check"><span><img src="assets/chevron-down.svg" alt="" width="6.00016" height="6.48093"></span></span></a>
+        <a class="d2" href="#" role="menuitem">運営ポリシー<span class="check"><span><img src="assets/chevron-down.svg" alt="" width="6.00016" height="6.48093"></span></span></a>
+      </div>
+    </div>
+    <!-- TODO: Socra Tutor 서비스 URL로 교체 -->
+    <a class="try" href="#" aria-label="Socra Tutor 使ってみる">
+      <img class="try-logo" src="assets/logo-header-try.svg" alt="" width="49.8671" height="6">
+      <span class="try-txt">使ってみる</span>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- Hero -->
+  <section class="band hero">
+    <div class="col">
+      <div class="badge"><i><img class="fill" src="assets/dot-pink.svg" alt="" width="6" height="6"></i><span>募集中</span></div>
+      <img class="hero-logo" src="assets/logo-hero.svg" alt="Socra Tutor" width="186" height="22">
+      <h1 class="hero-h1">奨学生募集！</h1>
+      <p class="hero-h2">あなたの勉強垢が<br><span class="l2">おこづかいになる</span></p>
+      <p class="hero-sub">勉強垢で専用リンクをシェアするだけで、<br>登録者数×100円がもらえる！</p>
+      <a class="more-btn" href="#about">詳しく見る
+        <span class="chev"><span><img src="assets/chevron-right.svg" alt="" width="8.00001" height="5.2593"></span></span>
+      </a>
+
+      <div class="bubble b-tt" aria-hidden="true"><div class="clip"><img src="assets/tiktok.png" alt=""></div></div>
+      <div class="bubble b-ig" aria-hidden="true"><img src="assets/instagram.png" alt=""></div>
+      <div class="bubble b-x" aria-hidden="true"><img src="assets/x.png" alt=""></div>
+      <div class="bubble b-yt" aria-hidden="true"><img src="assets/youtube.png" alt=""></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="band about" id="about">
+    <div class="col">
+      <div class="sec-head">
+        <img class="icon" src="assets/light.png" alt="">
+        <h2>Socra Tutorってなに？</h2>
+        <span class="sub">|     About Socra Tutor</span>
+      </div>
+
+      <!-- 아래 좌표는 원본 y=440 을 0으로 둔 값 -->
+      <div class="diagram">
+        <img class="abs" src="assets/socra-ai-logo-2.svg" alt="Socra AI" width="59.7851" height="11" style="left:67px;top:8px;width:59.785px;height:11px">
+        <div class="stat" style="top:24px"><b>約230億円</b><small>ソフトバンク・ビジョン・ファンドから出資</small></div>
+        <div class="stat s150" style="top:59px"><b>150+</b><small>国内外でAI特許を保有</small></div>
+        <div class="stat" style="top:94px"><b>78万人+</b><small>78万人分の実際の学習データを蓄積</small></div>
+        <div class="stat s26" style="top:129px"><b>26本</b><small>NeurIPS・ACLなど世界トップAI学会に論文掲載</small></div>
+
+        <div class="svgbox" style="left:146px;top:39px;width:5px;height:105px"><span style="inset:-.29% -6%"><img src="assets/flow-left-bracket.svg" alt="" width="5.6" height="105.6"></span></div>
+        <div class="svgbox" style="left:151px;top:88px;width:10px;height:0"><span style="inset:-.35px -3.5%"><img src="assets/flow-left-in.svg" alt="" width="10.7" height=".7"></span></div>
+        <img class="abs" src="assets/flow-left-arrow.svg" alt="" width="3.5" height="3.4" style="left:159.5px;top:86.3px">
+
+        <div class="svgbox" style="left:191px;top:57px;width:62px;height:62px"><span style="inset:-4.84% -8.06% -8.06% -4.84%"><img src="assets/ellipse7.svg" alt="" width="70" height="70"></span></div>
+        <img class="abs" src="assets/ellipse8.png" alt="" width="77" height="77" style="left:183px;top:49px">
+        <img class="abs" src="assets/ellipse9.png" alt="" width="83" height="83" style="left:180px;top:46px">
+        <img class="abs" src="assets/ellipse10.svg" alt="" width="104" height="104" style="left:170px;top:36px">
+        <img class="abs" src="assets/ellipse11.png" alt="" width="132" height="132" style="left:156px;top:22px">
+
+        <div class="center-copy">
+          <div class="ln"><img src="assets/logo-center.svg" alt="Socra Tutor" width="60" height="7">は</div>
+          <div class="ln"><img src="assets/socra-ai-logo.svg" alt="Socra AI" width="44.8231" height="8.2471">が作った</div>
+          <div class="ln blue">「3大AI問題解説学習アプリ」</div>
+        </div>
+
+        <div class="svgbox" style="left:281px;top:38px;width:7px;height:105px"><span style="inset:-.33% -5%"><img src="assets/flow-right-out.svg" alt="" width="7.7" height="105.7"></span></div>
+        <div class="svgbox" style="left:288px;top:38px;width:5px;height:105px"><span style="inset:-.33% -7%"><img src="assets/flow-right-ticks.svg" alt="" width="5.7" height="105.7"></span></div>
+
+        <img class="abs" src="assets/logo-feature.svg" alt="Socra Tutor" width="87.4" height="10.35" style="left:299.3px;top:7.65px">
+        <div class="feat" style="top:23px"><b>3大AIが同時に回答</b><small>GPT・Gemini・Claudeが正解を比較</small></div>
+        <div class="feat" style="top:58px"><b>安心の総合回答</b><small>3大AIの正解・解説をまとめて提供</small></div>
+        <div class="feat" style="top:93px"><b>チュータリング<small>(ステップ学習)</small></b><small style="letter-spacing:-.12px">どんな問題も理解できるまでステップごとに解説</small></div>
+        <div class="feat" style="top:128px"><b>グルチャ</b><small>ちょっとした悩み相談も友だちのように</small></div>
+      </div>
+
+      <!-- What you get -->
+      <div class="sec-head get-head">
+        <img class="icon" src="assets/light.png" alt="">
+        <h2>Socra Tutor奨学生の特典</h2>
+        <span class="sub">|     What you get</span>
+      </div>
+      <div class="get">
+        <div class="get-card c1">
+          <img class="ill" src="assets/coin.png" alt="">
+          <h3>毎月最低100円+から！</h3>
+          <p>あなた専用リンクから登録する人が<br>増えるほど金額もアップ。Limitなし！<br>頑張った分だけいくらでもGET。</p>
+        </div>
+        <div class="get-card c2">
+          <img class="ill" src="assets/book.png" alt="">
+          <h3>2,000円相当の参考書</h3>
+          <p>Amazonで好きな参考書・問題集を<br>プレゼント。（最大2,000円まで）<br>早めに応募した方への特典。</p>
+        </div>
+        <div class="first100"><span>先着100名</span></div>
+      </div>
+
+      <!-- Who can join -->
+      <div class="sec-head who-head">
+        <img class="icon" src="assets/light.png" alt="">
+        <h2>奨学生に応募できる人</h2>
+        <span class="sub">|     Who can join</span>
+      </div>
+      <div class="who">
+        <div class="box who-row"><img src="assets/check.svg" alt="" width="8" height="8"><span>中学生・高校生・大学生（24歳まで）</span></div>
+        <div class="box who-row"><img src="assets/check.svg" alt="" width="8" height="8"><span>SNSで勉強・受験などの投稿をしているアカウントを持つ人</span></div>
+        <div class="box who-row"><img src="assets/check.svg" alt="" width="8" height="8"><span>参考書のサポートを受けて勉強記録を始めたい人</span></div>
+        <div class="box who-row"><img src="assets/check.svg" alt="" width="8" height="8"><span>勉強もしながらおこづかいも稼ぎたい人</span></div>
+        <div class="box who-last">
+          <div class="hd"><img src="assets/check.svg" alt="" width="8" height="8"><span>こんな投稿をしているなら大歓迎！  ▼</span></div>
+          <div class="tags">
+            <div>
+              <span class="tag" style="width:24px">#勉強</span><span class="tag" style="width:24px">#受験</span><span class="tag" style="width:24px">#進学</span><span class="tag" style="width:24px">#進路</span><span class="tag" style="width:24px">#学校</span><span class="tag" style="width:18px">#塾</span><span class="tag" style="width:24px">#日常</span><span class="tag" style="width:24px">#部活</span><span class="tag" style="width:16px">#部</span><span class="tag" style="width:28px">#バイト</span><span class="tag" style="width:26px">#中学生</span><span class="tag" style="width:27px">#高校生</span>
+            </div>
+            <div>
+              <span class="tag" style="width:29px">#大学生</span><span class="tag" style="width:41px">#中間テスト</span><span class="tag" style="width:41px">#期末テスト</span><span class="tag" style="width:24px">#模試</span><span class="tag" style="width:35px">#高校受験</span><span class="tag" style="width:92px">#中学受験(ちゅうがくじゅけん)</span><span class="tag" style="width:32px">#推薦入試</span>
+            </div>
+            <div>
+              <span class="tag" style="width:24px">#入試</span><span class="tag" style="width:32px">#大学受験</span><span class="tag" style="width:41px">#共通テスト</span><span class="tag" style="width:47px">#センター試験</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How it works -->
+      <div class="sec-head how-head" id="how">
+        <img class="icon" src="assets/light.png" alt="" style="margin-top:5px">
+        <h2>おこづかいをもらう流れ</h2>
+        <span class="sub">|     How it works</span>
+      </div>
+      <ol class="steps">
+        <li class="step s32"><span class="pill">STEP 1</span><p><b>奨学生に応募</b>     |     ホームページ最上部の「Socra Tutor奨学生に応募する」から申込書を提出します。</p><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
+        <li class="step s32"><span class="pill">STEP 2</span><p><b>審査</b>     |     ソクラチューターのスタッフが内容を簡単に確認します。</p><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
+        <li class="step"><span class="pill">STEP 3</span><p><b>マイリンク＋先着特典GET</b>    |     あなた専用のリンクが届きます。先着100名は参考書も一緒に注文します。</p><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
+        <li class="step"><span class="pill">STEP 4</span><p><b>SNSに投稿</b>     |     普段使っているSNSにマイリンクを載せて投稿します。</p><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
+        <li class="step"><span class="pill">STEP 5</span><p><b>友だちが登録</b>     |     マイリンクから登録した人がすべてカウントされます。</p><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
+        <li class="step tall"><span class="pill">STEP 6</span><p><b>毎月レポート共有＆おこづかい支給</b><span class="sep">     |     </span><span>翌月すぐに登録者数レポートと一緒におこづかいが支給されます。</span></p><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
+      </ol>
+
+      <!-- FAQ -->
+      <div class="sec-head faq-head">
+        <img class="icon y" src="assets/light-yellow.png" alt="">
+        <h2>よくある質問</h2>
+        <span class="sub">|     FAQ</span>
+      </div>
+      <div class="faq">
+        <div class="box qa open">
+          <button type="button" aria-expanded="true"><span class="q">Q. 未成年でも応募できますか？</span><span class="pm" aria-hidden="true">+</span></button>
+          <p class="a">A. 大丈夫です！ただし保護者の同意書が必要です。応募フォームと一緒に提出してください！</p>
+        </div>
+        <div class="box qa">
+          <button type="button" aria-expanded="false"><span class="q">Q. 投稿は自由にしていいですか？</span><span class="pm" aria-hidden="true">+</span></button>
+          <p class="a">A. アプリの機能（勉強・問題解説）に関連する写真・文章・動画なら、何でもOKです！何を投稿すればいいか迷ったら、クリエイティブガイドを参考にしてください！</p>
+        </div>
+        <div class="box qa">
+          <button type="button" aria-expanded="false"><span class="q">Q. もらえるおこづかいの上限はいくらですか？</span><span class="pm" aria-hidden="true">+</span></button>
+          <p class="a">A. 上限はありません！リンクから登録した人が何十人でも何百人でも、すべておこづかいとして積み上がります。</p>
+        </div>
+        <div class="box qa">
+          <button type="button" aria-expanded="false"><span class="q">Q. お金はいつもらえますか？</span><span class="pm" aria-hidden="true">+</span></button>
+          <p class="a">A. 翌月すぐに支給されます。</p>
+        </div>
+        <div class="box qa">
+          <button type="button" aria-expanded="false"><span class="q">Q. 参考書はどうやって選びますか？</span><span class="pm" aria-hidden="true">+</span></button>
+          <p class="a">A. 先着100名に入ると、Amazonの購入ページをご案内します。そこで好きな参考書・問題集を1冊選ぶだけでOK！（最大2,000円まで）選んでいただいた本は、購入ページに入力いただいた住所へお届けします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="band cta" id="apply">
+    <div class="col">
+      <h2>奨学生に興味があるなら、<br><span>今すぐ応募！</span></h2>
+      <!-- TODO: 응모 폼 URL로 교체 -->
+      <a class="cta-btn" href="#">5分で奨学生に応募</a>
+    </div>
+  </section>
+</main>
+
+<footer class="band footer">
+  <div class="col">
+    <div class="inner">
+      <img class="logo" src="assets/logo-footer.svg" alt="Socra Tutor" width="148" height="18">
+      <p>会社名：株式会社Socra AI | 代表取締役：Park Suyeong | Webサイト：corp.socra.ai | お問い合わせ：contact@socra.ai | 所在地：〒104-0061 東京都中央区銀座6丁目10-1 GINZA SIX 13F WeWork</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// 440px 디자인을 화면 폭에 맞춰 스케일 (데스크톱은 MAX_WIDTH까지만 확대)
+const DESIGN_WIDTH = 440, MAX_WIDTH = 760;
+function fit(){
+  const w = Math.min(document.documentElement.clientWidth, MAX_WIDTH);
+  document.documentElement.style.setProperty('--z', (w / DESIGN_WIDTH).toFixed(4));
+}
+fit();
+addEventListener('resize', fit);
+
+// 規約・ポリシー 드롭다운 (터치 기기용 토글)
+const terms = document.querySelector('.terms-wrap');
+const termsBtn = terms.querySelector('.hit');
+termsBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  const open = terms.classList.toggle('open');
+  termsBtn.setAttribute('aria-expanded', open);
+});
+document.addEventListener('click', () => { terms.classList.remove('open'); termsBtn.setAttribute('aria-expanded', false); });
+
+// FAQ 아코디언
+document.querySelectorAll('.qa button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const open = btn.parentElement.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+});
+</script>
+</body>
+</html>
