@@ -505,7 +505,7 @@ ol{list-style:none}
 
 <script>
 // 태블릿·PC: 440px 웹 디자인을 화면 폭에 맞춰 확대 (MAX_WIDTH까지). 휴대폰(768px 미만)은 모바일 레이아웃이라 확대하지 않음
-const DESIGN_WIDTH = 440, MAX_WIDTH = 1100, MOBILE_MAX = 767.98;
+const DESIGN_WIDTH = 440, MAX_WIDTH = 760, MOBILE_MAX = 767.98;
 function fit(){
   const cw = document.documentElement.clientWidth;
   const z = cw <= MOBILE_MAX ? 1 : Math.min(cw, MAX_WIDTH) / DESIGN_WIDTH;
