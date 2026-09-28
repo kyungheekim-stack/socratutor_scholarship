@@ -62,8 +62,8 @@ ol{list-style:none}
 .dropdown a:hover .check,.dropdown a:focus-visible .check{opacity:1;transform:none}
 
 /* ---------- Hero ---------- */
-.hero{background:linear-gradient(150.21deg,#fdfdfd 2.29%,#b3e0ff 99.7%);overflow:hidden}
-.hero .col{height:331px}
+.hero{background:linear-gradient(153.05deg,#fdfdfd 2.29%,#b3e0ff 99.7%);overflow:hidden}
+.hero .col{height:294px}
 .badge{position:absolute;left:54px;top:33px;width:49px;height:23px;border:1px solid var(--pink-700);border-radius:30px;background:rgba(255,255,255,.1)}
 .badge i{position:absolute;left:6px;top:8px;width:6px;height:6px;animation:blink 1.4s ease-in-out infinite}
 /* 반짝임: 점이 깜빡이며 바깥으로 퍼지는 링 */
@@ -77,13 +77,6 @@ ol{list-style:none}
 .hero-h2{position:absolute;left:52px;top:134px;font-size:26px;font-weight:900;line-height:34px;letter-spacing:-.26px;color:var(--blue-550);white-space:nowrap}
 .hero-h2 .l2{letter-spacing:-.48px}
 .hero-sub{position:absolute;left:55px;top:212px;width:209px;font-size:11px;font-weight:600;line-height:1.6;letter-spacing:-.132px;color:var(--gray-900);white-space:nowrap}
-.more-btn{position:absolute;left:121px;top:268px;width:199px;height:27px;border-radius:8px;border:1px solid var(--blue-300);
-  background:linear-gradient(171.74deg,#2766c4 11.9%,#0e2759 86.07%);display:flex;align-items:center;justify-content:center;gap:2px;
-  color:#fff;font-size:9px;font-weight:700;letter-spacing:-.108px;line-height:1.6;transition:filter .15s}
-.more-btn:hover{filter:brightness(1.12)}
-.more-btn .chev{position:relative;width:7px;height:4px;margin-top:1px}
-.more-btn .chev>span{position:absolute;inset:-12.5% -7.14% -18.98% -7.14%}
-.more-btn .chev img{width:100%;height:100%}
 
 .bubble{position:absolute;border-radius:232px;overflow:hidden;border:.5px solid #e4e4e4;box-shadow:0 0 10.4px rgba(0,0,0,.13)}
 .b-ig{left:285px;top:89px;width:66px;height:66px;background:rgba(255,255,255,.8)}
@@ -105,28 +98,24 @@ ol{list-style:none}
 .sec-head .sub{margin:6px 0 0 8px;font-size:6px;font-weight:600;line-height:1.42;letter-spacing:-.12px;color:var(--gray-700);white-space:pre}
 
 /* ---------- About ---------- */
-.about{padding-top:26px}
-.diagram{position:relative;height:162px;margin-top:14px} /* 원본 y=440 기준 */
-.stat{position:absolute;left:48px;width:97px;height:30px;border-radius:5px;background:#f4f6f9}
-.stat b{position:absolute;left:8px;top:5px;font-size:7.5px;font-weight:700;line-height:1.52;letter-spacing:-.15px;color:var(--green-700);white-space:nowrap}
-.stat small{position:absolute;left:8px;top:17px;font-size:4px;font-weight:500;line-height:1.52;letter-spacing:-.08px;color:var(--gray-700);white-space:nowrap}
-.stat.s150 b{font-weight:600}
-.stat.s26 b,.stat.s26 small{left:7px}
-.feat{position:absolute;left:294px;width:100px;height:32px;border-radius:6px;border:.3px solid var(--line);
-  background:linear-gradient(to right,#fff,#eaf3ff);box-shadow:0 2px 6px var(--line-shadow)}
-.feat b{position:absolute;left:7.7px;top:4.7px;font-size:8.5px;font-weight:700;line-height:1.52;letter-spacing:-.17px;color:#1f6fd6;white-space:nowrap}
-.feat b small{font-size:3.5px}
-.feat > small{position:absolute;left:7.7px;top:18.2px;font-size:4px;font-weight:500;line-height:1.52;letter-spacing:-.08px;color:#3b4660;white-space:nowrap}
+.about{padding-top:44px}
+.diagram{position:relative;height:138px;margin-top:26px} /* 원본 y=433 을 0으로 둔 좌표 */
+.stat{position:absolute;left:80px;width:100px;height:32px;border-radius:6px;border:.3px solid var(--line);background:rgba(255,255,255,.9);box-shadow:0 2px 6px var(--line-shadow)}
+.stat:first-child{background:rgba(255,255,255,.8)}
+.stat b{position:absolute;left:7.7px;top:4.7px;font-size:7.5px;font-weight:800;line-height:1.52;letter-spacing:-.15px;color:var(--blue-550);white-space:nowrap}
+.stat small{position:absolute;left:7.7px;top:18.2px;font-size:4px;font-weight:500;line-height:1.52;letter-spacing:-.08px;color:var(--gray-700);white-space:nowrap}
+.stat.s150 b{font-size:8.5px;letter-spacing:-.17px}
+.stat.s26 b{font-weight:700}
 .svgbox{position:absolute}
 .svgbox>span{position:absolute}
 .svgbox img{width:100%;height:100%}
-.flow{overflow:visible}
-.center-copy{position:absolute;left:151px;top:61.8px;width:143px;font-size:9px;font-weight:700;line-height:1.6;letter-spacing:-.18px;color:var(--gray-800);text-align:center}
-.center-copy .ln{display:flex;justify-content:center;align-items:center;height:14.4px;gap:1px}
-.center-copy .blue{color:var(--blue-550)}
+.flip{transform:scaleX(-1)}
+.center-copy{position:absolute;left:221px;top:41px;width:143px;font-size:9px;font-weight:700;line-height:14.31px;letter-spacing:-.18px;color:var(--gray-800);text-align:center}
+.center-copy .ln{display:flex;justify-content:center;align-items:center;height:14.31px;gap:1px}
+.center-copy .blue{color:#1b478e}
 
 /* ---------- What you get ---------- */
-.get-head{margin-top:35px}
+.get-head{margin-top:43px}
 .get{position:relative;height:78px;margin-top:4px}
 .get-card{position:absolute;top:11px;width:172px;height:67px;border-radius:5px;background:var(--blue-50);box-shadow:1px 1px 4px rgba(0,0,0,.17)}
 .get-card.c1{left:45px}
@@ -143,7 +132,7 @@ ol{list-style:none}
 .first100 span{position:absolute;left:8px;top:3px;font-size:7px;font-weight:700;line-height:1.6;letter-spacing:-.084px;color:#fff;white-space:nowrap}
 
 /* ---------- Who can join ---------- */
-.who-head{margin-top:42px}
+.who-head{margin-top:43px}
 .who{margin:14px 0 0 48px;width:345px;display:flex;flex-direction:column;gap:3px}
 .box{border:.3px solid var(--line);border-radius:6px;filter:drop-shadow(0 2px 3px var(--line-shadow));background:#fff}
 .who-row{height:28px;display:flex;align-items:center;padding-left:12px;gap:5px}
@@ -157,7 +146,7 @@ ol{list-style:none}
 .tag{display:inline-flex;align-items:center;height:12px;padding:0 5px;border-radius:3px;background:var(--blue-300);font-size:6px;font-weight:400;line-height:1;letter-spacing:-.12px;color:#000;white-space:nowrap}
 
 /* ---------- How it works ---------- */
-.how-head{margin-top:46px}
+.how-head{margin-top:44px}
 .steps{margin:15.5px 0 0 48px;width:345px}
 .step{position:relative;display:flex;align-items:center;height:34px}
 .step.s32{height:32px}
@@ -175,7 +164,7 @@ ol{list-style:none}
 .step .rule img{width:100%;height:100%}
 
 /* ---------- FAQ ---------- */
-.faq-head{margin-top:36px}
+.faq-head{margin-top:44px}
 .faq{margin:17px 0 0 48px;width:345px;display:flex;flex-direction:column;gap:4px}
 .qa{position:relative}
 .qa button{display:flex;align-items:center;width:100%;height:28px;text-align:left;padding-left:13px;cursor:pointer}
@@ -185,21 +174,26 @@ ol{list-style:none}
 .qa .a{display:none;padding:0 100px 7.5px 22px;margin-top:-8.5px;font-size:7px;font-weight:500;line-height:1.42;letter-spacing:-.14px;color:var(--gray-800)}
 .qa.open .a{display:block}
 
-/* ---------- CTA ---------- */
-.cta{padding:42px 0 68px}
+/* ---------- CTA (하단 플로팅) ----------
+   흰색 그라데이션 배경 + 문구 + 버튼을 한 묶음으로 화면 하단에 고정(sticky).
+   끝까지 스크롤하면 원래 자리(푸터 바로 위)에 멈춰 푸터를 가리지 않는다. */
+.cta{position:sticky;bottom:0;z-index:5;margin-top:29px;pointer-events:none;
+  /* Figma 원본: 투명 31% → 흰색 79% 84%. 떠 있을 때 뒤 콘텐츠와 문구가 겹쳐 읽히지 않아 위쪽만 짧게 페이드되도록 강화 */
+  background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.9) 18%,rgba(255,255,255,.97) 40%)}
+.cta .col{height:175px;padding-top:7px}
 .cta h2{height:57.6px;text-align:center;transform:translateX(5px);font-size:20px;font-weight:900;line-height:1.44;letter-spacing:-.4px;color:var(--blue-700);white-space:nowrap}
 .cta h2 span{color:var(--blue-550)}
-.cta-btn{display:flex;align-items:center;justify-content:center;width:277px;height:48px;margin:21.4px auto 0;border-radius:8px;border:1px solid var(--blue-300);
+.cta-btn{pointer-events:auto;display:flex;align-items:center;justify-content:center;width:277px;height:48px;margin:14.4px auto 0;border-radius:8px;border:1px solid var(--blue-300);
   background:linear-gradient(158.79deg,#b7a3ff 0%,#4c9ef3 50%,#82c0f9 100%);color:#fff;font-size:15px;font-weight:700;line-height:1.6;letter-spacing:-.18px;
   transform:translateX(-.5px);transition:filter .15s}
 .cta-btn:hover{filter:brightness(1.07)}
 
 /* ---------- Footer ---------- */
 .footer{background:#060e20}
-.footer .col{height:203px;padding:37px 27px 39px}
-.footer .inner{width:367px;display:flex;flex-direction:column;gap:20px}
-.footer .logo{width:148px;height:18px}
-.footer p{font-family:var(--ff-plex);font-size:15px;font-weight:400;line-height:1.5;color:var(--gray-300)}
+.footer .col{height:115px;padding:37px 27px 0}
+.footer .inner{width:386px;display:flex;flex-direction:column;gap:8px}
+.footer .logo{width:86px;height:10px}
+.footer p{font-family:var(--ff-plex);font-size:7px;font-weight:400;line-height:1.5;color:var(--gray-300)}
 </style>
 </head>
 <body>
@@ -211,7 +205,7 @@ ol{list-style:none}
       <img class="brand-logo" src="assets/logo-header.svg" alt="Socra Tutor" width="59" height="7">
       <span class="brand-sub">奨学生</span>
     </a>
-    <a class="nav-item nav-apply" href="https://docs.google.com/forms/d/e/1FAIpQLSdallSjr5LQIkqC5UYKGB2N6xy2TIigE4t9V5OXBa1d-0Lgaw/viewform" target="_blank" rel="noopener">応募する</a>
+    <a class="nav-item nav-apply" href="https://docs.google.com/forms/d/e/1FAIpQLSdallSjr5LQIkqC5UYKGB2N6xy2TIigE4t9V5OXBa1d-0Lgaw/viewform" target="_blank" rel="noopener">すぐ応募</a>
     <a class="nav-item nav-guide" href="#how">ご利用ガイド</a>
     <div class="terms-wrap">
       <button class="hit" type="button" aria-haspopup="true" aria-expanded="false" aria-label="規約・ポリシー"></button>
@@ -239,9 +233,6 @@ ol{list-style:none}
       <h1 class="hero-h1">奨学生募集！</h1>
       <p class="hero-h2">あなたの勉強垢が<br><span class="l2">おこづかいになる</span></p>
       <p class="hero-sub">勉強垢で専用リンクをシェアするだけで、<br>登録者数×100円がもらえる！</p>
-      <a class="more-btn" href="#about">詳しく見る
-        <span class="chev"><span><img src="assets/chevron-right.svg" alt="" width="8.00001" height="5.2593"></span></span>
-      </a>
 
       <div class="bubble b-tt" aria-hidden="true"><div class="clip"><img src="assets/tiktok.png" alt=""></div></div>
       <div class="bubble b-ig" aria-hidden="true"><img src="assets/instagram.png" alt=""></div>
@@ -259,39 +250,21 @@ ol{list-style:none}
         <span class="sub">|     About Socra Tutor</span>
       </div>
 
-      <!-- 아래 좌표는 원본 y=440 을 0으로 둔 값 -->
       <div class="diagram">
-        <img class="abs" src="assets/socra-ai-logo-2.svg" alt="Socra AI" width="59.7851" height="11" style="left:67px;top:8px;width:59.785px;height:11px">
-        <div class="stat" style="top:24px"><b>約230億円</b><small>ソフトバンク・ビジョン・ファンドから出資</small></div>
-        <div class="stat s150" style="top:59px"><b>150+</b><small>国内外でAI特許を保有</small></div>
-        <div class="stat" style="top:94px"><b>78万人+</b><small>78万人分の実際の学習データを蓄積</small></div>
-        <div class="stat s26" style="top:129px"><b>26本</b><small>NeurIPS・ACLなど世界トップAI学会に論文掲載</small></div>
+        <div class="stat" style="top:1px"><b>約230億円</b><small>ソフトバンク・ビジョン・ファンドから出資</small></div>
+        <div class="stat s150" style="top:36px"><b>150+</b><small>国内外でAI特許を保有</small></div>
+        <div class="stat" style="top:71px"><b>78万人+</b><small>78万人分の実際の学習データを蓄積</small></div>
+        <div class="stat s26" style="top:106px"><b>26本</b><small>NeurIPS・ACLなど世界トップAI学会に論文掲載</small></div>
 
-        <!-- 왼쪽 연결선: 카드 4개 중앙에서 나온 괄호 + 괄호 정중앙(2·3번 카드 사이)에서 나가는 화살표 -->
-        <svg class="abs flow" style="left:146px;top:38px" width="20" height="108" viewBox="0 0 20 108" fill="none" aria-hidden="true">
-          <path d="M0.3 1H5.3V106H0.3M0.3 36H5.3M0.3 71H5.3" stroke="#B8C1D1" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M5.3 53.5H14" stroke="#7F9CC8" stroke-width="0.7" stroke-linecap="round"/>
-          <path d="M13.5 51.8L17 53.5L13.5 55.2Z" fill="#7F9CC8"/>
-        </svg>
+        <!-- 카드 4개 → 원형으로 모이는 연결선 (Figma 원본을 좌우 반전) -->
+        <div class="svgbox flip" style="left:180px;top:16px;width:36px;height:105px"><span style="inset:-.33% -.97%"><img src="assets/flow-connector.svg" alt="" width="36.7" height="105.7"></span></div>
 
-        <img class="abs" src="assets/circles.png" alt="" width="132" height="132" style="left:156px;top:22px">
+        <img class="abs" src="assets/circles.png" alt="" width="132" height="132" style="left:232px;top:0">
 
         <div class="center-copy">
           <div class="ln"><img src="assets/logo-center.svg" alt="Socra Tutor" width="60" height="7">は</div>
-          <div class="ln"><img src="assets/socra-ai-logo.svg" alt="Socra AI" width="44.8231" height="8.2471">が作った</div>
-          <div class="ln blue">「3大AI問題解説学習アプリ」</div>
+          <p class="blue">GPT・Gemini・Claude<br>3大AIでクロスチェックする技術を<br>開発した会社です。</p>
         </div>
-
-        <!-- 오른쪽 연결선: 가운데에서 나와 카드 4개 중앙으로 -->
-        <svg class="abs flow" style="left:281px;top:38px" width="13" height="108" viewBox="0 0 13 108" fill="none" aria-hidden="true">
-          <path d="M0.35 53.5H7.35M7.35 1V106M7.35 1H12.35M7.35 36H12.35M7.35 71H12.35M7.35 106H12.35" stroke="#3A82DB" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-
-        <img class="abs" src="assets/logo-feature.svg" alt="Socra Tutor" width="87.4" height="10.35" style="left:299.3px;top:7.65px">
-        <div class="feat" style="top:23px"><b>3大AIが同時に回答</b><small>GPT・Gemini・Claudeが正解を比較</small></div>
-        <div class="feat" style="top:58px"><b>安心の総合回答</b><small>3大AIの正解・解説をまとめて提供</small></div>
-        <div class="feat" style="top:93px"><b>チュータリング<small>(ステップ学習)</small></b><small style="letter-spacing:-.12px">どんな問題も理解できるまでステップごとに解説</small></div>
-        <div class="feat" style="top:128px"><b>グルチャ</b><small>ちょっとした悩み相談も友だちのように</small></div>
       </div>
 
       <!-- What you get -->
@@ -391,7 +364,7 @@ ol{list-style:none}
   <section class="band cta" id="apply">
     <div class="col">
       <h2>奨学生に興味があるなら、<br><span>今すぐ応募！</span></h2>
-      <a class="cta-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdallSjr5LQIkqC5UYKGB2N6xy2TIigE4t9V5OXBa1d-0Lgaw/viewform" target="_blank" rel="noopener">5分で奨学生に応募</a>
+      <a class="cta-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdallSjr5LQIkqC5UYKGB2N6xy2TIigE4t9V5OXBa1d-0Lgaw/viewform" target="_blank" rel="noopener">奨学生に今すぐ応募</a>
     </div>
   </section>
 </main>
@@ -399,7 +372,7 @@ ol{list-style:none}
 <footer class="band footer">
   <div class="col">
     <div class="inner">
-      <img class="logo" src="assets/logo-footer.svg" alt="Socra Tutor" width="148" height="18">
+      <img class="logo" src="assets/logo-footer-sm.svg" alt="Socra Tutor" width="86" height="10">
       <p>会社名：株式会社Socra AI | 代表取締役：Park Suyeong | Webサイト：corp.socra.ai | お問い合わせ：contact@socra.ai | 所在地：〒104-0061 東京都中央区銀座6丁目10-1 GINZA SIX 13F WeWork</p>
     </div>
   </div>
