@@ -90,7 +90,10 @@ ol{list-style:none}
 .try-now{right:307px;top:104px;font-size:6px;letter-spacing:-.12px}
 .intro-desc{position:absolute;left:158px;top:21px;width:225px;font-size:8.5px;font-weight:500;line-height:1.59;letter-spacing:-.17px;color:var(--blue-700);white-space:nowrap}
 .feature{position:absolute;top:76px;width:72px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center}
-.feature i{display:flex;align-items:center;justify-content:center;width:21px;height:9px;border-radius:43px;background:var(--red-500);font-style:normal;font-size:5px;font-weight:500;line-height:1.5;color:#fff;white-space:nowrap}
+/* 배지: 폰트마다 다른 위아래 여백과 무관하게 글자판 중심을 박스 중심에 맞추려고 SVG(dominant-baseline:central)로 그림 */
+.feature i{display:block;width:21px;height:9px;font-style:normal}
+.feature i svg{display:block;width:21px;height:9px;overflow:visible}
+.feature i text{font-family:var(--ff);font-size:5px;font-weight:500;fill:#fff}
 .feature p{margin-top:2px;text-align:center;font-size:7px;font-weight:500;line-height:1.64;letter-spacing:-.14px;color:var(--gray-800);white-space:nowrap}
 .made-by{position:absolute;left:51px;top:147px;font-size:8px;font-weight:600;line-height:1.32;letter-spacing:-.16px;color:var(--blue-700);white-space:nowrap}
 .stat{position:absolute;top:164px;height:34px;border-radius:5px;background:#f4f6f9}
@@ -238,9 +241,9 @@ ol{list-style:none}
         <img class="app-logo" src="assets/logo-tutor-about.svg" alt="Socra Tutor" width="70" height="8">
         <a class="link-sm try-now" href="https://socratutor.ai/landing" target="_blank" rel="noopener">今すぐ使ってみる ↗</a>
         <p class="intro-desc">Socra Tutorは中高生に合わせた学習コーチングを提供し、<br>AIを安全かつ効率的に勉強に活用できるようサポートする<br>「10代のための答え合わせAI」です。</p>
-        <div class="feature" style="left:192.5px"><i>機能1</i><p>問題を撮るだけで<br>3大AIが答え合わせ</p></div>
-        <div class="feature" style="left:264.5px"><i>機能2</i><p>安心・確実な<br>総合回答を同時提供</p></div>
-        <div class="feature" style="left:335.5px"><i>機能3</i><p>レベルにぴったりの<br>1:1問題レッスン</p></div>
+        <div class="feature" style="left:192.5px"><i><svg viewBox="0 0 21 9" role="img" aria-label="機能1"><rect width="21" height="9" rx="4.5" fill="#f95c78"/><text x="10.5" y="4.5" text-anchor="middle" dominant-baseline="central">機能1</text></svg></i><p>問題を撮るだけで<br>3大AIが答え合わせ</p></div>
+        <div class="feature" style="left:264.5px"><i><svg viewBox="0 0 21 9" role="img" aria-label="機能2"><rect width="21" height="9" rx="4.5" fill="#f95c78"/><text x="10.5" y="4.5" text-anchor="middle" dominant-baseline="central">機能2</text></svg></i><p>安心・確実な<br>総合回答を同時提供</p></div>
+        <div class="feature" style="left:335.5px"><i><svg viewBox="0 0 21 9" role="img" aria-label="機能3"><rect width="21" height="9" rx="4.5" fill="#f95c78"/><text x="10.5" y="4.5" text-anchor="middle" dominant-baseline="central">機能3</text></svg></i><p>レベルにぴったりの<br>1:1問題レッスン</p></div>
 
         <p class="made-by">✦ Socra TutorはAIエドテック企業が開発しました。</p>
         <div class="stat" style="left:49px;width:97px"><b>約230億円</b><small style="top:19px">ソフトバンク・ビジョン・ファンドから出資</small></div>
