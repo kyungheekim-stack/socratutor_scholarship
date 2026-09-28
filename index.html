@@ -155,8 +155,8 @@ ol{list-style:none}
 .step.tall p b,.step.tall p .sep{flex:none;white-space:pre}
 /* 0.3px 선은 브라우저에서 사라지므로 최소 1 CSS px 로 그린다 */
 .step .rule{position:absolute;left:0;bottom:0;width:345px;height:calc(1px / var(--z));transform:translateY(50%)}
-.step .rule>span{position:absolute;inset:0}
-.step .rule img{width:100%;height:100%}
+.step .rule{background:var(--line)} /* SVG 선은 일부 기기에서 안 그려져 배경색으로 표시 */
+.step .rule>span{display:none}
 
 /* ---------- FAQ ---------- */
 .faq-head{margin-top:59px}
@@ -244,7 +244,7 @@ ol{list-style:none}
 
   /* About */
   .diagram{height:auto;margin-top:15px;display:flex;flex-direction:column;gap:15px}
-  .intro{position:relative;left:auto;top:auto;width:auto;height:auto;padding:20px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.9);box-shadow:0 4px 12px var(--line-shadow);
+  .intro{position:relative;left:auto;top:auto;width:auto;height:auto;padding:20px;border-radius:10px;border:.5px solid var(--line);background:rgba(255,255,255,.9);box-shadow:0 4px 12px var(--line-shadow);
     display:grid;grid-template-columns:72px 1fr;grid-template-areas:"icon logo" "icon try";column-gap:14px}
   .app-icon{position:static;grid-area:icon;width:72px;height:72px}
   .app-logo{position:static;grid-area:logo;align-self:end;width:98px;height:11.2px;margin-bottom:8px}
@@ -276,7 +276,7 @@ ol{list-style:none}
 
   /* 応募できる人 */
   .who{margin:20px 0 0;width:auto;gap:6px}
-  .box{border:1px solid var(--line);border-radius:8px;filter:drop-shadow(0 2px 4px rgba(58,130,219,.12))}
+  .box{border:.5px solid var(--line);border-radius:8px;filter:drop-shadow(0 2px 4px rgba(58,130,219,.12))}
   .who-row{height:auto;min-height:44px;padding:12px 14px;gap:8px}
   .who-row img,.who-last .hd img{width:14px;height:14px;flex:none}
   .who-row span,.who-last .hd span{font-size:11px;line-height:1.5;letter-spacing:0;white-space:normal}
@@ -297,9 +297,9 @@ ol{list-style:none}
 
   /* FAQ */
   .faq{margin:20px 0 0;width:auto;gap:8px}
-  .qa button{height:auto;min-height:48px;padding:12px 44px 12px 16px}
+  .qa button{height:auto;min-height:48px;padding:12px 32px 12px 16px}
   .qa .q{font-size:13px;line-height:1.5;letter-spacing:0}
-  .qa .pm{right:24px;top:24px;font-size:22px}
+  .qa .pm{right:20px;top:24px;font-size:22px}
   .qa .a{padding:0 16px 14px;margin-top:-4px;font-size:10px;font-weight:400;line-height:1.65;letter-spacing:0}
 
   /* CTA */
@@ -310,13 +310,13 @@ ol{list-style:none}
   .cta-btn{width:100%;height:54px;margin-top:18px;border-radius:10px;font-size:17px;transform:none}
 
   /* Footer */
-  .footer .col{height:auto;padding:28px 20px 32px;flex-direction:column;align-items:flex-start;gap:14px}
-  .footer .inner{display:contents}
-  .footer .logo{order:1;width:78px;height:14.3px}
-  .footer p{order:2;width:auto;font-size:8px;line-height:1.65}
-  .footer-links{order:3;flex-direction:row;flex-wrap:wrap;gap:18px}
-  .footer-links a{font-size:12px;line-height:1.5}
-  .footer .copy{order:4;margin:0;font-size:10px}
+  .footer .col{height:auto;padding:28px 20px 32px;flex-direction:row;justify-content:space-between;align-items:flex-start;gap:20px}
+  .footer .inner{flex:1;min-width:0;width:auto;gap:12px}
+  .footer .logo{width:78px;height:14.3px}
+  .footer p{width:auto;font-size:8px;line-height:1.65}
+  .footer-links{flex:none;flex-direction:column;align-items:flex-end;gap:6px}
+  .footer-links a{font-size:12px;line-height:1.5;text-align:right}
+  .footer .copy{margin:0;font-size:10px}
 }
 /* 폭이 아주 좁은 폰(360px 이하): 히어로 SNS 아이콘을 조금 작게 */
 @media (max-width:360px){
