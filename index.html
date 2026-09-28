@@ -149,11 +149,12 @@ ol{list-style:none}
 .who-row{height:28px;display:flex;align-items:center;padding-left:12px;gap:5px}
 .who-row img,.who-last .hd img{width:8px;height:8px}
 .who-row span,.who-last .hd span{font-size:7px;font-weight:500;line-height:1.32;letter-spacing:-.14px;color:var(--blue-700);white-space:pre}
-.who-last{height:74px;padding-top:7px}
+.who-last{min-height:74px;padding:7px 0 6px}
 .who-last .hd{display:flex;align-items:center;gap:5px;height:13px;padding-left:12px}
-.tags{margin:8px 0 0 19px;display:flex;flex-direction:column;gap:2px}
-.tags div{display:flex;gap:2px}
-.tag{height:12px;padding:1px 0 0 4px;border-radius:3px;background:var(--blue-300);font-size:6px;font-weight:400;line-height:1.52;letter-spacing:-.12px;color:#000;white-space:nowrap;overflow:hidden}
+/* 태그 폭은 글자 길이에 맞춰 자동, 줄이 차면 자동 줄바꿈 */
+.tags{margin:8px 14px 0 19px;display:flex;flex-wrap:wrap;gap:2px}
+.tags div{display:contents}
+.tag{display:inline-flex;align-items:center;height:12px;padding:0 5px;border-radius:3px;background:var(--blue-300);font-size:6px;font-weight:400;line-height:1;letter-spacing:-.12px;color:#000;white-space:nowrap}
 
 /* ---------- How it works ---------- */
 .how-head{margin-top:46px}
@@ -328,13 +329,13 @@ ol{list-style:none}
           <div class="hd"><img src="assets/check.svg" alt="" width="8" height="8"><span>こんな投稿をしているなら大歓迎！  ▼</span></div>
           <div class="tags">
             <div>
-              <span class="tag" style="width:24px">#勉強</span><span class="tag" style="width:24px">#受験</span><span class="tag" style="width:24px">#進学</span><span class="tag" style="width:24px">#進路</span><span class="tag" style="width:24px">#学校</span><span class="tag" style="width:18px">#塾</span><span class="tag" style="width:24px">#日常</span><span class="tag" style="width:24px">#部活</span><span class="tag" style="width:16px">#部</span><span class="tag" style="width:28px">#バイト</span><span class="tag" style="width:26px">#中学生</span><span class="tag" style="width:27px">#高校生</span>
+              <span class="tag">#勉強</span><span class="tag">#受験</span><span class="tag">#進学</span><span class="tag">#進路</span><span class="tag">#学校</span><span class="tag">#塾</span><span class="tag">#日常</span><span class="tag">#部活</span><span class="tag">#部</span><span class="tag">#バイト</span><span class="tag">#中学生</span><span class="tag">#高校生</span>
             </div>
             <div>
-              <span class="tag" style="width:29px">#大学生</span><span class="tag" style="width:41px">#中間テスト</span><span class="tag" style="width:41px">#期末テスト</span><span class="tag" style="width:24px">#模試</span><span class="tag" style="width:35px">#高校受験</span><span class="tag" style="width:92px">#中学受験(ちゅうがくじゅけん)</span><span class="tag" style="width:32px">#推薦入試</span>
+              <span class="tag">#大学生</span><span class="tag">#中間テスト</span><span class="tag">#期末テスト</span><span class="tag">#模試</span><span class="tag">#高校受験</span><span class="tag">#中学受験(ちゅうがくじゅけん)</span><span class="tag">#推薦入試</span>
             </div>
             <div>
-              <span class="tag" style="width:24px">#入試</span><span class="tag" style="width:32px">#大学受験</span><span class="tag" style="width:41px">#共通テスト</span><span class="tag" style="width:47px">#センター試験</span>
+              <span class="tag">#入試</span><span class="tag">#大学受験</span><span class="tag">#共通テスト</span><span class="tag">#センター試験</span>
             </div>
           </div>
         </div>
