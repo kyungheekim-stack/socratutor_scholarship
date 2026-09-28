@@ -175,14 +175,23 @@ ol{list-style:none}
 .qa.open .a{display:block}
 
 /* ---------- CTA (하단 플로팅) ----------
-   흰색 그라데이션 배경 + 문구 + 버튼을 한 묶음으로 화면 하단에 고정(sticky).
-   끝까지 스크롤하면 원래 자리(푸터 바로 위)에 멈춰 푸터를 가리지 않는다. */
-.cta{position:sticky;bottom:0;z-index:5;margin-top:29px;pointer-events:none;
-  /* Figma 원본: 투명 31% → 흰색 79% 84%. 떠 있을 때 뒤 콘텐츠와 문구가 겹쳐 읽히지 않아 위쪽만 짧게 페이드되도록 강화 */
-  background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.9) 18%,rgba(255,255,255,.97) 40%)}
+   버튼은 스크롤 내내 화면 하단에 떠 있고(sticky), 헤드카피는 숨겨 둔다.
+   끝까지 내려 푸터가 보이면(.docked) 원래 자리(푸터 바로 위)에 멈추고 헤드카피가 디졸브로 나타난다. */
+.cta{position:sticky;bottom:0;z-index:5;margin-top:29px;pointer-events:none}
+/* 배경 2장을 겹쳐 두고 상태에 따라 교차 페이드 */
+.cta::before,.cta::after{content:"";position:absolute;inset:0;z-index:-1;transition:opacity .5s ease}
+/* 떠 있을 때: 버튼 뒤쪽만 흰색으로 받쳐 줌 */
+.cta::before{background:linear-gradient(to bottom,rgba(255,255,255,0) 30%,rgba(255,255,255,.92) 42%,rgba(255,255,255,.97) 100%)}
+/* 도착했을 때: Figma 원본 그라데이션 */
+.cta::after{opacity:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 31.42%,rgba(255,255,255,.79) 84.275%)}
+.cta.docked::before{opacity:0}
+.cta.docked::after{opacity:1}
 .cta .col{height:175px;padding-top:7px}
 .cta h2{height:57.6px;text-align:center;transform:translateX(5px);font-size:20px;font-weight:900;line-height:1.44;letter-spacing:-.4px;color:var(--blue-700);white-space:nowrap}
 .cta h2 span{color:var(--blue-550)}
+.cta h2{opacity:0;transform:translate(5px,6px);transition:opacity .6s ease,transform .6s ease}
+.cta.docked h2{opacity:1;transform:translateX(5px)}
+@media (prefers-reduced-motion:reduce){.cta h2,.cta::before,.cta::after{transition:none}}
 .cta-btn{pointer-events:auto;display:flex;align-items:center;justify-content:center;width:277px;height:48px;margin:14.4px auto 0;border-radius:8px;border:1px solid var(--blue-300);
   background:linear-gradient(158.79deg,#b7a3ff 0%,#4c9ef3 50%,#82c0f9 100%);color:#fff;font-size:15px;font-weight:700;line-height:1.6;letter-spacing:-.18px;
   transform:translateX(-.5px);transition:filter .15s}
@@ -397,6 +406,11 @@ termsBtn.addEventListener('click', e => {
   termsBtn.setAttribute('aria-expanded', open);
 });
 document.addEventListener('click', () => { terms.classList.remove('open'); termsBtn.setAttribute('aria-expanded', false); });
+
+// 하단 CTA: 푸터가 화면에 들어오면(= 끝까지 스크롤) 도착 상태로 전환해 헤드카피 표시
+const cta = document.querySelector('.cta');
+new IntersectionObserver(([e]) => cta.classList.toggle('docked', e.isIntersecting))
+  .observe(document.querySelector('.footer'));
 
 // FAQ 아코디언
 document.querySelectorAll('.qa button').forEach(btn => {
