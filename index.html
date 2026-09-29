@@ -493,6 +493,11 @@ const cta = document.querySelector('.cta');
 new IntersectionObserver(([e]) => cta.classList.toggle('docked', e.isIntersecting))
   .observe(document.querySelector('.footer'));
 
+// 외부 링크(다른 사이트로 나가는 링크)는 모두 새 탭으로 열기 — 나중에 추가되는 주소에도 자동 적용
+document.querySelectorAll('a[href^="http"]').forEach(a => {
+  if (new URL(a.href).origin !== location.origin) { a.target = '_blank'; a.rel = 'noopener'; }
+});
+
 // FAQ 아코디언
 document.querySelectorAll('.qa button').forEach(btn => {
   btn.addEventListener('click', () => {
