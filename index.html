@@ -78,7 +78,6 @@ ol{list-style:none}
 .app-logo{position:absolute;left:26px;top:93px;width:70px;height:8px}
 .link-sm{position:absolute;text-align:right;font-weight:600;line-height:1.32;color:var(--blue-700);white-space:nowrap}
 .link-sm:hover{text-decoration:underline}
-.try-now{right:260px;top:104px;font-size:6px;letter-spacing:-.12px}
 .intro-desc{position:absolute;left:113px;top:21px;width:225px;font-size:8.5px;font-weight:500;line-height:1.59;letter-spacing:-.17px;color:var(--blue-700);white-space:nowrap}
 .f1{left:147.5px}.f2{left:219.5px}.f3{left:290.5px}
 .feature{position:absolute;top:76px;width:72px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center}
@@ -157,8 +156,9 @@ ol{list-style:none}
 .qa.open .pm{transform:translate(50%,-50%) rotate(45deg)}
 .qa .a{display:none;padding:0 100px 9px 22px;margin-top:-5.5px;font-size:7px;font-weight:500;line-height:1.6;letter-spacing:-.14px;color:var(--gray-800)}
 .qa.open .a{display:block}
-.qa .guide{display:block;margin-top:3px;text-align:right;font-weight:700;color:var(--red-500)}
-.qa .guide:hover{text-decoration:underline}
+.qa .links{display:flex;justify-content:center;gap:8px;margin-top:4px}
+.qa .links a{flex:1;text-align:center;font-weight:700;color:var(--red-500)}
+.qa .links a:hover{text-decoration:underline}
 
 /* ---------- CTA (하단 플로팅) ----------
    버튼은 스크롤 내내 화면 하단에 떠 있고(sticky), 헤드카피는 숨겨 둔다.
@@ -229,12 +229,12 @@ ol{list-style:none}
   /* About */
   .diagram{height:auto;margin-top:15px;display:flex;flex-direction:column;gap:15px}
   .intro{position:relative;left:auto;top:auto;width:auto;height:auto;padding:20px;border-radius:10px;border:.5px solid var(--line);background:rgba(255,255,255,.9);box-shadow:0 4px 12px var(--line-shadow);
-    display:grid;grid-template-columns:72px 1fr;grid-template-areas:"icon logo" "icon try";column-gap:14px}
-  .app-icon{position:static;grid-area:icon;width:72px;height:72px}
-  .app-logo{position:static;grid-area:logo;align-self:end;width:98px;height:11.2px;margin-bottom:8px}
+    display:grid;grid-template-columns:70px 1fr;grid-template-areas:"icon desc" "logo desc";column-gap:14px}
+  .app-icon{position:static;grid-area:icon;width:67px;height:67px;margin-left:1px}
+  .app-logo{position:static;grid-area:logo;width:70px;height:8px;margin-top:7px}
   .link-sm{position:static;font-weight:600;letter-spacing:0}
-  .try-now{grid-area:try;align-self:start;text-align:left;font-size:12px;font-weight:500}
-  .intro-desc{position:static;grid-column:1 / -1;width:auto;margin-top:16px;font-size:10px;line-height:1.7;letter-spacing:0;white-space:normal}
+  .intro-desc{position:static;grid-area:desc;align-self:center;width:auto;margin:0;font-size:10px;line-height:1.7;letter-spacing:0;white-space:normal}
+  .intro-desc br{display:none}
   .feature p br,.get-card p br{display:none}
   .m-br{display:inline}
   .feature{position:static;grid-column:1 / -1;width:auto;transform:none;flex-direction:row;align-items:center;gap:10px;margin-top:10px}
@@ -283,7 +283,7 @@ ol{list-style:none}
   .qa button{height:auto;min-height:48px;padding:12px 32px 12px 16px}
   .qa .q{font-size:13px;line-height:1.5;letter-spacing:0}
   .qa .pm{right:20px;top:24px;font-size:22px}
-  .qa .guide{margin-top:8px}
+  .qa .links{gap:11px;margin-top:8px}
   .qa .a{padding:0 16px 14px;margin-top:-4px;font-size:10px;font-weight:400;line-height:1.65;letter-spacing:0}
 
   /* CTA */
@@ -340,7 +340,6 @@ ol{list-style:none}
         <div class="intro">
           <img class="app-icon" src="assets/app-icon.png" alt="Socra Tutor アプリ" width="67" height="67">
           <img class="app-logo" src="assets/logo-tutor-about.svg" alt="Socra Tutor" width="70" height="8">
-          <a class="link-sm try-now" href="https://socratutor.ai/landing" target="_blank" rel="noopener">今すぐ使ってみる ↗</a>
           <p class="intro-desc">Socra Tutorは中高生に合わせた学習コーチングを提供し、<br>AIを安全かつ効率的に勉強に活用できるようサポートする<br>「10代のための答え合わせAI」です。</p>
           <div class="feature f1"><i><svg viewBox="0 0 21 9" role="img" aria-label="機能1"><rect width="21" height="9" rx="4.5" fill="#f95c78"/><text x="10.5" y="4.5" text-anchor="middle" dominant-baseline="central">機能1</text></svg></i><p>問題を撮るだけで<br>3大AIが答え合わせ</p></div>
           <div class="feature f2"><i><svg viewBox="0 0 21 9" role="img" aria-label="機能2"><rect width="21" height="9" rx="4.5" fill="#f95c78"/><text x="10.5" y="4.5" text-anchor="middle" dominant-baseline="central">機能2</text></svg></i><p>安心・確実な<br>総合回答を同時提供</p></div>
@@ -432,8 +431,11 @@ ol{list-style:none}
         <div class="box qa">
           <button type="button" aria-expanded="false"><span class="q">Q. 投稿は自由にしていいですか？</span><span class="pm" aria-hidden="true">+</span></button>
           <p class="a">A. アプリの機能（勉強・問題解説）に関連する写真・文章・動画なら、何でもOKです！何を投稿すればいいか迷ったら、クリエイティブガイドを参考にしてください！
-            <!-- TODO: 이용 가이드 URL로 교체 -->
-            <a class="guide" href="#">ご利用ガイド ↗</a></p>
+            <span class="links">
+              <a href="https://socratutor.ai/landing" target="_blank" rel="noopener">Socra Tutor 使ってみる ↗</a>
+              <!-- TODO: 이용 가이드 URL로 교체 -->
+              <a href="#">ご利用ガイド ↗</a>
+            </span></p>
         </div>
         <div class="box qa">
           <button type="button" aria-expanded="false"><span class="q">Q. もらえるおこづかいの上限はいくらですか？</span><span class="pm" aria-hidden="true">+</span></button>
