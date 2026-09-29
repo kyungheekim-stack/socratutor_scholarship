@@ -36,7 +36,7 @@ ol{list-style:none}
 
 /* ---------- Hero ---------- */
 .hero{background:linear-gradient(153.05deg,#fdfdfd 2.29%,#b3e0ff 99.7%);overflow:hidden}
-.hero .col{height:294px}
+.hero .col{height:306px}
 .badge{position:absolute;left:54px;top:33px;width:49px;height:23px;border:1px solid var(--pink-700);border-radius:30px;background:rgba(255,255,255,.1)}
 .badge i{position:absolute;left:6px;top:8px;width:6px;height:6px;animation:blink 1.4s ease-in-out infinite}
 /* 반짝임: 점이 깜빡이며 바깥으로 퍼지는 링 */
@@ -49,7 +49,8 @@ ol{list-style:none}
 .hero-h1{position:absolute;left:52px;top:96px;font-size:26px;font-weight:900;line-height:38px;letter-spacing:-.78px;color:var(--blue-700);white-space:nowrap}
 .hero-h2{position:absolute;left:52px;top:134px;font-size:26px;font-weight:900;line-height:34px;letter-spacing:-.26px;color:var(--blue-550);white-space:nowrap}
 .hero-h2 .l2{letter-spacing:-.48px}
-.hero-sub{position:absolute;left:55px;top:212px;width:209px;font-size:11px;font-weight:600;line-height:1.6;letter-spacing:-.132px;color:var(--gray-900);white-space:nowrap}
+.hero-sub small{display:block;font-size:8px;line-height:1.92}
+.hero-sub{position:absolute;left:55px;top:212px;width:209px;font-size:11px;font-weight:600;line-height:1.58;letter-spacing:-.132px;color:var(--gray-900);white-space:nowrap}
 
 .bubble{position:absolute;border-radius:232px;overflow:hidden;border:.5px solid #e4e4e4;box-shadow:0 0 10.4px rgba(0,0,0,.13)}
 .b-ig{left:285px;top:89px;width:66px;height:66px;background:rgba(255,255,255,.8)}
@@ -71,11 +72,11 @@ ol{list-style:none}
 .sec-head .sub{margin:6px 0 0 8px;font-size:6px;font-weight:600;line-height:1.42;letter-spacing:-.12px;color:var(--gray-700);white-space:pre}
 
 /* ---------- About ---------- */
-.about{padding-top:calc(55px * var(--z))} /* .band 는 zoom 밖이라 배율을 곱함 */
+.about{padding-top:calc(43px * var(--z))} /* .band 는 zoom 밖이라 배율을 곱함 */
 .diagram{position:relative;height:198px;margin-top:19px} /* 소개 카드 상단을 0으로 둔 좌표 */
 .intro{position:absolute;left:45px;top:0;width:348px;height:129px;border-radius:6px;border:.3px solid var(--line);background:rgba(255,255,255,.8);box-shadow:0 2px 6px var(--line-shadow)}
-.app-icon{position:absolute;left:27px;top:19px;width:67px;height:67px;border-radius:8px;object-fit:cover}
-.app-logo{position:absolute;left:26px;top:93px;width:70px;height:8px}
+.app-icon{position:absolute;left:26px;top:24px;width:67px;height:67px;border-radius:8px;object-fit:cover}
+.app-logo{position:absolute;left:25px;top:98px;width:70px;height:8px}
 .link-sm{position:absolute;text-align:right;font-weight:600;line-height:1.32;color:var(--blue-700);white-space:nowrap}
 .link-sm:hover{text-decoration:underline}
 .intro-desc{position:absolute;left:113px;top:21px;width:225px;font-size:8.5px;font-weight:500;line-height:1.59;letter-spacing:-.17px;color:var(--blue-700);white-space:nowrap}
@@ -86,7 +87,7 @@ ol{list-style:none}
 .feature i svg{display:block;width:21px;height:9px;overflow:visible}
 .feature i text{font-family:var(--ff);font-size:5px;font-weight:500;fill:#fff}
 .feature p{margin-top:2px;text-align:center;font-size:7px;font-weight:500;line-height:1.64;letter-spacing:-.14px;color:var(--gray-800);white-space:nowrap}
-.made-by{position:absolute;left:51px;top:147px;font-size:8px;font-weight:600;line-height:1.32;letter-spacing:-.16px;color:var(--blue-700);white-space:nowrap}
+.made-by{position:absolute;left:51px;top:147px;font-size:8px;font-weight:700;line-height:1.5;letter-spacing:-.16px;color:var(--blue-700);white-space:nowrap}
 .stat{position:absolute;top:164px;height:34px;border-radius:5px;background:#f4f6f9}
 .stat b{position:absolute;left:8px;top:6px;font-size:7.5px;font-weight:800;line-height:1.52;letter-spacing:-.15px;color:var(--blue-550);white-space:nowrap}
 .stat small{position:absolute;left:8px;top:18px;font-size:4px;font-weight:500;line-height:1.52;letter-spacing:-.08px;color:var(--gray-700);white-space:nowrap}
@@ -137,8 +138,16 @@ ol{list-style:none}
 .step p{position:absolute;left:61px;font-size:6px;font-weight:500;line-height:1.32;letter-spacing:-.12px;color:var(--blue-700);white-space:pre}
 .step p b{font-weight:700}
 .m-br{display:none} /* 모바일에서만 쓰는 줄바꿈 */
+.d-br{display:inline}
 /* STEP 6 행은 원본에서 다른 행보다 높음(42.5px) */
 .step.tall{height:42.5px}
+/* STEP 4(링크 포함): 원본 높이 57.5px, 설명 2줄 + 오른쪽 아래 링크 */
+.step.s-link{height:57.5px;align-items:flex-start}
+.step.s-link .pill{top:11.5px}
+.step.s-link p{top:14px;line-height:1.74}
+.step-link{position:absolute;left:204px;top:38px;width:108.5px;text-align:center;font-size:7px;font-weight:700;line-height:1.5;color:var(--red-500);white-space:nowrap}
+.step-link:hover{text-decoration:underline}
+.m-only{display:none}
 .step.tall p{width:284px;display:flex;white-space:normal}
 .step.tall p b,.step.tall p .sep{flex:none;white-space:pre}
 /* 0.3px 선은 브라우저에서 사라지므로 최소 1 CSS px 로 그린다 */
@@ -147,7 +156,7 @@ ol{list-style:none}
 .step .rule>span{display:none}
 
 /* ---------- FAQ ---------- */
-.faq-head{margin-top:61px}
+.faq-head{margin-top:94px}
 .faq{margin:17px 0 0 48px;width:345px;display:flex;flex-direction:column;gap:4px}
 .qa{position:relative}
 .qa button{display:flex;align-items:center;width:100%;height:28px;text-align:left;padding-left:13px;cursor:pointer}
@@ -156,8 +165,8 @@ ol{list-style:none}
 .qa.open .pm{transform:translate(50%,-50%) rotate(45deg)}
 .qa .a{display:none;padding:0 100px 9px 22px;margin-top:-5.5px;font-size:7px;font-weight:500;line-height:1.6;letter-spacing:-.14px;color:var(--gray-800)}
 .qa.open .a{display:block}
-.qa .links{display:flex;justify-content:center;gap:8px;margin-top:4px}
-.qa .links a{flex:1;text-align:center;font-weight:700;color:var(--red-500)}
+.qa .links{display:flex;justify-content:flex-end;margin-top:4px}
+.qa .links a{font-weight:700;color:var(--red-500)}
 .qa .links a:hover{text-decoration:underline}
 
 /* ---------- CTA (하단 플로팅) ----------
@@ -207,7 +216,8 @@ ol{list-style:none}
   .hero-h1{position:static;margin-top:8px;font-size:28px;line-height:1.4;letter-spacing:-.03em}
   .hero-h2{position:static;font-size:28px;line-height:1.3;letter-spacing:-.01em}
   .hero-h2 .l2{letter-spacing:inherit}
-  .hero-sub{position:static;width:auto;margin-top:16px;font-size:12px;font-weight:500;line-height:1.6;letter-spacing:0;white-space:normal}
+  .hero-sub{position:static;width:auto;margin-top:16px;font-size:11px;font-weight:500;line-height:1.6;letter-spacing:0;white-space:normal}
+  .hero-sub small{font-size:9px;line-height:1.84}
   .bubble{transform-origin:top right}
   .b-tt{left:auto;right:16px;top:18px;transform:scale(.85)}
   .b-ig{left:auto;right:89px;top:75px;transform:scale(.8)}
@@ -241,7 +251,7 @@ ol{list-style:none}
   .feature.f1{margin-top:16px;padding-top:14px;border-top:1px solid rgba(58,130,219,.25)}
   .feature i,.feature i svg{width:37px;height:16px;flex:none}
   .feature p{margin:0;text-align:left;font-size:10px;line-height:1.5;letter-spacing:0;white-space:normal}
-  .made-by{position:static;font-size:12px;font-weight:700;line-height:1.5;letter-spacing:0;white-space:normal}
+  .made-by{position:static;font-size:11px;font-weight:700;line-height:1.5;letter-spacing:0;white-space:normal}
   .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .stat{position:static;width:auto;height:auto;padding:10px 12px;border-radius:8px}
   .stat b,.stat small{position:static;display:block;white-space:normal;letter-spacing:0}
@@ -270,20 +280,26 @@ ol{list-style:none}
 
   /* 流れ */
   .steps{margin:16px 0 0;width:auto}
-  .step,.step.s32,.step.tall{height:auto;align-items:flex-start;gap:12px;padding:14px 0}
+  .step,.step.s32,.step.tall,.step.s-link{height:auto;align-items:flex-start;gap:12px;padding:14px 0}
   .step .pill{position:static;flex:none;width:auto;height:auto;padding:3px 10px;border-radius:99px;font-size:11px;line-height:1.5}
   .step p,.step.tall p{position:static;display:flex;flex-direction:column;width:auto;font-size:10px;line-height:1.6;letter-spacing:0;white-space:normal}
   .step p b{font-size:13px;line-height:1.5;white-space:normal}
   .step p .sep{display:none}
   .step p .desc{margin-top:3px;font-weight:400}
   .step .rule{width:100%;height:.5px;transform:none}
+  .step.s-link{flex-wrap:wrap}
+  .step.s-link p{line-height:1.6}
+  .step.s-link p{flex:1;min-width:0}
+  .step-link{position:static;width:100%;margin-top:3px;padding-left:68px;text-align:right;font-size:10px}
+  .d-br{display:none}
+  .m-only{display:inline}
 
   /* FAQ */
   .faq{margin:20px 0 0;width:auto;gap:8px}
   .qa button{height:auto;min-height:48px;padding:12px 32px 12px 16px}
   .qa .q{font-size:13px;line-height:1.5;letter-spacing:0}
   .qa .pm{right:20px;top:24px;font-size:22px}
-  .qa .links{gap:11px;margin-top:8px}
+  .qa .links{margin-top:8px}
   .qa .a{padding:0 16px 14px;margin-top:-4px;font-size:10px;font-weight:400;line-height:1.65;letter-spacing:0}
 
   /* CTA */
@@ -318,7 +334,7 @@ ol{list-style:none}
       <img class="hero-logo" src="assets/logo-hero.svg" alt="Socra Tutor" width="186" height="22">
       <h1 class="hero-h1">奨学生募集！</h1>
       <p class="hero-h2">あなたの勉強垢が<br><span class="l2">おこづかいになる</span></p>
-      <p class="hero-sub">勉強垢で専用リンクをシェアするだけで、<br>登録者数×100円がもらえる！</p>
+      <p class="hero-sub">勉強したい本もサポート、<br>自分のリンクで友だちが登録すれば、<br>おこづかいもゲット！<small>（※登録者1人につき100円）</small></p>
 
       <div class="bubble b-tt" aria-hidden="true"><div class="clip"><img src="assets/tiktok.png" alt=""></div></div>
       <div class="bubble b-ig" aria-hidden="true"><img src="assets/instagram.png" alt=""></div>
@@ -346,7 +362,7 @@ ol{list-style:none}
           <div class="feature f3"><i><svg viewBox="0 0 21 9" role="img" aria-label="機能3"><rect width="21" height="9" rx="4.5" fill="#f95c78"/><text x="10.5" y="4.5" text-anchor="middle" dominant-baseline="central">機能3</text></svg></i><p>レベルにぴったりの<br>1:1問題レッスン</p></div>
         </div>
 
-        <p class="made-by">✦ Socra TutorはAIエドテック専門企業が開発しました。</p>
+        <p class="made-by">✦ Socra TutorはAIエドテック専門企業Socra AIが開発しました。</p>
         <div class="stats">
           <div class="stat st1"><b>約230億円</b><small>ソフトバンク・ビジョン・ファンドから出資</small></div>
           <div class="stat st2"><b>150+</b><small>国内外でAI特許を保有</small></div>
@@ -412,9 +428,10 @@ ol{list-style:none}
         <li class="step s32"><span class="pill">STEP 1</span><p><b>奨学生に応募</b><span class="sep">     |     </span><span class="desc">ホームページ最上部の「Socra Tutor奨学生に応募する」<br class="m-br">から申込書を提出します。</span></p><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
         <li class="step s32"><span class="pill">STEP 2</span><p><b>審査</b><span class="sep">     |     </span><span class="desc">ソクラチューターのスタッフが内容を簡単に確認します。</span></p><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
         <li class="step"><span class="pill">STEP 3</span><p><b>マイリンク＋先着特典GET</b><span class="sep">    |     </span><span class="desc">あなた専用のリンクが届きます。<br class="m-br">先着100名は参考書も一緒に注文します。</span></p><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
-        <li class="step"><span class="pill">STEP 4</span><p><b>SNSに投稿</b><span class="sep">     |     </span><span class="desc">普段使っているSNSにマイリンクを載せて投稿します。</span></p><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
-        <li class="step"><span class="pill">STEP 5</span><p><b>友だちが登録</b><span class="sep">     |     </span><span class="desc">マイリンクから登録した人がすべてカウントされます。</span></p><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
-        <li class="step tall"><span class="pill">STEP 6</span><p><b>毎月レポート共有＆おこづかい支給</b><span class="sep">     |     </span><span class="desc">翌月すぐに登録者数レポートと一緒におこづかいが<br class="m-br">支給されます。</span></p><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
+        <li class="step s-link"><span class="pill">STEP 4</span><p><b>Socra Tutorに登録して、<br class="m-br">問題を撮って正解をチェック</b><span class="sep">     |     </span><span class="desc">Socra Tutorに登録して、<br class="d-br">わからない問題を撮っ<br class="m-br">て質問しながら勉強スタート<span class="m-only"> !</span></span></p><a class="step-link" href="https://socratutor.ai/landing" target="_blank" rel="noopener">Socra Tutor 使ってみる ↗</a><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
+        <li class="step"><span class="pill">STEP 5</span><p><b>SNSに投稿</b><span class="sep">     |     </span><span class="desc">普段使っているSNSにマイリンクを載せて投稿します。</span></p><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
+        <li class="step"><span class="pill">STEP 6</span><p><b>友だちが登録</b><span class="sep">     |     </span><span class="desc">マイリンクから登録した人がすべてカウントされます。</span></p><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
+        <li class="step tall"><span class="pill">STEP 7</span><p><b>毎月レポート共有＆おこづかい支給</b><span class="sep">     |     </span><span class="desc">翌月すぐに登録者数レポートと一緒におこづかいが<br class="m-br">支給されます。</span></p><span class="rule"><span><img src="assets/line.svg" alt="" width="345.3" height=".3"></span></span></li>
       </ol>
 
       <!-- FAQ -->
@@ -432,7 +449,6 @@ ol{list-style:none}
           <button type="button" aria-expanded="false"><span class="q">Q. 投稿は自由にしていいですか？</span><span class="pm" aria-hidden="true">+</span></button>
           <p class="a">A. アプリの機能（勉強・問題解説）に関連する写真・文章・動画なら、何でもOKです！何を投稿すればいいか迷ったら、クリエイティブガイドを参考にしてください！
             <span class="links">
-              <a href="https://socratutor.ai/landing" target="_blank" rel="noopener">Socra Tutor 使ってみる ↗</a>
               <!-- TODO: 이용 가이드 URL로 교체 -->
               <a href="#">ご利用ガイド ↗</a>
             </span></p>
