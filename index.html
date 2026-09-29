@@ -34,16 +34,6 @@ ol{list-style:none}
 .abs{position:absolute}
 .fill{position:absolute;inset:0;width:100%;height:100%}
 
-/* ---------- Header ---------- */
-.header{background:#fff;z-index:10}
-.header .col{height:52px}
-.nav-item{position:absolute;transform:translate(-50%,-50%);font-size:8px;font-weight:700;letter-spacing:-.16px;color:var(--gray-800);white-space:nowrap;line-height:1}
-.nav-apply{left:282.5px;top:25.5px;color:var(--red-500)}
-.nav-guide{left:359px;top:26px}
-.brand{position:absolute;left:50px;top:16px;width:59px}
-.brand-logo{width:59px;height:7px}
-.brand-sub{position:absolute;left:2px;top:16px;width:53px;transform:translateY(-50%);text-align:center;font-family:var(--ff-plex);font-weight:700;font-size:10px;line-height:1;color:var(--blue-700)}
-
 /* ---------- Hero ---------- */
 .hero{background:linear-gradient(153.05deg,#fdfdfd 2.29%,#b3e0ff 99.7%);overflow:hidden}
 .hero .col{height:294px}
@@ -81,8 +71,8 @@ ol{list-style:none}
 .sec-head .sub{margin:6px 0 0 8px;font-size:6px;font-weight:600;line-height:1.42;letter-spacing:-.12px;color:var(--gray-700);white-space:pre}
 
 /* ---------- About ---------- */
-.about{padding-top:46px}
-.diagram{position:relative;height:216px;margin-top:19px} /* 원본 y=428 을 0으로 둔 좌표 */
+.about{padding-top:calc(55px * var(--z))} /* .band 는 zoom 밖이라 배율을 곱함 */
+.diagram{position:relative;height:198px;margin-top:19px} /* 소개 카드 상단을 0으로 둔 좌표 */
 .intro{position:absolute;left:45px;top:0;width:348px;height:129px;border-radius:6px;border:.3px solid var(--line);background:rgba(255,255,255,.8);box-shadow:0 2px 6px var(--line-shadow)}
 .app-icon{position:absolute;left:27px;top:19px;width:67px;height:67px;border-radius:8px;object-fit:cover}
 .app-logo{position:absolute;left:26px;top:93px;width:70px;height:8px}
@@ -106,10 +96,9 @@ ol{list-style:none}
 .st2{left:148px;width:55px}.st2 b{font-weight:600}
 .st3{left:205px;width:81px}.st3 b{left:7.75px}
 .st4{left:288px;width:103px}.st4 b{font-weight:700}
-.to-ai{right:50px;top:203px;font-size:5px;letter-spacing:-.1px}
 
 /* ---------- What you get ---------- */
-.get-head{margin-top:43px}
+.get-head{margin-top:61px}
 .get{position:relative;height:78px;margin-top:4px}
 .get-card{position:absolute;top:11px;width:172px;height:67px;border-radius:5px;background:var(--blue-50);box-shadow:1px 1px 4px rgba(0,0,0,.17)}
 .get-card.c1{left:45px}
@@ -126,7 +115,7 @@ ol{list-style:none}
 .first100 span{position:absolute;left:8px;top:3px;font-size:7px;font-weight:700;line-height:1.6;letter-spacing:-.084px;color:#fff;white-space:nowrap}
 
 /* ---------- Who can join ---------- */
-.who-head{margin-top:70px}
+.who-head{margin-top:56px}
 .who{margin:14px 0 0 48px;width:345px;display:flex;flex-direction:column;gap:3px}
 .box{border:.3px solid var(--line);border-radius:6px;filter:drop-shadow(0 2px 3px var(--line-shadow));background:#fff}
 .who-row{height:28px;display:flex;align-items:center;padding-left:12px;gap:5px}
@@ -159,7 +148,7 @@ ol{list-style:none}
 .step .rule>span{display:none}
 
 /* ---------- FAQ ---------- */
-.faq-head{margin-top:59px}
+.faq-head{margin-top:61px}
 .faq{margin:17px 0 0 48px;width:345px;display:flex;flex-direction:column;gap:4px}
 .qa{position:relative}
 .qa button{display:flex;align-items:center;width:100%;height:28px;text-align:left;padding-left:13px;cursor:pointer}
@@ -168,11 +157,13 @@ ol{list-style:none}
 .qa.open .pm{transform:translate(50%,-50%) rotate(45deg)}
 .qa .a{display:none;padding:0 100px 9px 22px;margin-top:-5.5px;font-size:7px;font-weight:500;line-height:1.6;letter-spacing:-.14px;color:var(--gray-800)}
 .qa.open .a{display:block}
+.qa .guide{display:block;margin-top:3px;text-align:right;font-weight:700;color:var(--red-500)}
+.qa .guide:hover{text-decoration:underline}
 
 /* ---------- CTA (하단 플로팅) ----------
    버튼은 스크롤 내내 화면 하단에 떠 있고(sticky), 헤드카피는 숨겨 둔다.
    끝까지 내려 푸터가 보이면(.docked) 원래 자리(푸터 바로 위)에 멈추고 헤드카피가 디졸브로 나타난다. */
-.cta{position:sticky;bottom:0;z-index:5;margin-top:51px;pointer-events:none}
+.cta{position:sticky;bottom:0;z-index:5;margin-top:calc(61px * var(--z));pointer-events:none}
 /* 배경 2장을 겹쳐 두고 상태에 따라 교차 페이드 */
 .cta::before,.cta::after{content:"";position:absolute;inset:0;z-index:-1;transition:opacity .5s ease}
 /* 떠 있을 때: 버튼 뒤쪽만 흰색으로 받쳐 줌 */
@@ -207,13 +198,6 @@ ol{list-style:none}
 @media (max-width:767.98px){
   .col{width:auto;margin:0;zoom:1}
 
-  /* Header */
-  .header .col{height:56px;padding:0 20px;display:flex;align-items:center;gap:16px}
-  .brand{position:relative;left:auto;top:auto;width:80px;height:24px;margin-right:auto}
-  .brand-logo{margin-left:7px;width:65px;height:8px}
-  .brand-sub{left:0;top:17.5px;width:80px;font-size:13px}
-  .nav-item{position:static;transform:none;font-size:10px;line-height:1.5}
-
   /* Hero */
   .hero .col{height:auto;padding:28px 20px 40px}
   .badge{position:relative;left:auto;top:auto;width:61px;height:29px}
@@ -240,7 +224,7 @@ ol{list-style:none}
   .sec-head .sub{margin:0 0 0 4px;font-size:10px;font-weight:500;white-space:pre;overflow:hidden;text-overflow:ellipsis;min-width:0}
   .sec-head .sub-x{display:none}
   .get-head,.how-head,.faq-head{margin-top:56px}
-  .who-head{margin-top:38px}
+  .who-head{margin-top:71px} /* 特典 섹션 하단 여백 33 + 38 */
 
   /* About */
   .diagram{height:auto;margin-top:15px;display:flex;flex-direction:column;gap:15px}
@@ -263,7 +247,6 @@ ol{list-style:none}
   .stat b,.stat small{position:static;display:block;white-space:normal;letter-spacing:0}
   .stat b{font-size:13px;font-weight:700;line-height:1.5}
   .stat small{margin-top:2px;font-size:8px;line-height:1.5}
-  .to-ai{align-self:flex-end;font-size:10px}
 
   /* 特典 */
   .get{height:auto;margin-top:20px;display:flex;flex-direction:column;gap:14px}
@@ -300,6 +283,7 @@ ol{list-style:none}
   .qa button{height:auto;min-height:48px;padding:12px 32px 12px 16px}
   .qa .q{font-size:13px;line-height:1.5;letter-spacing:0}
   .qa .pm{right:20px;top:24px;font-size:22px}
+  .qa .guide{margin-top:8px}
   .qa .a{padding:0 16px 14px;margin-top:-4px;font-size:10px;font-weight:400;line-height:1.65;letter-spacing:0}
 
   /* CTA */
@@ -310,7 +294,7 @@ ol{list-style:none}
   .cta-btn{width:100%;height:54px;margin-top:18px;border-radius:10px;font-size:17px;transform:none}
 
   /* Footer */
-  .footer .col{height:auto;padding:28px 20px 32px;flex-direction:row;justify-content:space-between;align-items:flex-start;gap:20px}
+  .footer .col{height:auto;padding:28px 20px 32px;flex-direction:row;justify-content:space-between;align-items:flex-start;gap:56px}
   .footer .inner{flex:1;min-width:0;width:auto;gap:12px}
   .footer .logo{width:78px;height:14.3px}
   .footer p{width:auto;font-size:8px;line-height:1.65}
@@ -325,18 +309,6 @@ ol{list-style:none}
 </style>
 </head>
 <body>
-
-<!-- Header -->
-<header class="band header">
-  <div class="col">
-    <a class="brand" href="#top" aria-label="Socra Tutor 奨学生">
-      <img class="brand-logo" src="assets/logo-header.svg" alt="Socra Tutor" width="59" height="7">
-      <span class="brand-sub">奨学生</span>
-    </a>
-    <a class="nav-item nav-apply" href="https://docs.google.com/forms/d/e/1FAIpQLSdallSjr5LQIkqC5UYKGB2N6xy2TIigE4t9V5OXBa1d-0Lgaw/viewform" target="_blank" rel="noopener">すぐ応募 ↗</a>
-    <a class="nav-item nav-guide" href="#how">ご利用ガイド ↗</a>
-  </div>
-</header>
 
 <main id="top">
   <!-- Hero -->
@@ -382,7 +354,6 @@ ol{list-style:none}
           <div class="stat st3"><b>78万人+</b><small>78万人分の実際の学習データを蓄積</small></div>
           <div class="stat st4"><b>26本</b><small>NeurIPS・ACLなど世界トップAI学会に論文掲載</small></div>
         </div>
-        <a class="link-sm to-ai" href="https://corp.socra.ai" target="_blank" rel="noopener">Socra AI公式サイト ↗</a>
       </div>
 
       <!-- What you get -->
@@ -412,7 +383,7 @@ ol{list-style:none}
         <span class="sub">|     Who can join</span>
       </div>
       <div class="who">
-        <div class="box who-row"><img src="assets/check.svg" alt="" width="8" height="8"><span>中学生・高校生・大学生（24歳まで）</span></div>
+        <div class="box who-row"><img src="assets/check.svg" alt="" width="8" height="8"><span>中学生・高校生・大学生（満22歳まで）</span></div>
         <div class="box who-row"><img src="assets/check.svg" alt="" width="8" height="8"><span>SNSで勉強・受験などの投稿をしているアカウントを持つ人</span></div>
         <div class="box who-row"><img src="assets/check.svg" alt="" width="8" height="8"><span>参考書のサポートを受けて勉強記録を始めたい人</span></div>
         <div class="box who-row"><img src="assets/check.svg" alt="" width="8" height="8"><span>勉強もしながらおこづかいも稼ぎたい人</span></div>
@@ -460,7 +431,9 @@ ol{list-style:none}
         </div>
         <div class="box qa">
           <button type="button" aria-expanded="false"><span class="q">Q. 投稿は自由にしていいですか？</span><span class="pm" aria-hidden="true">+</span></button>
-          <p class="a">A. アプリの機能（勉強・問題解説）に関連する写真・文章・動画なら、何でもOKです！何を投稿すればいいか迷ったら、クリエイティブガイドを参考にしてください！</p>
+          <p class="a">A. アプリの機能（勉強・問題解説）に関連する写真・文章・動画なら、何でもOKです！何を投稿すればいいか迷ったら、クリエイティブガイドを参考にしてください！
+            <!-- TODO: 이용 가이드 URL로 교체 -->
+            <a class="guide" href="#">ご利用ガイド ↗</a></p>
         </div>
         <div class="box qa">
           <button type="button" aria-expanded="false"><span class="q">Q. もらえるおこづかいの上限はいくらですか？</span><span class="pm" aria-hidden="true">+</span></button>
@@ -498,6 +471,7 @@ ol{list-style:none}
       <!-- TODO: 운영정책·이용약관 URL로 교체 -->
       <a href="#">運営ポリシー ↗</a>
       <a href="#">利用規約 ↗</a>
+      <a href="https://corp.socra.ai" target="_blank" rel="noopener">Socra AI ↗</a>
       <a href="#" aria-label="ページのトップへ戻る">トップへ ▲</a>
     </nav>
   </div>
