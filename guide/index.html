@@ -103,7 +103,18 @@ b,strong{font-weight:700}
 .examples{display:flex;flex-wrap:wrap;gap:12px 8px}
 .example{flex:1 1 0;min-width:96px;max-width:220px;display:flex;flex-direction:column;gap:6px}
 .example > b{font-size:10px;line-height:1.5;color:var(--red-500)}
-.example img{width:100%;height:180px;object-fit:cover;border-radius:8px;border:.5px solid rgba(58,130,219,.25)}
+.example .zoom{position:relative;display:block;width:100%;padding:0;border-radius:8px;cursor:zoom-in}
+.example img{width:100%;height:auto;aspect-ratio:106/180;object-fit:cover;border-radius:8px;border:.5px solid rgba(58,130,219,.25)}
+.example .zoom::after{content:"";position:absolute;right:6px;bottom:6px;width:22px;height:22px;border-radius:99px;background:rgba(14,39,89,.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6'/%3E%3Cpath d='M15 15l5 5M10.5 8v5M8 10.5h5'/%3E%3C/svg%3E") center/13px no-repeat}
+.example .zoom:hover img{filter:brightness(.95)}
+
+/* ---------- 이미지 크게 보기 팝업 ---------- */
+.lightbox{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:transparent;overflow:hidden}
+.lightbox::backdrop{background:rgba(6,14,32,.82)}
+.lightbox[open]{display:flex;align-items:center;justify-content:center}
+.lightbox img{max-width:min(92vw,560px);max-height:88vh;width:auto;height:auto;border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,.35);cursor:zoom-out}
+.lightbox .close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:99px;background:rgba(255,255,255,.15);color:#fff;font-size:22px;line-height:40px;text-align:center}
+.lightbox .close:hover{background:rgba(255,255,255,.28)}
 .example p{font-size:8px;font-weight:500;line-height:1.6;color:var(--gray-900)}
 .example p b{color:var(--blue-550)}
 .tips{display:flex;flex-direction:column;gap:8px;padding:16px;border-radius:10px;background:var(--gray-50)}
@@ -280,9 +291,9 @@ b,strong{font-weight:700}
       <div class="sub-head" id="create"><h3>2-1. コンテンツを作って投稿する</h3></div>
       <div class="callout hl"><p class="t">✅ コンテンツ、これはOK！</p><p class="b">Socra Tutor アプリの機能について、直接的・間接的に紹介または映している、すべての文章 / 写真 / 動画</p></div>
       <div class="examples">
-        <figure class="example"><b>例1)</b><img src="/guide/assets/example-1.jpg" alt="例1：問題集をSocra Tutorで撮影している写真" loading="lazy"><p><b>#PR #socra_tutor</b> もう難しい問題も怖くない。Socra Tutor を開いて問題の写真を撮るだけ。</p></figure>
-        <figure class="example"><b>例2)</b><img src="/guide/assets/example-2.jpg" alt="例2：Socra Tutorの回答画面のスクリーンショット" loading="lazy"><p><b>#PR #socra_tutor</b> AI3つが一度に解説してくれるから本当にラクだし、なんていうか、ちょっと安心できる気がする</p></figure>
-        <figure class="example"><b>例3)</b><img src="/guide/assets/example-3.jpg" alt="例3：PCでSocra Tutorを使って勉強している写真" loading="lazy"><p><b>#PR #socra_tutor</b> このアプリが無料って、ほんとに信じられない…</p></figure>
+        <figure class="example"><b>例1)</b><button type="button" class="zoom" data-full="/guide/assets/example-1-large.jpg" aria-label="画像を拡大する"><img src="/guide/assets/example-1.jpg" alt="例1：問題集をSocra Tutorで撮影している写真" loading="lazy"></button><p><b>#PR #socra_tutor</b> もう難しい問題も怖くない。Socra Tutor を開いて問題の写真を撮るだけ。</p></figure>
+        <figure class="example"><b>例2)</b><button type="button" class="zoom" data-full="/guide/assets/example-2-large.jpg" aria-label="画像を拡大する"><img src="/guide/assets/example-2.jpg" alt="例2：Socra Tutorの回答画面のスクリーンショット" loading="lazy"></button><p><b>#PR #socra_tutor</b> AI3つが一度に解説してくれるから本当にラクだし、なんていうか、ちょっと安心できる気がする</p></figure>
+        <figure class="example"><b>例3)</b><button type="button" class="zoom" data-full="/guide/assets/example-3-large.jpg" aria-label="画像を拡大する"><img src="/guide/assets/example-3.jpg" alt="例3：PCでSocra Tutorを使って勉強している写真" loading="lazy"></button><p><b>#PR #socra_tutor</b> このアプリが無料って、ほんとに信じられない…</p></figure>
       </div>
       <div class="tips">
         <h4>🤳 何を撮ればいいか迷ったら、こうしてみよう！</h4>
@@ -503,6 +514,11 @@ b,strong{font-weight:700}
 </section>
 </main>
 
+<dialog class="lightbox" aria-label="画像の拡大表示">
+  <img alt="">
+  <button type="button" class="close" aria-label="閉じる">×</button>
+</dialog>
+
 <footer class="footer">
   <div class="wrap">
     <div class="inner">
@@ -522,6 +538,16 @@ document.querySelectorAll('.acc > button, .faq > button').forEach(btn => {
     btn.setAttribute('aria-expanded', open);
   });
 });
+// 예시 이미지 크게 보기 (팝업)
+const lb = document.querySelector('.lightbox'), lbImg = lb.querySelector('img');
+document.querySelectorAll('.example .zoom').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const img = btn.querySelector('img');
+    lbImg.src = btn.dataset.full; lbImg.alt = img.alt;
+    lb.showModal();
+  });
+});
+lb.addEventListener('click', () => lb.close()); // 배경·이미지·닫기 버튼 어디를 눌러도 닫힘 (Esc도 지원)
 // 외부 링크는 새 탭으로
 document.querySelectorAll('a[href^="http"]:not(.home-btn)').forEach(a => {
   if (new URL(a.href).origin !== location.origin) { a.target = '_blank'; a.rel = 'noopener'; }
