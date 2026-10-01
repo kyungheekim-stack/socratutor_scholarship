@@ -56,7 +56,7 @@ b,strong{font-weight:700}
 .callout.notice .t{color:#b07d00}
 
 .bullet{display:flex;gap:8px;align-items:flex-start}
-.bullet::before{content:"";flex:none;width:4px;height:11px;margin-top:3px;background:url(assets/dot.svg) center/4px 11px no-repeat}
+.bullet::before{content:"";flex:none;width:4px;height:11px;margin-top:3px;background:url(/guide/assets/dot.svg) center/4px 11px no-repeat}
 .bullet p{font-size:10px;font-weight:500;line-height:1.7;color:var(--gray-900)}
 
 .check{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border-radius:8px;background:#fff;border:.5px solid var(--line-soft)}
@@ -125,8 +125,8 @@ b,strong{font-weight:700}
 .acc{border-radius:10px;background:var(--gray-50)}
 .acc > button{width:100%;display:flex;gap:12px;align-items:center;padding:14px 16px;font-size:11px;font-weight:700;line-height:1.5;color:var(--gray-900)}
 .acc > button span{flex:1}
-.acc > button i{flex:none;width:16px;height:16px;background:url(assets/icon-plus.svg) center/16px no-repeat}
-.acc.open > button i{background-image:url(assets/icon-minus.svg)}
+.acc > button i{flex:none;width:16px;height:16px;background:url(/guide/assets/icon-plus.svg) center/16px no-repeat}
+.acc.open > button i{background-image:url(/guide/assets/icon-minus.svg)}
 .acc .panel{display:none;padding:0 16px 14px}
 .acc.open .panel{display:block}
 .vrow{display:flex;flex-direction:column;gap:6px;padding:10px 0;border-bottom:.5px solid rgba(58,130,219,.2)}
@@ -165,8 +165,8 @@ b,strong{font-weight:700}
 .faq{display:flex;flex-direction:column;gap:8px;padding:16px;border-radius:10px;background:#fff;border:.5px solid var(--line)}
 .faq > button{display:flex;gap:12px;align-items:center;width:100%;font-size:12px;font-weight:700;line-height:1.5;color:var(--blue-700)}
 .faq > button span{flex:1}
-.faq > button i{flex:none;width:16px;height:16px;background:url(assets/icon-plus.svg) center/16px no-repeat}
-.faq.open > button i{background-image:url(assets/icon-minus.svg)}
+.faq > button i{flex:none;width:16px;height:16px;background:url(/guide/assets/icon-plus.svg) center/16px no-repeat}
+.faq.open > button i{background-image:url(/guide/assets/icon-minus.svg)}
 .faq .ans{display:none;font-size:10px;font-weight:500;line-height:1.7;color:var(--gray-700)}
 .faq.open .ans{display:block}
 .contact{display:flex;flex-direction:column;gap:10px;padding:20px;border-radius:12px;background:var(--blue-700);color:#fff}
@@ -190,9 +190,9 @@ b,strong{font-weight:700}
 
 <!-- ================= Hero ================= -->
 <header class="hero" id="top">
-  <a class="home-btn" href="/" aria-label="奨学生募集ページに戻る"><img src="assets/icon-arrow-left.svg" alt=""><img src="assets/icon-home.svg" alt=""></a>
+  <a class="home-btn" href="/" aria-label="奨学生募集ページに戻る"><img src="/guide/assets/icon-arrow-left.svg" alt=""><img src="/guide/assets/icon-home.svg" alt=""></a>
   <div class="wrap">
-    <div class="title-row"><img src="assets/logo-tutor.svg" alt="Socra Tutor" width="172" height="20"><span>奨学生</span></div>
+    <div class="title-row"><img src="/guide/assets/logo-tutor.svg" alt="Socra Tutor" width="172" height="20"><span>奨学生</span></div>
     <h1>Creative Guide</h1>
     <p class="lead">Socra Tutor 奨学生へようこそ！このガイド<b>には、</b><br><b>応募 → コンテンツ投稿 → リンク設置 → 報酬</b>の精算まで、<br>奨学生の活動に必要なことがすべてまとまっています。<br>活動を始める前に、必ず一度最後まで読んでくださいね。</p>
     <nav class="quick" aria-label="よく見られる項目">
@@ -210,7 +210,7 @@ b,strong{font-weight:700}
 <!-- ================= 1. Apply ================= -->
 <section class="sec" id="apply">
   <div class="wrap g32">
-    <div class="sec-head"><img src="../assets/light.png" alt=""><h2>Socra Tutor 奨学生に応募する</h2><span>|   Apply</span></div>
+    <div class="sec-head"><img src="/assets/light.png" alt=""><h2>Socra Tutor 奨学生に応募する</h2><span>|   Apply</span></div>
 
     <div class="card">
       <h4>誰が応募できますか？</h4>
@@ -273,16 +273,16 @@ b,strong{font-weight:700}
 <!-- ================= 2. Content ================= -->
 <section class="sec tint" id="content">
   <div class="wrap g24">
-    <div class="sec-head"><img src="../assets/light.png" alt=""><h2>コンテンツを作って投稿</h2><span>|   Content</span></div>
+    <div class="sec-head"><img src="/assets/light.png" alt=""><h2>コンテンツを作って投稿</h2><span>|   Content</span></div>
 
     <!-- 2-1 -->
     <div class="stack g32" style="padding-top:20px">
       <div class="sub-head" id="create"><h3>2-1. コンテンツを作って投稿する</h3></div>
       <div class="callout hl"><p class="t">✅ コンテンツ、これはOK！</p><p class="b">Socra Tutor アプリの機能について、直接的・間接的に紹介または映している、すべての文章 / 写真 / 動画</p></div>
       <div class="examples">
-        <figure class="example"><b>例1)</b><img src="assets/example-1.jpg" alt="例1：問題集をSocra Tutorで撮影している写真" loading="lazy"><p><b>#PR #socra_tutor</b> もう難しい問題も怖くない。Socra Tutor を開いて問題の写真を撮るだけ。</p></figure>
-        <figure class="example"><b>例2)</b><img src="assets/example-2.jpg" alt="例2：Socra Tutorの回答画面のスクリーンショット" loading="lazy"><p><b>#PR #socra_tutor</b> AI3つが一度に解説してくれるから本当にラクだし、なんていうか、ちょっと安心できる気がする</p></figure>
-        <figure class="example"><b>例3)</b><img src="assets/example-3.jpg" alt="例3：PCでSocra Tutorを使って勉強している写真" loading="lazy"><p><b>#PR #socra_tutor</b> このアプリが無料って、ほんとに信じられない…</p></figure>
+        <figure class="example"><b>例1)</b><img src="/guide/assets/example-1.jpg" alt="例1：問題集をSocra Tutorで撮影している写真" loading="lazy"><p><b>#PR #socra_tutor</b> もう難しい問題も怖くない。Socra Tutor を開いて問題の写真を撮るだけ。</p></figure>
+        <figure class="example"><b>例2)</b><img src="/guide/assets/example-2.jpg" alt="例2：Socra Tutorの回答画面のスクリーンショット" loading="lazy"><p><b>#PR #socra_tutor</b> AI3つが一度に解説してくれるから本当にラクだし、なんていうか、ちょっと安心できる気がする</p></figure>
+        <figure class="example"><b>例3)</b><img src="/guide/assets/example-3.jpg" alt="例3：PCでSocra Tutorを使って勉強している写真" loading="lazy"><p><b>#PR #socra_tutor</b> このアプリが無料って、ほんとに信じられない…</p></figure>
       </div>
       <div class="tips">
         <h4>🤳 何を撮ればいいか迷ったら、こうしてみよう！</h4>
@@ -417,7 +417,7 @@ b,strong{font-weight:700}
 <!-- ================= 3. Reward ================= -->
 <section class="sec" id="reward">
   <div class="wrap g32">
-    <div class="sec-head"><img src="../assets/light.png" alt=""><h2>報酬の精算</h2><span>|   Reward</span></div>
+    <div class="sec-head"><img src="/assets/light.png" alt=""><h2>報酬の精算</h2><span>|   Reward</span></div>
 
     <div class="stack g10">
       <h4 class="part-title">報酬はどのように計算されますか？</h4>
@@ -469,7 +469,7 @@ b,strong{font-weight:700}
 <!-- ================= 4. FAQ ================= -->
 <section class="sec tint" id="faq" style="padding-bottom:72px">
   <div class="wrap g10">
-    <div class="sec-head"><img src="../assets/light-yellow.png" alt=""><h2>よくある質問</h2><span>|   FAQ</span></div>
+    <div class="sec-head"><img src="/assets/light-yellow.png" alt=""><h2>よくある質問</h2><span>|   FAQ</span></div>
     <div style="height:8px"></div>
       <div class="faq">
         <button aria-expanded="false"><span>Q. 審査結果はいつわかりますか？</span><i></i></button>
@@ -506,7 +506,7 @@ b,strong{font-weight:700}
 <footer class="footer">
   <div class="wrap">
     <div class="inner">
-      <img class="logo" src="../assets/logo-socra-ai-footer.svg" alt="Socra AI">
+      <img class="logo" src="/assets/logo-socra-ai-footer.svg" alt="Socra AI">
       <p>会社名 : Socra AI Inc.  |  代表取締役 : 朴修永  |  日本代表 : 文鎔柱  |  お問い合わせ : jp_info@socra.ai  |  所在地 : 東京都中央区銀座六丁目１０−１GinzaSix１３階</p>
       <p class="copy">© Socra AI Inc. All rights reserved.</p>
     </div>
