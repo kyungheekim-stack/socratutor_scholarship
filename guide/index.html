@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Socra Tutor 奨学生 Creative Guide</title>
+<meta name="description" content="Socra Tutor 奨学生の応募からコンテンツ投稿、リンク設置、報酬の精算までをまとめたガイドです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=IBM+Plex+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Figma 「Home JP — Mobile — Creative guide(375)」 기준. 본문 폭은 최대 720px, 좌우 여백 20px */
+:root{
+  --blue-50:#eef6ff; --blue-500:#4c9ef3; --blue-550:#3a82db; --blue-700:#0e2759;
+  --gray-50:#f4f6f9; --gray-bg:#f7f9fc; --gray-700:#5d617c; --gray-800:#464a65; --gray-900:#30344f;
+  --red-500:#f95c78; --red-600:#e4405f;
+  --line:rgba(58,130,219,.55); --line-soft:rgba(58,130,219,.35);
+  --ff:'Noto Sans JP',sans-serif; --ff-plex:'IBM Plex Sans KR','Noto Sans JP',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{background:#fff;font-family:var(--ff);color:var(--gray-900);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:left}
+ul,ol{list-style:none}
+b,strong{font-weight:700}
+
+.sec{padding:20px 20px 50px}
+.sec.tint{background:var(--gray-bg)}
+.wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column}
+.stack{display:flex;flex-direction:column}
+.g4{gap:4px}.g6{gap:6px}.g8{gap:8px}.g10{gap:10px}.g24{gap:24px}.g32{gap:32px}
+
+/* ---------- 공통 컴포넌트 ---------- */
+.sec-head{display:flex;align-items:center;gap:6px}
+.sec-head img{width:16px;height:16px;flex:none}
+.sec-head h2{font-size:18px;font-weight:700;line-height:1.4;letter-spacing:-.02em;color:var(--gray-900)}
+.sec-head span{font-size:10px;font-weight:500;line-height:1.5;color:var(--gray-700);white-space:pre}
+.sub-head{display:flex;align-items:center;gap:8px;scroll-margin-top:16px}
+.sub-head::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--blue-500);flex:none}
+.sub-head h3{font-size:15px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.part-title{font-size:13px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.part-title.s12{font-size:12px}
+.note{font-size:9px;font-weight:500;line-height:1.5;color:var(--gray-700)}
+.text{font-size:10px;font-weight:500;line-height:1.7;color:var(--gray-900)}
+.em-red{font-weight:700;color:var(--red-600)}
+
+.callout{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-radius:10px;background:var(--gray-50)}
+.callout .t{font-size:11px;font-weight:700;line-height:1.5;color:var(--blue-550)}
+.callout .b{font-size:10px;font-weight:500;line-height:1.7;color:var(--gray-900)}
+.callout.hl{background:var(--blue-50);border:.5px solid rgba(58,130,219,.4)}
+.callout.warn{background:#fff2f5;border:.5px solid rgba(249,92,120,.4)}
+.callout.warn .t{color:var(--red-600)}
+.callout.notice{background:#fff9e6;border:.5px solid rgba(245,180,0,.4)}
+.callout.notice .t{color:#b07d00}
+
+.bullet{display:flex;gap:8px;align-items:flex-start}
+.bullet::before{content:"";flex:none;width:4px;height:11px;margin-top:3px;background:url(assets/dot.svg) center/4px 11px no-repeat}
+.bullet p{font-size:10px;font-weight:500;line-height:1.7;color:var(--gray-900)}
+
+.check{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border-radius:8px;background:#fff;border:.5px solid var(--line-soft)}
+.check::before{content:"";flex:none;width:13px;height:13px;margin-top:2px;border:1.2px solid var(--blue-500);border-radius:3px}
+.check p{font-size:10px;font-weight:500;line-height:1.7;color:var(--blue-700)}
+
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:.5px solid var(--line)}
+.pill{flex:none;padding:3px 10px;border-radius:99px;background:var(--blue-500);font-family:var(--ff-plex);font-size:11px;font-weight:600;line-height:1.5;color:#fff;white-space:nowrap}
+.pill.num{padding:3px 9px}
+.step .body{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.step .body h4{font-size:12px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.step .body p{font-size:10px;font-weight:400;line-height:1.7;color:var(--gray-800)}
+
+.card{display:flex;flex-direction:column;gap:4px;padding:16px 20px;border-radius:10px;background:rgba(255,255,255,.9);border:.5px solid var(--line);box-shadow:0 4px 12px rgba(58,130,219,.18)}
+.card > h4{font-size:12px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.kv{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:.5px solid rgba(58,130,219,.25);font-size:10px;line-height:1.7}
+.kv dt{flex:none;width:68px;font-weight:700;color:var(--blue-550)}
+.kv dd{flex:1;min-width:0;font-weight:500;color:var(--blue-700)}
+
+.split{display:flex;flex-wrap:wrap;gap:8px}
+.split > *{flex:1 1 0;min-width:220px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding:55px 20px 32px}
+.home-btn{position:absolute;top:16px;right:16px;display:flex;align-items:center;gap:4px;padding:7px 12px 7px 10px;border-radius:99px;background:rgba(255,255,255,.9);border:.5px solid var(--line-soft);filter:drop-shadow(0 2px 4px rgba(58,130,219,.15))}
+.home-btn img{width:16px;height:16px}
+.home-btn img + img{width:18px;height:18px}
+.title-row{display:flex;align-items:center;gap:8px}
+.title-row img{width:172px;height:20px}
+.title-row span{font-size:22px;font-weight:900;line-height:1;letter-spacing:-.02em;color:var(--blue-700)}
+.hero h1{font-size:28px;font-weight:900;line-height:1.35;letter-spacing:-.02em;color:var(--blue-550)}
+.hero .lead{margin-top:16px;font-size:11px;font-weight:500;line-height:1.75;color:var(--gray-900)}
+.quick{margin-top:28px;display:flex;flex-direction:column;gap:6px}
+.quick > p{font-size:10px;font-weight:700;line-height:1.5;color:var(--gray-700)}
+.quick-links{display:flex;flex-wrap:wrap;gap:8px}
+.quick-links a{flex:1 1 0;min-width:220px;display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;background:rgba(255,255,255,.85);border:.5px solid var(--line-soft);box-shadow:0 4px 12px rgba(58,130,219,.12)}
+.quick-links .n{flex:none;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:99px;background:var(--blue-500);font-size:10px;font-weight:700;line-height:1;color:#fff}
+.quick-links .l{flex:1;font-size:11px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.quick-links .arr{font-size:12px;font-weight:700;line-height:1;color:var(--blue-550)}
+.quick-links a:hover{border-color:var(--blue-550)}
+
+/* ---------- 2-1 예시 ---------- */
+.examples{display:flex;flex-wrap:wrap;gap:12px 8px}
+.example{flex:1 1 0;min-width:96px;max-width:220px;display:flex;flex-direction:column;gap:6px}
+.example > b{font-size:10px;line-height:1.5;color:var(--red-500)}
+.example img{width:100%;height:180px;object-fit:cover;border-radius:8px;border:.5px solid rgba(58,130,219,.25)}
+.example p{font-size:8px;font-weight:500;line-height:1.6;color:var(--gray-900)}
+.example p b{color:var(--blue-550)}
+.tips{display:flex;flex-direction:column;gap:8px;padding:16px;border-radius:10px;background:var(--gray-50)}
+.tips > h4{font-size:12px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.tips .tip{font-size:9px;font-weight:500;line-height:1.7;color:var(--gray-700)}
+.device-note{padding:6px 10px;border-radius:6px;background:#fff4c2;font-size:9px;font-weight:700;line-height:1.6;color:#6b5200}
+.tag-row{display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:10px;background:#fff;border:.5px solid var(--line-soft)}
+.tag{flex:none;padding:2px 9px;border-radius:99px;background:var(--red-500);font-size:9px;font-weight:700;line-height:1.5;color:#fff;white-space:nowrap}
+.tag-row p{flex:1;font-size:10px;font-weight:500;line-height:1.7;color:var(--blue-700)}
+
+/* ---------- NG ---------- */
+.ng{display:flex;flex-direction:column;gap:6px;padding:12px 14px;border-radius:10px;background:#fff;border:.5px solid rgba(249,92,120,.35)}
+.ng h5{font-size:11px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.ng .ex{display:flex;gap:8px;align-items:flex-start}
+.ng .ex i{flex:none;padding:1px 7px;border-radius:4px;background:#fff2f5;font-style:normal;font-size:9px;font-weight:700;line-height:1.6;color:var(--red-600)}
+.ng .ex p{flex:1;font-size:10px;font-weight:500;line-height:1.7;color:var(--gray-700)}
+
+/* ---------- 아코디언 (違反時の対応基準 등) ---------- */
+.acc{border-radius:10px;background:var(--gray-50)}
+.acc > button{width:100%;display:flex;gap:12px;align-items:center;padding:14px 16px;font-size:11px;font-weight:700;line-height:1.5;color:var(--gray-900)}
+.acc > button span{flex:1}
+.acc > button i{flex:none;width:16px;height:16px;background:url(assets/icon-plus.svg) center/16px no-repeat}
+.acc.open > button i{background-image:url(assets/icon-minus.svg)}
+.acc .panel{display:none;padding:0 16px 14px}
+.acc.open .panel{display:block}
+.vrow{display:flex;flex-direction:column;gap:6px;padding:10px 0;border-bottom:.5px solid rgba(58,130,219,.2)}
+.vrow:first-child{padding-top:4px}
+.vrow h6{font-size:10px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:flex;gap:4px;padding:2px 8px;border-radius:99px;background:#fff;border:.5px solid rgba(58,130,219,.4);font-size:9px;line-height:1.6;white-space:nowrap}
+.chip b{color:var(--gray-700)}
+.chip span{font-weight:500;color:var(--blue-700)}
+.chip.red{background:#fff2f5;border-color:rgba(249,92,120,.4)}
+.chip.red span{color:var(--red-600)}
+.acc .foot{margin-top:8px;font-size:9px;font-weight:500;line-height:1.7;color:var(--gray-700)}
+.code-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:12px 14px;border-radius:10px;background:#fff;border:.5px solid var(--line-soft)}
+.code-row b{font-size:10px;line-height:1.6;color:var(--blue-700)}
+.code-row code{padding:2px 8px;border-radius:4px;background:#eef1f6;font-family:var(--ff-plex);font-size:10px;font-weight:600;line-height:1.6;color:var(--red-600)}
+.pf-grid{display:flex;flex-wrap:wrap;gap:10px}
+.pf{flex:1 1 0;min-width:280px;display:flex;flex-direction:column;gap:8px;padding:16px;border-radius:10px;background:#fff;border:.5px solid var(--line);box-shadow:0 4px 12px rgba(58,130,219,.12)}
+.pf h4{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.pf h4 i{width:8px;height:8px;border-radius:50%;flex:none}
+/* ---------- 3. Reward ---------- */
+.stats{display:flex;flex-wrap:wrap;gap:8px}
+.stats > div{flex:1 1 0;min-width:96px;display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:8px;background:var(--gray-50);line-height:1.5}
+.stats b{font-size:14px;color:var(--blue-550);white-space:nowrap}
+.stats p{font-size:9px;font-weight:500;color:var(--gray-700)}
+.cond{display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:10px;background:var(--blue-50)}
+.cond span{flex:none;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:99px;background:var(--blue-500);font-size:10px;font-weight:700;line-height:1;color:#fff}
+.cond p{flex:1;font-size:10px;font-weight:500;line-height:1.7;color:var(--blue-700)}
+.rules{display:flex;flex-direction:column;gap:6px;padding:14px 16px;border-radius:10px;background:var(--gray-50)}
+.rules h5{font-size:11px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.report{display:flex;flex-wrap:wrap;gap:8px}
+.report > div{flex:1 1 0;min-width:150px;display:flex;gap:6px;align-items:center;padding:10px 12px;border-radius:8px;background:#fff;border:.5px solid var(--line-soft);font-size:10px;line-height:1.5}
+.report b{color:var(--blue-500)}
+.report p{flex:1;font-weight:500;color:var(--blue-700)}
+
+/* ---------- 4. FAQ ---------- */
+.faq{display:flex;flex-direction:column;gap:8px;padding:16px;border-radius:10px;background:#fff;border:.5px solid var(--line)}
+.faq > button{display:flex;gap:12px;align-items:center;width:100%;font-size:12px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.faq > button span{flex:1}
+.faq > button i{flex:none;width:16px;height:16px;background:url(assets/icon-plus.svg) center/16px no-repeat}
+.faq.open > button i{background-image:url(assets/icon-minus.svg)}
+.faq .ans{display:none;font-size:10px;font-weight:500;line-height:1.7;color:var(--gray-700)}
+.faq.open .ans{display:block}
+.contact{display:flex;flex-direction:column;gap:10px;padding:20px;border-radius:12px;background:var(--blue-700);color:#fff}
+.contact h4{font-size:16px;font-weight:700;line-height:1.5}
+.contact .mail{display:flex;gap:8px;align-items:center;padding:10px 14px;border-radius:8px;background:rgba(255,255,255,.1);border:.5px solid rgba(184,226,255,.45);font-size:12px;font-weight:700;line-height:1.5}
+.contact .mail b{flex:1;min-width:0;color:#b8e2ff;overflow-wrap:anywhere}
+.contact > p{font-size:10px;font-weight:500;line-height:1.7;opacity:.9}
+
+/* ---------- Footer ---------- */
+.footer{background:#060e20;padding:28px 20px 32px}
+.footer .wrap{flex-direction:row;justify-content:space-between;align-items:flex-start;gap:56px}
+.footer .inner{flex:1;min-width:0;max-width:420px;display:flex;flex-direction:column;gap:12px}
+.footer .logo{width:78px;height:14.3px}
+.footer p{font-family:var(--ff-plex);font-size:8px;line-height:1.65;color:#b5b7c6;white-space:pre-wrap}
+.footer .copy{font-size:10px;line-height:1.5}
+.footer .top{flex:none;font-size:10px;font-weight:700;line-height:1.65;color:#fff;white-space:nowrap}
+.footer .top:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<!-- ================= Hero ================= -->
+<header class="hero" id="top">
+  <a class="home-btn" href="/" aria-label="奨学生募集ページに戻る"><img src="assets/icon-arrow-left.svg" alt=""><img src="assets/icon-home.svg" alt=""></a>
+  <div class="wrap">
+    <div class="title-row"><img src="assets/logo-tutor.svg" alt="Socra Tutor" width="172" height="20"><span>奨学生</span></div>
+    <h1>Creative Guide</h1>
+    <p class="lead">Socra Tutor 奨学生へようこそ！このガイド<b>には、</b><br><b>応募 → コンテンツ投稿 → リンク設置 → 報酬</b>の精算まで、<br>奨学生の活動に必要なことがすべてまとまっています。<br>活動を始める前に、必ず一度最後まで読んでくださいね。</p>
+    <nav class="quick" aria-label="よく見られる項目">
+      <p>よく見られる項目 Go</p>
+      <div class="quick-links">
+        <a href="#create"><span class="n">1</span><span class="l">コンテンツの作り方・投稿方法</span><span class="arr">↓</span></a>
+        <a href="#ng"><span class="n">2</span><span class="l">使ってはいけない表現は？</span><span class="arr">↓</span></a>
+        <a href="#platforms"><span class="n">3</span><span class="l">プラットフォーム別・リンクの設置方法</span><span class="arr">↓</span></a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ================= 1. Apply ================= -->
+<section class="sec" id="apply">
+  <div class="wrap g32">
+    <div class="sec-head"><img src="../assets/light.png" alt=""><h2>Socra Tutor 奨学生に応募する</h2><span>|   Apply</span></div>
+
+    <div class="card">
+      <h4>誰が応募できますか？</h4>
+      <dl>
+        <div class="kv"><dt>対象</dt><dd>日本在住の中学生・高校生・大学生（専門学校・高等専門学校を含む）、満22歳以下</dd></div>
+        <div class="kv"><dt>年齢</dt><dd>満13歳以上 ＋ 利用するSNSの利用規約上、<br>アカウントを作成できる年齢以上</dd></div>
+        <div class="kv"><dt>保護者の同意</dt><dd>満18歳未満は保護者同意書が必須</dd></div>
+      </dl>
+    </div>
+
+    <div class="stack g10">
+      <h3 class="part-title">応募の流れ</h3>
+      <ol class="steps">
+        <li class="step"><span class="pill">STEP 1</span><div class="body"><h4>応募フォームの提出</h4><p>広告やDMで届いたリンク先のホームページで「応募する」を押して、応募フォームに記入します。満18歳未満の方は、保護者同意書もあわせて提出してください。<br>※ 同意書がない場合は受付が保留となり、<br>7日以内に提出されないと自動的にキャンセルされます。</p></div></li>
+        <li class="step"><span class="pill">STEP 2</span><div class="body"><h4>審査</h4><p>年齢、在学状況、SNSアカウントが実際に運用されているか、投稿内容の傾向などを確認します。<br>受付日から5営業日以内に結果をお知らせします。</p></div></li>
+        <li class="step"><span class="pill">STEP 3</span><div class="body"><h4>承認 &amp; 専用リンクの発行</h4><p>承認されると、あなただけの専用リンクが発行されます。このリンクが実績集計の基準になるので、<br>大切に保管してください。</p></div></li>
+        <li class="step"><span class="pill">STEP 4</span><div class="body"><h4>初投稿</h4><p>承認日から30日以内に最初の投稿をすることをおすすめします。</p></div></li>
+      </ol>
+    </div>
+
+    <div class="stack g32" style="padding-top:18px">
+      <div class="sub-head" id="book"><h3>1-1. 書籍を申し込む</h3></div>
+      <div class="callout notice"><p class="t">先着100名に学習書籍をプレゼント</p><p class="b">承認が完了した順に、先着100名に学習書籍1冊（税・送料込み2,000円以内）をプレゼントします。100名に達した時点で、<br>案内ページでお知らせします。</p></div>
+
+      <div class="stack g10">
+        <h3 class="part-title">申し込み方法</h3>
+        <ol class="steps">
+          <li class="step"><span class="pill num">1</span><div class="body"><h4>ほしい物リストを作成</h4><p>Amazon（amazon.co.jp）でほしい物リストを作成します。</p></div></li>
+          <li class="step"><span class="pill num">2</span><div class="body"><h4>書籍を1冊追加</h4><p>欲しい学習書籍を1冊、ほしい物リストに追加します。</p></div></li>
+          <li class="step" style="flex-wrap:wrap;row-gap:10px">
+            <span class="pill num">3</span><div class="body"><h4>条件を確認してリンクを提出</h4><p>ほしい物リストが以下の条件をすべて満たしているか確認してから、リンクを提出します。</p></div>
+            <div class="stack g6" style="width:100%">
+              <div class="check"><p>書籍の価格が税・送料込みで2,000円以下</p></div>
+              <div class="check"><p>お届け先住所の登録が完了している（本人または保護者の住所のみ可）</p></div>
+              <div class="check"><p>「第三者の出品者による発送に同意」の設定をオンにしている</p></div>
+            </div>
+          </li>
+          <li class="step"><span class="pill num">4</span><div class="body"><h4>当社が購入してお届け</h4><p>当社が購入し、指定の住所へお届けします。</p></div></li>
+        </ol>
+        <div class="callout warn"><p class="t">ご注意</p><p class="b">上記の条件を満たさない場合、書籍プレゼントの権利は失効し、次の順番の方に権利が移ります。</p></div>
+      </div>
+
+      <div class="stack g10">
+        <h3 class="part-title">どんな本を選べますか？</h3>
+        <div class="split">
+          <div class="callout hl"><p class="t">⭕ OK</p><p class="b">参考書、問題集、辞書など、学習を目的とした書籍</p></div>
+          <div class="callout warn"><p class="t">❌ NG</p><p class="b">雑誌、マンガ、小説、文房具、電子機器、ギフト券など、学習に関係のない商品</p></div>
+        </div>
+        <div class="bullet"><p>2,000円に満たない差額はお返しできません。また、2,000円を超える商品は選べません。</p></div>
+      </div>
+
+      <div class="stack g10">
+        <h3 class="part-title">書籍を受け取ったあとは？</h3>
+        <div class="callout"><p class="t">30日以内に1件以上の投稿を</p><p class="b">書籍を受け取った日から30日以内に、専用リンクを含む投稿を1件以上してください。正当な理由なく投稿がない場合、書籍の購入金額（送料込み）の返還をお願いすることがあります。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2. Content ================= -->
+<section class="sec tint" id="content">
+  <div class="wrap g24">
+    <div class="sec-head"><img src="../assets/light.png" alt=""><h2>コンテンツを作って投稿</h2><span>|   Content</span></div>
+
+    <!-- 2-1 -->
+    <div class="stack g32" style="padding-top:20px">
+      <div class="sub-head" id="create"><h3>2-1. コンテンツを作って投稿する</h3></div>
+      <div class="callout hl"><p class="t">✅ コンテンツ、これはOK！</p><p class="b">Socra Tutor アプリの機能について、直接的・間接的に紹介または映している、すべての文章 / 写真 / 動画</p></div>
+      <div class="examples">
+        <figure class="example"><b>例1)</b><img src="assets/example-1.jpg" alt="例1：問題集をSocra Tutorで撮影している写真" loading="lazy"><p><b>#PR #socra_tutor</b> もう難しい問題も怖くない。Socra Tutor を開いて問題の写真を撮るだけ。</p></figure>
+        <figure class="example"><b>例2)</b><img src="assets/example-2.jpg" alt="例2：Socra Tutorの回答画面のスクリーンショット" loading="lazy"><p><b>#PR #socra_tutor</b> AI3つが一度に解説してくれるから本当にラクだし、なんていうか、ちょっと安心できる気がする</p></figure>
+        <figure class="example"><b>例3)</b><img src="assets/example-3.jpg" alt="例3：PCでSocra Tutorを使って勉強している写真" loading="lazy"><p><b>#PR #socra_tutor</b> このアプリが無料って、ほんとに信じられない…</p></figure>
+      </div>
+      <div class="tips">
+        <h4>🤳 何を撮ればいいか迷ったら、こうしてみよう！</h4>
+        <div class="bullet"><p>① Socra Tutor に問題を質問した画面や、回答をもらった画面をそのままスクショして使う</p></div>
+        <div class="bullet"><p>② Socra Tutor を使って勉強している自分の姿を自撮りで記録する</p></div>
+        <p class="tip">Tip: タイマーと一緒に勉強記録を投稿するなど、自分の勉強記録に Socra Tutor を使っている様子をプラスしてみてください！</p>
+        <p class="device-note">✅ 参考 — Socra Tutor はスマホだけでなく、PC・タブレットでも使えます！</p>
+      </div>
+      <div class="stack g10">
+        <h4 class="part-title s12">👍 入れると良い内容</h4>
+        <p class="note">あくまでおすすめなので、必ず従う必要はありません。</p>
+        <div class="stack g8">
+          <div class="tag-row"><span class="tag">例1</span><p>「問題を撮って Socra Tutor に質問した」ことを直接的・間接的に表現した文章・写真・動画</p></div>
+          <div class="tag-row"><span class="tag">例2</span><p>「Socra Tutor はAI御三家が答えをチェックしてくれる」ことを直接的・間接的に表現した文章・写真・動画</p></div>
+          <div class="tag-row"><span class="tag">例3</span><p>「Socra Tutor は無料で使える」ことを直接的・間接的に表現した文章・写真・動画</p></div>
+        </div>
+        <div class="callout"><p class="t">🥰 成果アップのヒント</p><p class="b">多くのユーザーが、Socra Tutor のこうした魅力をきっかけに登録したと答えています。上の内容を入れると、コンテンツの成果アップに大きく役立ちますよ。</p></div>
+      </div>
+    </div>
+
+    <!-- NG Rules -->
+    <div class="stack g32" style="padding-top:20px">
+      <div class="stack g10">
+        <div class="sub-head" id="ng"><h3>🚫 これはNG。</h3></div>
+        <p class="text">以下に該当する内容が確認された場合、修正・削除をお願いします。依頼を受けたら<span class="em-red">3日以内</span>に対応してください。</p>
+      </div>
+      <div class="stack g10">
+        <h4 class="part-title s12">① コンテンツの表現</h4>
+        <div class="stack g8">
+          <div class="ng"><h5>成績アップ・合格を保証する表現</h5><div class="ex"><i>NG例</i><p>「これを使えば絶対成績が上がる」「合格保証」</p></div></div>
+          <div class="ng"><h5>料金・機能について事実と異なる説明</h5><div class="ex"><i>NG例</i><p>実際にはない機能の紹介、有料機能を「ずっと無料」と紹介</p></div></div>
+          <div class="ng"><h5>Socra Tutor の公式アカウントのように見せる表示</h5><div class="ex"><i>NG例</i><p>アカウント名・プロフィールに「公式」を使う、公式ロゴをプロフィール画像に使う</p></div></div>
+          <div class="ng"><h5>競合サービスへの誹謗中傷</h5><div class="ex"><i>NG例</i><p>「○○アプリは使えない」「○○より全然いい」など、他のサービスをおとしめる比較</p></div></div>
+        </div>
+      </div>
+      <div class="stack g10">
+        <h4 class="part-title s12">② 権利・個人情報</h4>
+        <div class="stack g6">
+          <div class="bullet"><p>他人の著作物（音楽、画像、動画、問題集のページなど）や肖像（顔）を許可なく使うこと</p></div>
+          <div class="bullet"><p>友だち・先生など他人の個人情報（名前、学校、顔、連絡先など）が写り込むこと</p></div>
+        </div>
+      </div>
+      <div class="stack g10">
+        <h4 class="part-title s12">③ 投稿環境</h4>
+        <div class="bullet"><p>公序良俗に反するコンテンツ（性的・暴力的・差別的な表現など）と一緒に投稿すること</p></div>
+      </div>
+      <div class="stack g10">
+        <h4 class="part-title s12">④ 登録の促し方</h4>
+        <p class="note">以下の場合、実績が無効になったり除名となることがあります。</p>
+        <div class="stack g6">
+          <div class="bullet"><p>自分の専用リンクから自分自身が登録すること</p></div>
+          <div class="bullet"><p>1人で複数のアカウントを作って重複登録すること</p></div>
+          <div class="bullet"><p>ボット・スクリプト・エミュレーター・VPNなどを使った登録</p></div>
+          <div class="bullet"><p>スパム的なDMや連投で登録を促すこと</p></div>
+          <div class="bullet"><p>専用リンクを他人に譲渡・販売すること</p></div>
+        </div>
+        <div class="callout warn"><p class="t">🚨 1回でも即時除名</p><p class="b">ボット・自動化ツールの利用、リンクの譲渡・販売は、1回でも即時除名となり、支払い済みの報酬の返還を請求します。除名後は再参加できません。</p></div>
+        <div class="acc">
+          <button type="button" aria-expanded="false"><span>参考：違反時の対応基準</span><i aria-hidden="true"></i></button>
+          <div class="panel">
+            <div class="vrow"><h6>広告表記（#PR）の漏れ</h6><div class="chips"><span class="chip"><b>1回目</b><span>是正要求</span></span><span class="chip"><b>2回目</b><span>当月の報酬を保留</span></span><span class="chip red"><b>3回目</b><span>資格停止</span></span></div></div>
+            <div class="vrow"><h6>ガイドライン違反の表現</h6><div class="chips"><span class="chip"><b>1回目</b><span>修正要求</span></span><span class="chip"><b>2回目</b><span>該当投稿経由の登録を無効</span></span><span class="chip red"><b>3回目</b><span>資格停止</span></span></div></div>
+            <div class="vrow"><h6>自分自身の登録</h6><div class="chips"><span class="chip"><span>該当分を無効</span></span></div></div>
+            <div class="vrow"><h6>ボット・自動化ツールの利用</h6><div class="chips"><span class="chip red"><span>即時除名および返還請求</span></span></div></div>
+            <div class="vrow"><h6>リンクの譲渡・販売</h6><div class="chips"><span class="chip red"><span>即時除名および返還請求</span></span></div></div>
+            <div class="vrow"><h6>応募内容の虚偽記載</h6><div class="chips"><span class="chip"><b>1回目</b><span>修正要求</span></span><span class="chip"><b>2回目</b><span>該当投稿経由の登録を無効</span></span><span class="chip red"><b>3回目</b><span>資格停止</span></span></div></div>
+            <p class="foot">措置の前には理由をお伝えし、7日以内に弁明する機会を設けます。ただし、ボットの利用やリンク販売など明らかな場合は、即時に措置することがあります。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Before Posting -->
+    <div class="stack g32" style="padding-top:20px">
+      <div class="sub-head" id="before"><h3>⚠️ 投稿前に必ずやること！</h3></div>
+      <div class="stack g10">
+        <h4 class="part-title s12">① #PR 表記</h4>
+        <div class="callout warn"><p class="t">🚨 表記しないと違法になるおそれ</p><p class="b">景品表示法のステルスマーケティング規制（2023年10月1日施行）により、対価を受けて投稿していることを明示しないと違法になるおそれがあります。</p></div>
+        <div class="code-row"><b>✍️ 表記例：</b><code>#PR</code><code>#socra_tutor</code></div>
+        <div class="stack g6">
+          <div class="bullet"><p>投稿本文のいちばん最初（「続きを読む」で折りたたまれない位置）に #PR #socra_tutor を書いてください。</p></div>
+          <div class="bullet"><p>他のハッシュタグと混ぜず、この2つのタグをいちばん先に書いてください。</p></div>
+          <p class="note" style="line-height:1.7">#socra_tutor は、参加者の皆さんのコンテンツがきちんと投稿されているかを Socra Tutor が常に確認し、サポートするためのものです。</p>
+          <div class="bullet"><p>ストーリーズ・リール・ショートなど、文字スペースが狭いフォーマットでも必ず表記してください。</p></div>
+        </div>
+      </div>
+      <div class="stack g10">
+        <h4 class="part-title s12">② リンクの設置・表示チェック</h4>
+        <p class="text">投稿ボタンを押す前に、以下をひとつずつチェックしてみてください。</p>
+        <div class="stack g6">
+          <div class="check"><p>1行目の最初に #PR #socra_tutor が、他のハッシュタグより先に書かれていますか？</p></div>
+          <div class="check"><p>自分の専用リンクが投稿またはプロフィールに入っていますか？</p></div>
+          <div class="check"><p>リンクを受け取ったままコピー＆ペーストしましたか？（一部が欠けたり変わったりすると、実績が集計されません）</p></div>
+          <div class="check"><p>リンクを実際にタップして、Socra Tutor のページにきちんと移動しますか？</p></div>
+          <div class="check"><p>「これはNG」の項目に当てはまる表現・画像はありませんか？</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-2 Platforms -->
+    <div class="stack g24" style="padding-top:20px">
+      <div class="sub-head" id="platforms"><h3>2-2. プラットフォーム別・リンクの設置／表示方法</h3></div>
+      <div class="callout"><p class="t">💡 リンクをタップできる場所はプラットフォームごとに違います</p><p class="b">投稿内のリンクがタップできない場合は、プロフィールにリンクを設定し、本文で「プロフィールのリンクから」と案内してください。</p></div>
+      <div class="pf-grid">
+        <div class="pf">
+          <h4><i style="background:#d62f8f"></i>Instagram</h4>
+          <div class="bullet"><p><b>プロフィールのリンク：</b>プロフィールを編集 → リンク → 外部リンクを追加 に専用リンクを入れます。</p></div>
+          <div class="bullet"><p><b>ストーリーズ：</b>リンクスタンプを使うと、ストーリーズから直接移動できます。</p></div>
+          <div class="bullet"><p><b>フィード・リール：</b>キャプションに書いたURLはタップできません。「プロフィールのリンクから」と案内してください。</p></div>
+        </div>
+        <div class="pf">
+          <h4><i style="background:#0e2759"></i>X</h4>
+          <div class="bullet"><p><b>ポスト：</b>本文に専用リンクを入れると、タップしてそのまま移動できます。</p></div>
+          <div class="bullet"><p><b>プロフィール：</b>プロフィールを編集 → ウェブサイト欄に専用リンクを入れます。</p></div>
+          <div class="bullet"><p><b>固定ポスト：</b>リンク入りのポストをプロフィール上部に固定すると、より目に留まりやすくなります。</p></div>
+        </div>
+        <div class="pf">
+          <h4><i style="background:#111"></i>TikTok</h4>
+          <div class="bullet"><p><b>プロフィールのリンク：</b>プロフィールを編集 → ウェブサイト欄に専用リンクを入れます。（アカウントの種類・フォロワー数・年齢によっては、ウェブサイト欄が表示されないことがあります）</p></div>
+          <div class="bullet"><p><b>動画のキャプション・コメント：</b>URLを書いてもタップできません。「プロフィールのリンクから」と案内してください。</p></div>
+        </div>
+        <div class="pf">
+          <h4><i style="background:#e4405f"></i>YouTube</h4>
+          <div class="bullet"><p><b>動画（長尺）：</b>概要欄に専用リンクを入れると、タップしてそのまま移動できます。</p></div>
+          <div class="bullet"><p><b>Shorts：</b>概要欄のリンクはタップできません。チャンネルプロフィールのリンクを利用してください。</p></div>
+          <div class="bullet"><p><b>チャンネルプロフィールのリンク：</b>チャンネルのカスタマイズ → 基本情報 → リンク に専用リンクを追加します。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================= 3. Reward ================= -->
+<section class="sec" id="reward">
+  <div class="wrap g32">
+    <div class="sec-head"><img src="../assets/light.png" alt=""><h2>報酬の精算</h2><span>|   Reward</span></div>
+
+    <div class="stack g10">
+      <h4 class="part-title">報酬はどのように計算されますか？</h4>
+      <div class="stats">
+        <div><b>100円</b><p>有効登録1件あたりの単価</p></div>
+        <div><b>上限なし</b><p>登録件数の上限</p></div>
+        <div><b>当社負担</b><p>振込手数料</p></div>
+      </div>
+      <div class="card">
+        <dl>
+          <div class="kv"><dt>集計期間</dt><dd>毎月1日 〜 月末日の24時（日本時間）</dd></div>
+          <div class="kv"><dt>支払時期</dt><dd>毎月末日締め、翌月末日までにレポートとあわせて支払い</dd></div>
+          <div class="kv"><dt>支払方法</dt><dd>本人名義の日本国内の銀行口座へ振込（満18歳未満で本人口座がない場合は保護者名義の口座）</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="stack g10">
+      <h4 class="part-title">「有効登録」とは？</h4>
+      <p class="text">以下の3つをすべて満たした場合に、1件としてカウントされます。</p>
+      <div class="stack g8">
+        <div class="cond"><span>1</span><p>自分の専用リンクから Socra Tutor にアクセスしたこと</p></div>
+        <div class="cond"><span>2</span><p>新規アカウントで登録したこと（既存会員の再登録・復帰は対象外）</p></div>
+        <div class="cond"><span>3</span><p>メールアドレスまたは電話番号で本人認証を完了したこと</p></div>
+      </div>
+      <div class="rules">
+        <h5>知っておきたい集計ルール</h5>
+          <div class="bullet"><p>複数の奨学生のリンクを経由して登録した場合、登録直前に最後にタップしたリンクの奨学生の実績になります。</p></div>
+          <div class="bullet"><p>リンクをタップしてから30日以内に登録した場合のみ、自分の実績として認められます。</p></div>
+          <div class="bullet"><p>同じ端末・同じIPから短時間に登録が集中した場合は、自動集計の対象外となり、手動で確認します。</p></div>
+          <div class="bullet"><p>1か月に100件を超えた場合は、確認のため手動で審査します。（審査があるからといって、支払いが拒否されるわけではありません）</p></div>
+      </div>
+    </div>
+
+    <div class="stack g10">
+      <h4 class="part-title">実績レポートを確認する</h4>
+      <p class="text">毎月、以下の内容をまとめたレポートをお送りします。</p>
+      <div class="report">
+        <div><b>✓</b><p>集計期間</p></div>
+        <div><b>✓</b><p>有効登録件数</p></div>
+        <div><b>✓</b><p>無効となった件数とその理由</p></div>
+        <div><b>✓</b><p>当月の確定報酬額</p></div>
+      </div>
+      <div class="callout hl"><p class="t">📮 集計結果に異議がある場合</p><p class="b">レポートを受け取った日から14日以内にお問い合わせください。受付日から10営業日以内に、再確認の結果をお知らせします。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. FAQ ================= -->
+<section class="sec tint" id="faq" style="padding-bottom:72px">
+  <div class="wrap g10">
+    <div class="sec-head"><img src="../assets/light-yellow.png" alt=""><h2>よくある質問</h2><span>|   FAQ</span></div>
+    <div style="height:8px"></div>
+      <div class="faq">
+        <button aria-expanded="false"><span>Q. 審査結果はいつわかりますか？</span><i></i></button>
+        <p class="ans">A. 応募の受付日から5営業日以内にお知らせします。</p>
+      </div>
+      <div class="faq">
+        <button aria-expanded="false"><span>Q. 書籍プレゼントは誰でも受け取れますか？</span><i></i></button>
+        <p class="ans">A. 承認が完了した順に、先着100名のみが対象です。締め切りになった際は案内ページでお知らせします。</p>
+      </div>
+      <div class="faq">
+        <button aria-expanded="false"><span>Q. #PR, #socra_tutor の表記を忘れて投稿してしまいました。</span><i></i></button>
+        <p class="ans">A. すぐに投稿を編集して、本文のいちばん最初に #PR #socra_tutor を他のハッシュタグより先に追加してください。表記漏れが繰り返されると、報酬の保留や資格停止となる場合があります。</p>
+      </div>
+      <div class="faq">
+        <button aria-expanded="false"><span>Q. 友だちが自分のリンクから登録したのに、実績に反映されません。</span><i></i></button>
+        <p class="ans">A. 自分のリンクからアクセスしたあと、他のサイトやアプリに移動せずにそのまま登録すると、正しく実績に反映されます。また、リンクをタップしたあとに別の奨学生のリンクを経由して登録した場合は、最後のリンクの奨学生の実績になります。それでもおかしいと感じたら、レポートを受け取った日から14日以内にお問い合わせください。</p>
+      </div>
+      <div class="faq">
+        <button aria-expanded="false"><span>Q. 18歳未満で、銀行口座を持っていません。</span><i></i></button>
+        <p class="ans">A. 保護者名義の口座で受け取れます。</p>
+      </div>
+    <div style="height:12px"></div>
+    <div class="contact">
+      <h4>お問い合わせ</h4>
+      <a class="mail" href="mailto:branded_socratutor@socra.ai"><span>📧</span><b>branded_socratutor@socra.ai</b></a>
+      <p>🕙 対応時間：日本時間 平日 10:00〜18:00<br>（土日祝日を除く）</p>
+      <p>受付日から3営業日以内に一次回答をお送りします。</p>
+      <p>保護者の方からのお問い合わせも受け付けています。保護者ご本人であることが確認できれば、参加状況や報酬の支払い状況をご案内します。</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="inner">
+      <img class="logo" src="../assets/logo-socra-ai-footer.svg" alt="Socra AI">
+      <p>会社名 : Socra AI Inc.  |  代表取締役 : 朴修永  |  日本代表 : 文鎔柱  |  お問い合わせ : jp_info@socra.ai  |  所在地 : 東京都中央区銀座六丁目１０−１GinzaSix１３階</p>
+      <p class="copy">© Socra AI Inc. All rights reserved.</p>
+    </div>
+    <a class="top" href="#" aria-label="ページのトップへ戻る">トップへ ▲</a>
+  </div>
+</footer>
+
+<script>
+// 아코디언(접기/펼치기)
+document.querySelectorAll('.acc > button, .faq > button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const open = btn.parentElement.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+});
+// 외부 링크는 새 탭으로
+document.querySelectorAll('a[href^="http"]').forEach(a => {
+  if (new URL(a.href).origin !== location.origin) { a.target = '_blank'; a.rel = 'noopener'; }
+});
+</script>
+</body>
+</html>
