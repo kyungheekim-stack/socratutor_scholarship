@@ -109,14 +109,14 @@ function writeRow_(d) {
   // [열 제목, 값] — 같은 제목은 나오는 순서대로 다음 열에 들어간다
   const cells = [
     [H.ts, new Date()],
-    [H.name, s('name')], [H.kana, s('kana')], [H.phone, s('phone')], [H.email, s('email')],
+    [H.name, s('name')], [H.kana, s('kana')], [H.phone, phone_(s('phone'))], [H.email, s('email')],
     [H.birth, new Date(y, m - 1, day, 12)], // 정오로 저장 → 스크립트·시트 시간대가 달라도 날짜가 하루 밀리지 않음
     [H.school, s('school')], [H.minor, s('minor')], [H.channel, s('channel')],
     [H.handle, s('handle')], [H.accUrl, s('accUrl')],
     [H.extra, extras[0] || ''], [H.extra, extras[1] || ''], [H.extra, extras[2] || ''],
     [H.wishlist, s('wishlist')],
     [H.gName, minor ? s('gName') : ''], [H.gKana, minor ? s('gKana') : ''], [H.relation, minor ? s('relation') : ''],
-    [H.gPhone, minor ? s('gPhone') : ''], [H.gEmail, minor ? s('gEmail') : ''],
+    [H.gPhone, minor ? phone_(s('gPhone')) : ''], [H.gEmail, minor ? s('gEmail') : ''],
     [H.invoice, s('invoice')], [H.sole, s('sole')], [H.corp, s('corp')], [H.corpName, s('corpName')],
     [H.bankAll, [s('bank'), s('branch'), s('accType'), s('accNo'), s('holder')].join(' / ')],
     [H.agreeTerms, '同意する'], [H.agreePrivacy, '同意する'], [H.confirmed, '確認しました'],
@@ -174,6 +174,17 @@ function writeRow_(d) {
     })]);
     i = j + 1;
   }
+}
+
+// 전화번호를 하이픈 형식으로 통일 (09012345678 → 090-1234-5678).
+// 하이픈이 없으면 표(Form_Responses) 열이 숫자로 바꿔 앞자리 0이 사라지기 때문.
+function phone_(v) {
+  const d = String(v).replace(/[^\d]/g, '');
+  if (d.length === 11) return d.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');            // 携帯 090/080/070 등
+  if (d.length === 10) return /^0[36]/.test(d)
+    ? d.replace(/^(\d{2})(\d{4})(\d{4})$/, '$1-$2-$3')                                     // 03·06 지역번호
+    : d.replace(/^(\d{3})(\d{3})(\d{4})$/, '$1-$2-$3');
+  return String(v);
 }
 
 function json_(o) {
