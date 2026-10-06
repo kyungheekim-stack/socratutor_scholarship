@@ -167,7 +167,11 @@ function writeRow_(d) {
     const run = cols.slice(i, j + 1);
     const range = sh.getRange(r, run[0], 1, run.length);
     range.setNumberFormats([run.map(c => byCol[c][1])]);
-    range.setValues([run.map(c => byCol[c][0])]);
+    // 표(Form_Responses) 열은 열 형식이 텍스트 서식보다 우선해서 0으로 시작하는 숫자가 잘린다 → 숫자처럼 보이는 값은 ' 를 붙여 텍스트로 고정
+    range.setValues([run.map(c => {
+      const v = byCol[c][0];
+      return typeof v === 'string' && /^[\d.,+\-\/ :]+$/.test(v) ? "'" + v : v;
+    })]);
     i = j + 1;
   }
 }
