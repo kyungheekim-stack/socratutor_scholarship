@@ -756,6 +756,7 @@ async function submit() {
   try {
     await (APPS_SCRIPT_URL ? sendToAppsScript() : sendToGoogleForm());
     clearDraft();
+    bridge.emit('scholarship-apply-submitted', { snsChannel: SNS_CHANNEL_CODE[radio('channel')], minor: isMinor() });
     document.getElementById('done-minor').hidden = !isMinor();
     show('done');
   } catch (e) {
@@ -795,6 +796,70 @@ form.addEventListener('input', saveDraft);
 loadDraft();
 syncConditional();
 show(1);
+
+// ---------- 부모(socratutor.ai) 브릿지 ----------
+// 응모 완료를 부모에게 알려 GA·광고 픽셀 전환을 부모 GTM이 보내게 하고, 링크 이동도 부모에게 맡긴다.
+// iframe 안에서는 픽셀 쿠키가 third-party가 되어 Safari 등에서 전환이 잡히지 않는다.
+// 프로토콜은 socra-ai-web 저장소 docs/contracts/iframe-bridge.md 를 따른다.
+const SNS_CHANNEL_CODE = { 'Instagram': 'instagram', 'TikTok': 'tiktok', 'X （Twitter）': 'x', 'YouTube': 'youtube' };
+const bridge = (() => {
+  // 환경마다 부모 주소가 다르다. "*"로 보내지 않고 허용한 origin마다 hello를 보내 진짜 부모만 받게 한다.
+  const PARENT_ORIGINS = ['https://socratutor.ai', 'https://socra-ai-web-stg.vercel.app', 'https://socra-ai-web-dev.vercel.app', 'http://localhost:3333'];
+  const CHANNEL = 'socra-iframe-bridge';
+  const documentId = crypto.randomUUID();
+  let origin = null, version = null, sessionId = null, seq = 0;
+  const post = msg => window.parent.postMessage({ channel: CHANNEL, ...msg }, origin);
+
+  if (window.parent !== window) {
+    addEventListener('message', e => {
+      const m = e.data;
+      if (e.source !== window.parent || !PARENT_ORIGINS.includes(e.origin)) return;
+      if (!m || m.channel !== CHANNEL || m.kind !== 'welcome' || m.documentId !== documentId) return;
+      if (origin && e.origin !== origin) return;
+      // 부모는 iframe load 시점에 session을 바꿔 welcome을 다시 보낸다. 그때마다 ready로 답한다.
+      origin = e.origin; version = m.version; sessionId = m.sessionId;
+      post({ kind: 'ready', version, sessionId });
+    });
+    // welcome이 올 때까지 hello를 다시 보낸다. 부모의 handshake 제한 시간은 10초다.
+    let tries = 0;
+    const hello = () => {
+      if (sessionId || tries++ > 20) return;
+      PARENT_ORIGINS.forEach(o => window.parent.postMessage({ channel: CHANNEL, kind: 'hello', documentId, supportedVersions: [1] }, o));
+      setTimeout(hello, 400);
+    };
+    hello();
+  }
+
+  return {
+    get connected() { return sessionId !== null; },
+    emit(name, payload) {
+      if (sessionId) post({ kind: 'event', version, sessionId, name, payload });
+    },
+    request(name, payload) {
+      if (sessionId) post({ kind: 'request', version, sessionId, id: `${documentId}-${++seq}`, name, payload });
+    },
+  };
+})();
+
+// 부모와 연결되면 링크는 부모가 연다. iframe sandbox가 최상위 이동을 막기 때문이다.
+// 연결 전이거나 단독으로 열렸으면 아래 기본 동작을 그대로 쓴다.
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="http"]');
+  if (!a || !bridge.connected) return;
+  const url = new URL(a.href);
+  const internal = url.hostname === 'socratutor.ai';
+  const path = url.pathname.replace(/\/$/, '');
+  // target="_top" 링크는 같은 탭, 나머지는 새 탭에서 연다. 입력 중인 폼을 떠나지 않게 하려는 것이다.
+  const newTab = a.target !== '_top';
+  let payload;
+  if (internal && path === '/event/scholarship') payload = { to: 'landing', newTab };
+  else if (internal && path === '/event/scholarship/guide') payload = { to: 'guide', newTab };
+  else if (!internal && url.origin !== location.origin) payload = { to: 'external', url: a.href };
+  else return;
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  bridge.request('scholarship-navigate', payload);
+}, true);
 
 // ---------- 링크 ----------
 document.querySelectorAll('a[href^="http"]').forEach(a => {
