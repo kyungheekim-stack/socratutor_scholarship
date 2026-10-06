@@ -474,7 +474,7 @@ ol{list-style:none}
   <section class="band cta" id="apply">
     <div class="col">
       <h2>奨学生に興味があるなら、<br><span>今すぐ応募！</span></h2>
-      <a class="cta-btn" href="/apply/">奨学生に今すぐ応募</a>
+      <a class="cta-btn" href="https://socratutor.ai/event/scholarship/apply" target="_top">奨学生に今すぐ応募</a>
     </div>
   </section>
 </main>
@@ -512,7 +512,8 @@ new IntersectionObserver(([e]) => cta.classList.toggle('docked', e.isIntersectin
   .observe(document.querySelector('.footer'));
 
 // 외부 링크(다른 사이트로 나가는 링크)는 모두 새 탭으로 열기 — 나중에 추가되는 주소에도 자동 적용
-document.querySelectorAll('a[href^="http"]').forEach(a => {
+// 단, target="_top"(socratutor.ai 안의 다른 페이지로 이동하는 링크)은 같은 창에서 연다
+document.querySelectorAll('a[href^="http"]:not([target="_top"])').forEach(a => {
   if (new URL(a.href).origin !== location.origin) { a.target = '_blank'; a.rel = 'noopener'; }
 });
 
