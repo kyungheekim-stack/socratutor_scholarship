@@ -801,15 +801,13 @@ document.querySelectorAll('a[href^="http"]').forEach(a => {
   if (a.target === '_top') return;
   if (new URL(a.href).origin !== location.origin) { a.target = '_blank'; a.rel = 'noopener'; }
 });
-// 홈 버튼은 최상위 창에서 열기. iframe sandbox가 막으면 새 탭으로 연다 (가이드 페이지와 동일)
+// 홈·완료 화면 버튼은 socratutor.ai 같은 탭에서 이동 (가이드 페이지와 동일)
 document.querySelectorAll('.home-btn, .home-link').forEach(btn => btn.addEventListener('click', e => {
   if (window.top === window) return;
-  let leaving = false;
-  const mark = () => { leaving = true; };
-  addEventListener('beforeunload', mark, { once: true });
-  addEventListener('pagehide', mark, { once: true });
+  e.preventDefault();
   const href = e.currentTarget.href;
-  setTimeout(() => { if (!leaving) window.open(href, '_blank', 'noopener'); }, 400);
+  try { window.top.location.href = href; }              // 같은 탭(최상위 창)에서 이동
+  catch (err) { window.open(href, '_blank', 'noopener'); } // iframe sandbox가 막을 때만 새 탭
 }));
 </script>
 </body>

@@ -556,15 +556,13 @@ lb.addEventListener('click', () => lb.close()); // 배경·이미지·닫기 버
 document.querySelectorAll('a[href^="http"]:not(.home-btn)').forEach(a => {
   if (new URL(a.href).origin !== location.origin) { a.target = '_blank'; a.rel = 'noopener'; }
 });
-// 홈 버튼은 같은 탭(최상위 창)에서 열기.
-// iframe sandbox가 최상위 이동을 막으면 아무 일도 안 일어나므로, 이동이 시작되지 않으면 새 탭으로 연다.
+// 홈 버튼은 socratutor.ai 같은 탭(최상위 창)에서 이동
 document.querySelector('.home-btn').addEventListener('click', e => {
   if (window.top === window) return;
-  let leaving = false;
-  const mark = () => { leaving = true; };
-  addEventListener('beforeunload', mark, { once: true });
-  addEventListener('pagehide', mark, { once: true });
-  setTimeout(() => { if (!leaving) window.open(e.currentTarget.href, '_blank', 'noopener'); }, 400);
+  e.preventDefault();
+  const href = e.currentTarget.href;
+  try { window.top.location.href = href; }              // 같은 탭(최상위 창)에서 이동
+  catch (err) { window.open(href, '_blank', 'noopener'); } // iframe sandbox가 막을 때만 새 탭
 });
 </script>
 </body>
