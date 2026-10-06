@@ -236,6 +236,8 @@ legend.label{padding:0;margin-bottom:8px}
 
   <main class="main">
     <form id="apply" novalidate>
+      <!-- 봇 차단용 숨김 칸: 사람에게는 보이지 않음 -->
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <div class="form-area wrap">
 
         <!-- ===== Step 1 ===== -->
@@ -541,7 +543,10 @@ legend.label{padding:0;margin-bottom:8px}
 </footer>
 
 <script>
-// 응답은 기존 구글폼(신청자 정보 등록 JP)으로 전송한다 → 기존 응답 시트를 그대로 사용
+// 응답 전송처.
+// APPS_SCRIPT_URL이 있으면 Apps Script 웹 앱(→ 「[1] 신청폼」 시트에 직접 기록, 소스: /apps-script/Code.gs)으로 보내고,
+// 비어 있으면 기존 구글폼(→ 같은 시트에 폼 응답으로 기록)으로 보낸다.
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwVDZ3EPZfbujW6Uawo9wUmuLfx8zMej96ZW2A6FITZRh3LHr_qZKtK5w7Ml0kiVTqK/exec';
 const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdallSjr5LQIkqC5UYKGB2N6xy2TIigE4t9V5OXBa1d-0Lgaw/formResponse';
 const E = {
   name:'entry.508503008', kana:'entry.260983513', phone:'entry.1071337484', email:'entry.1684673691',
@@ -696,7 +701,31 @@ function renderSummary() {
 const bankText = () => `${val('bank')} / ${val('branch')} / ${radio('accType')} / ${val('accNo')} / ${val('holder')}`;
 
 // ---------- 전송 ----------
-async function submit() {
+const collect = () => ({
+  name: val('name'), kana: val('kana'), phone: val('phone'), email: val('email'),
+  birth: `${f.by.value}-${f.bm.value}-${f.bd.value}`,
+  school: val('school'), minor: radio('minor'), channel: radio('channel'),
+  handle: val('handle'), accUrl: val('accUrl'),
+  extras: ['extra1','extra2','extra3'].map(val).filter(Boolean),
+  wishlist: val('wishlist'),
+  gName: isMinor() ? val('gName') : '', gKana: isMinor() ? val('gKana') : '',
+  relation: !isMinor() ? '' : radio('relation') === 'other' ? val('relationOther') : radio('relation'),
+  gPhone: isMinor() ? val('gPhone') : '', gEmail: isMinor() ? val('gEmail') : '',
+  invoice: radio('invoice'),
+  invoiceNo: radio('invoice').startsWith('はい') ? 'T' + val('invoiceNo').replace(/^T/i, '').replace(/[\s-]/g, '') : '',
+  sole: radio('sole'), corp: radio('corp'),
+  corpName: radio('corp').startsWith('はい') ? val('corpName') : '',
+  bank: val('bank'), branch: val('branch'), accType: radio('accType'), accNo: val('accNo'), holder: val('holder'),
+  agreeTerms: f.agreeTerms.checked, agreePrivacy: f.agreePrivacy.checked, confirmed: f.confirmed.checked,
+  website: val('website'),
+});
+async function sendToAppsScript() {
+  // text/plain으로 보내야 CORS 사전 요청(preflight) 없이 전송되고, 응답(JSON)도 읽을 수 있다
+  const r = await fetch(APPS_SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(collect()) });
+  const res = await r.json();
+  if (!res.ok) throw new Error(res.error + (res.fields ? ':' + res.fields.join(',') : ''));
+}
+async function sendToGoogleForm() {
   const p = new URLSearchParams();
   const put = (k, v) => { if (v) p.append(k, v); };
   put(E.name, val('name')); put(E.kana, val('kana')); put(E.phone, val('phone')); put(E.email, val('email'));
@@ -719,11 +748,13 @@ async function submit() {
   put(E.bank, bankText());
   put(E.agreeTerms, '同意する'); put(E.agreePrivacy, '同意する'); put(E.confirmed, '確認しました');
   p.append('pageHistory', isMinor() ? '0,1,2,3' : '0,2,3');
-
+  // 구글폼은 CORS 응답을 주지 않으므로 no-cors로 보낸다(응답 본문은 읽을 수 없음)
+  await fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: p });
+}
+async function submit() {
   btnNext.disabled = true; btnNext.textContent = '送信中…';
   try {
-    // 구글폼은 CORS 응답을 주지 않으므로 no-cors로 보낸다(응답 본문은 읽을 수 없음)
-    await fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: p });
+    await (APPS_SCRIPT_URL ? sendToAppsScript() : sendToGoogleForm());
     clearDraft();
     document.getElementById('done-minor').hidden = !isMinor();
     show('done');
@@ -737,7 +768,7 @@ async function submit() {
 }
 
 // ---------- 임시 저장 (새로고침해도 입력이 남도록, 이 브라우저 탭에서만) ----------
-const SKIP = ['agreeTerms','agreePrivacy','confirmed'];
+const SKIP = ['agreeTerms','agreePrivacy','confirmed','website'];
 function saveDraft() {
   const data = {};
   for (const el of f) {
