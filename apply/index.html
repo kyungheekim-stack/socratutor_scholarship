@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Socra Tutor 奨学生 応募フォーム</title>
-<meta name="description" content="Socra Tutor 奨学生の応募フォームです。4つのステップでご入力ください。">
+<meta name="description" content="Socra Tutor 奨学生の応募フォームです。以下の項目をご入力のうえ、ご応募ください（約1分）。">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -192,6 +192,17 @@ legend.label{padding:0;margin-bottom:8px}
   .footer{padding:40px 50px}
   .footer .wrap{max-width:1180px}
 }
+
+/* ---------- 접수 완료 팝업 ---------- */
+.modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(6,14,32,.55);animation:fade .2s ease}
+.modal-card{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%;max-width:315px;padding:32px 24px 24px;border-radius:16px;background:#fff;box-shadow:0 12px 32px rgba(14,39,89,.25);text-align:center;animation:pop .25s ease}
+.modal-card .ic{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:var(--blue-500);box-shadow:0 6px 16px rgba(76,158,243,.35)}
+.modal-card h3{font-size:18px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.modal-card p{font-size:13px;font-weight:500;line-height:1.7;color:var(--gray-900)}
+.modal-card .btn{margin-top:4px}
+body.modal-open{overflow:hidden}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -204,13 +215,7 @@ legend.label{padding:0;margin-bottom:8px}
       <div class="wrap">
         <div class="title-row"><img src="/guide/assets/logo-tutor.svg" alt="Socra Tutor" width="172" height="20"><span>奨学生</span></div>
         <h1 id="page-title">応募フォーム</h1>
-        <p class="lead" id="lead">Socra Tutor 奨学生募集にご興味をお持ちいただき、ありがとうございます。内容をご確認のうえ、4つのステップでご入力ください。（所要時間：約5分）</p>
-        <ol class="stepper" id="stepper" aria-label="入力ステップ">
-          <li><span class="dot">1</span>申請者情報</li>
-          <li><span class="dot">2</span>保護者情報</li>
-          <li><span class="dot">3</span>口座情報</li>
-          <li><span class="dot">4</span>最終確認</li>
-        </ol>
+        <p class="lead" id="lead">Socra Tutor 奨学生募集にご興味をお持ちいただき、ありがとうございます。以下の項目をご入力のうえ、ご応募ください。（所要時間：約1分）</p>
       </div>
     </header>
 
@@ -222,10 +227,10 @@ legend.label{padding:0;margin-bottom:8px}
           <div class="kv"><dt>報酬</dt><dd>専用リンク経由の有効登録1件につき100円（税込・上限なし）＋先着100名に学習用書籍</dd></div>
           <div class="kv"><dt>参加対象</dt><dd>日本在住の中学生・高校生・大学生（専門学校・高専を含む）、満13〜22歳</dd></div>
           <div class="kv"><dt>表示義務</dt><dd>投稿本文の冒頭に「#PR #socra_tutor」を必ず表示</dd></div>
-          <div class="kv"><dt>選考・期間</dt><dd>受付日から5営業日以内にご連絡。承認日から6か月間</dd></div>
+          <div class="kv"><dt>選考・期間</dt><dd>受付日から1〜2日以内にメールでご案内。承認日から6か月間</dd></div>
         </dl>
       </div>
-      <div class="callout warn"><p class="t">📌 18歳未満の方へ</p><p class="b">保護者の方の連絡先もご入力ください。応募後、保護者の方へ同意書をお送りします。受付日から7日以内に同意書のご提出が確認できない場合、お申し込みは自動的にキャンセルとなります。</p></div>
+      <div class="callout warn"><p class="t">📌 18歳未満の方へ</p><p class="b">審査のうえ、保護者の方の同意書についてご登録のメールアドレスへご案内します。同意書のご提出が確認できた時点で参加が確定します。</p></div>
       <div class="pills">
         <a href="https://socraai.notion.site/Socra-Tutor-3dd5bc5f630780bb8632d63fe7f3dbab">利用規約 <i>↗</i></a>
         <a href="https://socraai.notion.site/Socra-Tutor-3dd5bc5f63078018b646ddf2f49e90f0">運営ポリシー <i>↗</i></a>
@@ -240,25 +245,15 @@ legend.label{padding:0;margin-bottom:8px}
       <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <div class="form-area wrap">
 
-        <!-- ===== Step 1 ===== -->
+        <!-- ===== 응모 정보 (1페이지) ===== -->
         <section class="panel" data-step="1" tabindex="-1">
-          <div class="sec-head"><img src="/assets/light.png" alt=""><h2>申請者情報</h2><span>|   Step 1</span></div>
+          <div class="sec-head"><img src="/assets/light.png" alt=""><h2>応募情報</h2></div>
 
           <div class="field" data-v="kanjiName">
-            <label class="label" for="name">お名前（漢字）<span class="badge">必須</span></label>
+            <label class="label" for="name">お名前<span class="badge">必須</span></label>
             <p class="help">SNSのニックネームではなく、ご本人の本名を姓と名の間にスペースを入れずにご記入ください。</p>
             <input class="input" id="name" name="name" autocomplete="name" placeholder="例：山田太郎">
             <p class="err">本名を、スペースを入れずにご記入ください。</p>
-          </div>
-          <div class="field" data-v="kana">
-            <label class="label" for="kana">お名前（フリガナ）<span class="badge">必須</span></label>
-            <input class="input" id="kana" name="kana" placeholder="例：ヤマダタロウ">
-            <p class="err">全角カタカナでご記入ください。</p>
-          </div>
-          <div class="field" data-v="phone">
-            <label class="label" for="phone">電話番号（携帯）<span class="badge">必須</span></label>
-            <input class="input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="例：090-1234-5678">
-            <p class="err">電話番号の形式が正しくありません。</p>
           </div>
           <div class="field" data-v="email">
             <label class="label" for="email">メールアドレス<span class="badge">必須</span></label>
@@ -274,21 +269,6 @@ legend.label{padding:0;margin-bottom:8px}
             </div>
             <p class="err">生年月日を選択してください。</p>
           </fieldset>
-          <div class="field" data-v="required">
-            <label class="label" for="school">在籍している学校名・学年<span class="badge">必須</span></label>
-            <p class="help">在籍状況の確認のため、学生証などの資料のご提出をお願いする場合があります。</p>
-            <input class="input" id="school" name="school" placeholder="例：〇〇高等学校 2年 ／ 〇〇大学 1年">
-            <p class="err">学校名と学年をご記入ください。</p>
-          </div>
-          <fieldset class="field" data-v="radio">
-            <legend class="label">申込日時点で満18歳未満ですか？<span class="badge">必須</span></legend>
-            <p class="help">18歳未満の方は、保護者の方のご同意が必要です。「はい」の場合、次のステップで保護者情報をご入力いただきます。</p>
-            <div class="grid2">
-              <label class="opt"><input type="radio" name="minor" value="はい"><i></i>はい</label>
-              <label class="opt"><input type="radio" name="minor" value="いいえ"><i></i>いいえ</label>
-            </div>
-            <p class="err">いずれかを選択してください。</p>
-          </fieldset>
           <fieldset class="field" data-v="radio">
             <legend class="label">コンテンツを投稿する代表アカウントのチャンネル<span class="badge">必須</span></legend>
             <div class="grid2">
@@ -299,181 +279,18 @@ legend.label{padding:0;margin-bottom:8px}
             </div>
             <p class="err">いずれかを選択してください。</p>
           </fieldset>
-          <div class="field" data-v="handle">
-            <label class="label" for="handle">代表アカウントのID<span class="badge">必須</span></label>
-            <p class="help">@で始めてください（例：@socra_tutor）</p>
-            <input class="input" id="handle" name="handle" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="@socra_tutor">
-            <p class="err">@で始まるIDをご記入ください。</p>
-          </div>
           <div class="field" data-v="url">
             <label class="label" for="acc-url">代表アカウントのURL<span class="badge">必須</span></label>
             <input class="input" id="acc-url" name="accUrl" type="url" inputmode="url" autocapitalize="off" placeholder="https://">
             <p class="err">https:// から始まるURLをご記入ください。</p>
           </div>
-          <div class="field" data-v="urlOpt" id="extra-field">
-            <label class="label" for="extra-1">その他の追加アカウントURL<span class="badge opt">任意</span></label>
-            <p class="help">複数のSNSで投稿される場合はご入力ください。</p>
-            <input class="input" id="extra-1" name="extra1" type="url" inputmode="url" autocapitalize="off" placeholder="https://">
-            <input class="input" name="extra2" type="url" inputmode="url" autocapitalize="off" placeholder="https://" aria-label="追加アカウントURL 2" hidden>
-            <input class="input" name="extra3" type="url" inputmode="url" autocapitalize="off" placeholder="https://" aria-label="追加アカウントURL 3" hidden>
-            <button type="button" class="add-btn" id="add-extra">＋ アカウントを追加（最大3件）</button>
-            <p class="err">https:// から始まるURLをご記入ください。</p>
-          </div>
-          <div class="field book" data-v="wishlist">
-            <label class="label" for="wishlist">🎁 先着100名様に学習用書籍をプレゼント<span class="badge opt">任意</span></label>
-            <p class="desc">参加承認が完了した順に、先着100名様へ学習用書籍を1冊（税・送料込み2,000円以内）プレゼントします。ご希望の方は、Amazonの「ほしい物リスト」共有用URLをご入力ください。</p>
-            <div class="conds">
-              <h5>リスト作成の条件（すべて満たしてください）</h5>
-              <ol>
-                <li><b>①</b>書籍1冊のみを登録した単独のリストにする</li>
-                <li><b>②</b>参考書・問題集・辞書など、学習目的の書籍に限る（雑誌・マンガ・小説・文房具・電子機器・ギフト券などは対象外）</li>
-                <li><b>③</b>税・送料込みで2,000円以内（2,000円に満たない場合も差額のお返しは不可）</li>
-                <li><b>④</b>お届け先住所を登録する（ご本人または保護者様の住所に限る）</li>
-                <li><b>⑤</b>「第三者の出品者からの発送に同意する」をオンにする</li>
-              </ol>
-            </div>
-            <p class="notes">※ 条件を満たさない場合、先着100名様に該当していても権利は失効し、次の順番の方に移ります。<br>※ 書籍を受け取った日から30日以内に、専用リンクを含む投稿を1件以上行ってください。正当な理由なく投稿がない場合、書籍の購入金額（送料込み）の返還をお願いすることがあります。<br>※ 100名に達した時点で、案内ページにてお知らせします。</p>
-            <a class="link" href="https://www.amazon.co.jp/gp/help/customer/display.html?nodeId=GHCGC7B7SQ222YMD">ほしい物リストの作り方（Amazon公式ガイド） ↗</a>
-            <input class="input" id="wishlist" name="wishlist" type="url" inputmode="url" autocapitalize="off" placeholder="https://www.amazon.co.jp/hz/wishlist/ls/...">
-            <p class="err">Amazonの「ほしい物リスト」共有用URLをご記入ください。</p>
-          </div>
-        </section>
-
-        <!-- ===== Step 2 ===== -->
-        <section class="panel" data-step="2" tabindex="-1" hidden>
-          <div class="sec-head"><img src="/assets/light.png" alt=""><h2>保護者情報</h2><span>|   Step 2</span></div>
-          <div class="callout hl"><p class="t">18歳未満の方のみご入力ください</p><p class="b">保護者の方ご本人が同意書を受け取れる連絡先をご入力ください。受付日から7日以内に同意書が確認できない場合、お申し込みは自動的にキャンセルとなります。</p></div>
-          <div class="field" data-v="required">
-            <label class="label" for="g-name">保護者のお名前（漢字）<span class="badge">必須</span></label>
-            <input class="input" id="g-name" name="gName" placeholder="例：山田花子">
-            <p class="err">保護者のお名前をご記入ください。</p>
-          </div>
-          <div class="field" data-v="kana">
-            <label class="label" for="g-kana">保護者のお名前（フリガナ）<span class="badge">必須</span></label>
-            <input class="input" id="g-kana" name="gKana" placeholder="例：ヤマダハナコ">
-            <p class="err">全角カタカナでご記入ください。</p>
-          </div>
-          <fieldset class="field" data-v="relation">
-            <legend class="label">関係<span class="badge">必須</span></legend>
-            <div class="row">
-              <label class="opt"><input type="radio" name="relation" value="父"><i></i>父</label>
-              <label class="opt"><input type="radio" name="relation" value="母"><i></i>母</label>
-              <label class="opt"><input type="radio" name="relation" value="other"><i></i>その他</label>
-            </div>
-            <input class="input" name="relationOther" placeholder="その他を選んだ場合はご記入ください" aria-label="関係（その他）" disabled>
-            <p class="err">関係を選択してください。</p>
-          </fieldset>
-          <div class="field" data-v="phone">
-            <label class="label" for="g-phone">保護者の電話番号（携帯）<span class="badge">必須</span></label>
-            <input class="input" id="g-phone" name="gPhone" type="tel" inputmode="tel" placeholder="例：090-1234-5678">
-            <p class="err">電話番号の形式が正しくありません。</p>
-          </div>
-          <div class="field" data-v="email">
-            <label class="label" for="g-email">保護者のメールアドレス<span class="badge">必須</span></label>
-            <p class="help">同意書をこちらのアドレスにお送りします。</p>
-            <input class="input" id="g-email" name="gEmail" type="email" inputmode="email" placeholder="例：parent@example.com">
-            <p class="err">メールアドレスの形式が正しくありません。</p>
-          </div>
-        </section>
-
-        <!-- ===== Step 3 ===== -->
-        <section class="panel" data-step="3" tabindex="-1" hidden>
-          <div class="sec-head"><img src="/assets/light.png" alt=""><h2>事業者情報・口座情報</h2><span>|   Step 3</span></div>
-          <div class="callout"><p class="t">📌 個人事業主・法人に該当しない方</p><p class="b">以下の質問はすべて「いいえ」を選択し、口座情報のみ正しくご記入ください。報酬のお振込みに必要な情報です。</p></div>
-          <fieldset class="field" data-v="invoice">
-            <legend class="label">インボイス発行事業者として登録されていますか？<span class="badge">必須</span></legend>
-            <div class="opts">
-              <label class="opt"><input type="radio" name="invoice" value="はい（登録番号：T ）"><i></i>はい（登録番号を入力）</label>
-              <label class="opt"><input type="radio" name="invoice" value="いいえ"><i></i>いいえ</label>
-              <label class="opt"><input type="radio" name="invoice" value="わからない"><i></i>わからない</label>
-            </div>
-            <input class="input" name="invoiceNo" inputmode="numeric" placeholder="T＋13桁の登録番号" aria-label="インボイス登録番号" disabled>
-            <p class="err">いずれかを選択し、「はい」の場合は登録番号（T＋13桁）をご記入ください。</p>
-          </fieldset>
-          <fieldset class="field" data-v="radio">
-            <legend class="label">個人事業主として開業届を提出していますか？<span class="badge">必須</span></legend>
-            <div class="opts">
-              <label class="opt"><input type="radio" name="sole" value="はい"><i></i>はい</label>
-              <label class="opt"><input type="radio" name="sole" value="いいえ（個人として活動しています）"><i></i>いいえ（個人として活動しています）</label>
-            </div>
-            <p class="err">いずれかを選択してください。</p>
-          </fieldset>
-          <fieldset class="field" data-v="radio">
-            <legend class="label">法人として活動されていますか？<span class="badge">必須</span></legend>
-            <p class="help">法人名義でのご契約になる場合は「はい」を選択してください。</p>
-            <div class="grid2">
-              <label class="opt"><input type="radio" name="corp" value="はい（下記の項目に法人名を必ずご記入ください）"><i></i>はい</label>
-              <label class="opt"><input type="radio" name="corp" value="いいえ"><i></i>いいえ</label>
-            </div>
-            <p class="err">いずれかを選択してください。</p>
-          </fieldset>
-          <div class="field" data-v="corpName">
-            <label class="label" for="corp-name">法人名<span class="badge opt" id="corp-badge">任意</span></label>
-            <p class="help">「はい」を選択した場合は必ずご記入ください。</p>
-            <input class="input" id="corp-name" name="corpName" placeholder="例：株式会社〇〇" disabled>
-            <p class="err">法人名をご記入ください。</p>
-          </div>
-
-          <div class="box">
-            <div class="box-head">
-              <p class="label">お振込先口座<span class="badge">必須</span></p>
-              <p class="help">日本国内の銀行口座に限ります。ご本人名義の口座をお持ちでない18歳未満の方は、保護者様名義の口座でもお振込み可能です。</p>
-            </div>
-            <div class="row">
-              <div class="field" data-v="digits4">
-                <label class="label" for="bank">銀行コード</label>
-                <input class="input" id="bank" name="bank" inputmode="numeric" maxlength="4" placeholder="0001">
-                <p class="err">4桁の数字</p>
-              </div>
-              <div class="field" data-v="digits3">
-                <label class="label" for="branch">支店コード</label>
-                <input class="input" id="branch" name="branch" inputmode="numeric" maxlength="3" placeholder="001">
-                <p class="err">3桁の数字</p>
-              </div>
-            </div>
-            <a class="link" href="https://zengin.ajtw.net/">銀行・支店コードを調べる ↗</a>
-            <fieldset class="field" data-v="radio">
-              <legend class="label">口座種別</legend>
-              <div class="grid2">
-                <label class="opt"><input type="radio" name="accType" value="普通"><i></i>普通</label>
-                <label class="opt"><input type="radio" name="accType" value="当座"><i></i>当座</label>
-              </div>
-              <p class="err">いずれかを選択してください。</p>
-            </fieldset>
-            <div class="field" data-v="accNo">
-              <label class="label" for="acc-no">口座番号</label>
-              <input class="input" id="acc-no" name="accNo" inputmode="numeric" maxlength="8" placeholder="例：1234567">
-              <p class="err">口座番号（数字7桁）をご記入ください。</p>
-            </div>
-            <div class="field" data-v="kanaHolder">
-              <label class="label" for="holder">口座名義（カタカナ）</label>
-              <p class="help">保護者様名義の口座の場合は、保護者様のお名前（カタカナ）をご記入ください。</p>
-              <input class="input" id="holder" name="holder" placeholder="例：ヤマダタロウ">
-              <p class="err">全角カタカナでご記入ください。</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- ===== Step 4 ===== -->
-        <section class="panel" data-step="4" tabindex="-1" hidden>
-          <div class="sec-head"><img src="/assets/light.png" alt=""><h2>最終確認</h2><span>|   Step 4</span></div>
-          <div class="card summary">
-            <div class="head"><h4 class="part-title" style="font-size:12px">入力内容の確認</h4><button type="button" data-goto="1">修正する ✎</button></div>
-            <dl id="summary"></dl>
-          </div>
           <fieldset class="field" data-v="check">
-            <legend class="label">利用規約・運営ポリシー<span class="badge">必須</span></legend>
-            <p class="help">同意いただけない場合は、お申し込みを受け付けることができません。</p>
+            <legend class="label">利用規約・個人情報の取扱い<span class="badge">必須</span></legend>
+            <p class="help">利用規約・運営ポリシーと、外国（韓国・米国）での取扱いを含む個人情報の取扱いをご確認ください。</p>
             <div class="pills">
               <a href="https://socraai.notion.site/Socra-Tutor-3dd5bc5f630780bb8632d63fe7f3dbab">利用規約 <i>↗</i></a>
               <a href="https://socraai.notion.site/Socra-Tutor-3dd5bc5f63078018b646ddf2f49e90f0">運営ポリシー <i>↗</i></a>
             </div>
-            <label class="opt check"><input type="checkbox" name="agreeTerms"><i></i>利用規約および運営ポリシーに同意する</label>
-            <p class="err">同意いただけない場合は応募できません。</p>
-          </fieldset>
-          <fieldset class="field" data-v="check">
-            <legend class="label">個人情報の取扱い<span class="badge">必須</span></legend>
-            <p class="help">外国（韓国・米国）での取扱いを含みます。内容をご確認ください。</p>
             <div class="privacy" tabindex="0" aria-label="個人情報の取扱いについて">
 <p><b>■ 利用目的</b>
 ご入力いただいた個人情報は、参加資格の審査、専用リンクの発行・管理、有効登録の集計および報酬の算定・お支払い、書籍の購入・配送、お問い合わせへの対応、不正行為の調査・防止、法令に基づく対応のために利用します。</p>
@@ -486,14 +303,8 @@ legend.label{padding:0;margin-bottom:8px}
 <p><b>■ 保存期間</b>
 個人情報は、本プログラム終了後6か月以内に消去いたします。ただし、報酬の支払いに関する記録は、税法に基づき7年間保存した後に消去いたします。</p>
             </div>
-            <label class="opt check"><input type="checkbox" name="agreePrivacy"><i></i>個人情報の取扱いおよび外国（韓国・米国）での取扱いに同意する</label>
+            <label class="opt check"><input type="checkbox" name="agree"><i></i>利用規約・運営ポリシーおよび個人情報の取扱い（外国での取扱いを含む）に同意する</label>
             <p class="err">同意いただけない場合は応募できません。</p>
-          </fieldset>
-          <fieldset class="field" data-v="check">
-            <legend class="label">入力内容の確認<span class="badge">必須</span></legend>
-            <p class="help">連絡先・振込先などの誤入力や記入漏れがあると、ご連絡や報酬のお振込みができない場合があります。</p>
-            <label class="opt check"><input type="checkbox" name="confirmed"><i></i>入力内容に誤りや記入漏れがないことを確認しました</label>
-            <p class="err">送信前に入力内容をご確認ください。</p>
           </fieldset>
         </section>
 
@@ -501,26 +312,23 @@ legend.label{padding:0;margin-bottom:8px}
         <section class="panel" data-step="done" tabindex="-1" hidden>
           <div class="done-card">
             <span class="ic"><svg width="24" height="20" viewBox="0 0 24 20" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10l8 8L22 2"/></svg></span>
-            <h3>お申し込みを受け付けました</h3>
-            <p>ご応募ありがとうございます。<br>選考結果は、受付日から5営業日以内にご登録のメールアドレスへご連絡します。</p>
+            <h3>受付が完了しました</h3>
+            <p>1〜2日以内に、ご登録のメールアドレスへ今後の流れをご案内します。<br>メールを必ずご確認ください！</p>
           </div>
           <div class="stack" style="gap:10px">
             <h3 class="part-title">これからの流れ</h3>
             <ol class="steps">
-              <li class="step"><span class="pill">STEP 1</span><div class="body"><h4>審査</h4><p>年齢、在学状況、SNSアカウントの運用状況などを確認します。</p></div></li>
+              <li class="step"><span class="pill">STEP 1</span><div class="body"><h4>審査・メールでのご案内</h4><p>SNSアカウントの運用状況などを確認し、ご登録のメールアドレスへご案内します。</p></div></li>
               <li class="step"><span class="pill">STEP 2</span><div class="body"><h4>承認 &amp; 専用リンクの発行</h4><p>承認のご連絡と専用リンクの発行をもって参加契約が成立します。参加期間はその日から6か月間です。</p></div></li>
               <li class="step"><span class="pill">STEP 3</span><div class="body"><h4>初投稿</h4><p>投稿本文の冒頭に「#PR #socra_tutor」を必ず表示してください。</p></div></li>
             </ol>
           </div>
-          <div class="callout warn" id="done-minor" hidden><p class="t">📌 18歳未満の方へ</p><p class="b">保護者の方へ同意書をお送りします。受付日から7日以内にご提出が確認できない場合、お申し込みは自動的にキャンセルとなります。</p></div>
         </section>
       </div>
 
       <div class="actions wrap" id="actions">
         <p class="form-error" id="form-error" role="alert"></p>
-        <button type="button" class="btn primary" id="next">次へ進む</button>
-        <button type="button" class="btn ghost" id="prev" hidden>← 前へ戻る</button>
-        <p class="help" id="actions-help">「はい（18歳未満）」を選んだ方は保護者情報へ、それ以外の方は口座情報へ進みます。</p>
+        <button type="button" class="btn primary" id="next">この内容で応募する</button>
       </div>
       <div class="actions wrap" id="done-actions" hidden>
         <a class="btn primary home-link" href="https://socratutor.ai/event/scholarship/guide" target="_top">クリエイティブガイドを見る</a>
@@ -529,6 +337,16 @@ legend.label{padding:0;margin-bottom:8px}
       </div>
     </form>
   </main>
+</div>
+
+<!-- ===== 접수 완료 팝업 ===== -->
+<div class="modal" id="done-modal" role="dialog" aria-modal="true" aria-labelledby="done-modal-title" hidden>
+  <div class="modal-card">
+    <span class="ic"><svg width="24" height="20" viewBox="0 0 24 20" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10l8 8L22 2"/></svg></span>
+    <h3 id="done-modal-title">受付が完了しました</h3>
+    <p>1〜2日以内に、ご登録のメールアドレスへ<br>今後の流れをご案内します。<br>メールを必ずご確認ください！</p>
+    <button type="button" class="btn primary" id="done-modal-close">閉じる</button>
+  </div>
 </div>
 
 <footer class="footer">
@@ -542,33 +360,19 @@ legend.label{padding:0;margin-bottom:8px}
   </div>
 </footer>
 
+
 <script>
-// 응답 전송처.
-// APPS_SCRIPT_URL이 있으면 Apps Script 웹 앱(→ 「[1] 신청폼」 시트에 직접 기록, 소스: /apps-script/Code.gs)으로 보내고,
-// 비어 있으면 기존 구글폼(→ 같은 시트에 폼 응답으로 기록)으로 보낸다.
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwVDZ3EPZfbujW6Uawo9wUmuLfx8zMej96ZW2A6FITZRh3LHr_qZKtK5w7Ml0kiVTqK/exec';
-const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdallSjr5LQIkqC5UYKGB2N6xy2TIigE4t9V5OXBa1d-0Lgaw/formResponse';
-const E = {
-  name:'entry.508503008', kana:'entry.260983513', phone:'entry.1071337484', email:'entry.1684673691',
-  birth:'entry.1441340631', school:'entry.1626929120', minor:'entry.1062402026', channel:'entry.377778300',
-  handle:'entry.791644168', accUrl:'entry.1764580691', extra:['entry.1009777205','entry.17716446','entry.958838483'],
-  wishlist:'entry.1195559783',
-  gName:'entry.1287684016', gKana:'entry.511932259', relation:'entry.628360906', gPhone:'entry.1408732157', gEmail:'entry.1195883775',
-  invoice:'entry.592442741', sole:'entry.1088444756', corp:'entry.1304239059', corpName:'entry.1900700309', bank:'entry.2125426749',
-  agreeTerms:'entry.488246977', agreePrivacy:'entry.1361773006', confirmed:'entry.2033205460'
-};
-const DRAFT_KEY = 'socra-apply-draft';
+// 응답 전송처: Apps Script 웹 앱 → 「[1] 신청폼」 시트에 직접 기록 (소스: /apps-script/Code.gs)
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzSvlNJS7BhGhRAbRGqjGsKdVzs6hM-h41_EGfJdNLB8dA5MyxWczCR8krMxe4mBS4o/exec';
+const DRAFT_KEY = 'socra-apply-draft-v2';
 
 const form = document.getElementById('apply');
 const f = form.elements;
 const panels = [...form.querySelectorAll('.panel')];
-const stepItems = [...document.querySelectorAll('#stepper li')];
-const btnNext = document.getElementById('next'), btnPrev = document.getElementById('prev');
+const btnNext = document.getElementById('next');
 const errBox = document.getElementById('form-error');
 const val = n => (f[n].value || '').trim();
 const radio = n => { const el = form.querySelector(`input[name="${n}"]:checked`); return el ? el.value : ''; };
-const isMinor = () => radio('minor') === 'はい';
-let step = 1;
 
 // ---------- 생년월일 선택지 ----------
 (() => {
@@ -577,21 +381,25 @@ let step = 1;
   for (let i = 1; i <= 12; i++) f.bm.add(new Option(i + '月', i));
   for (let i = 1; i <= 31; i++) f.bd.add(new Option(i + '日', i));
 })();
+// 신청일 기준 만 18세 미만인지 (생년월일로 자동 판별)
+function isMinor() {
+  const y = +f.by.value, m = +f.bm.value, d = +f.bd.value;
+  if (!(y && m && d)) return false;
+  const now = new Date();
+  let age = now.getFullYear() - y;
+  if (now.getMonth() + 1 < m || (now.getMonth() + 1 === m && now.getDate() < d)) age--;
+  return age < 18;
+}
 
 // ---------- 검증 ----------
-const KATA = /^[ァ-ヶー　 ・]+$/;
 const rules = {
-  required: el => val(el) !== '',
   kanjiName: el => val(el) !== '' && !/\s/.test(f[el].value.trim()),
-  kana: el => KATA.test(val(el)),
-  phone: el => /^0\d{1,4}-?\d{1,4}-?\d{3,4}$/.test(val(el).replace(/[－ー]/g, '-')),
   email: el => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val(el)),
-  handle: el => /^@[\w.]{1,}$/.test(val(el)),
   url: el => /^https?:\/\/\S+$/.test(val(el)),
 };
 function check(field) {
   const type = field.dataset.v;
-  const input = field.querySelector('input:not([type=radio]):not([type=checkbox]):not([hidden]), select');
+  const input = field.querySelector('input:not([type=radio]):not([type=checkbox]), select');
   const name = input && input.name;
   let ok = true;
   switch (type) {
@@ -601,26 +409,16 @@ function check(field) {
     }
     case 'radio': ok = !!field.querySelector('input[type=radio]:checked'); break;
     case 'check': ok = field.querySelector('input[type=checkbox]').checked; break;
-    case 'relation': ok = !!radio('relation') && (radio('relation') !== 'other' || val('relationOther') !== ''); break;
-    case 'invoice': ok = !!radio('invoice') && (!radio('invoice').startsWith('はい') || /^T?\d{13}$/.test(val('invoiceNo').replace(/[\s-]/g, ''))); break;
-    case 'corpName': ok = !radio('corp').startsWith('はい') || val('corpName') !== ''; break;
-    case 'urlOpt': ok = ['extra1','extra2','extra3'].every(n => val(n) === '' || rules.url(n)); break;
-    case 'wishlist': ok = val('wishlist') === '' || /^https:\/\/(www\.)?(amazon\.co\.jp|amzn\.(asia|to))\/\S+$/.test(val('wishlist')); break;
-    case 'digits4': ok = /^\d{4}$/.test(val(name)); break;
-    case 'digits3': ok = /^\d{3}$/.test(val(name)); break;
-    case 'accNo': ok = /^\d{7,8}$/.test(val(name)); break;
-    case 'kanaHolder': ok = KATA.test(val(name)); break;
     default: ok = rules[type] ? rules[type](name) : true;
   }
   field.classList.toggle('invalid', !ok);
   return ok;
 }
-function validatePanel(n) {
-  const fields = [...panels[n - 1].querySelectorAll('.field[data-v]')];
-  const bad = fields.filter(fl => !check(fl));
+function validate() {
+  const bad = [...panels[0].querySelectorAll('.field[data-v]')].filter(fl => !check(fl));
   if (bad.length) {
     bad[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
-    const t = bad[0].querySelector('input:not([disabled]):not([hidden]), select');
+    const t = bad[0].querySelector('input:not([disabled]), select');
     if (t) setTimeout(() => t.focus({ preventScroll: true }), 300);
   }
   return !bad.length;
@@ -629,147 +427,65 @@ function validatePanel(n) {
 form.addEventListener('input', e => { const fl = e.target.closest('.field.invalid'); if (fl) check(fl); });
 form.addEventListener('change', e => { const fl = e.target.closest('.field.invalid'); if (fl) check(fl); saveDraft(); });
 
-// ---------- 조건부 입력칸 ----------
-function syncConditional() {
-  f.relationOther.disabled = radio('relation') !== 'other';
-  f.invoiceNo.disabled = !radio('invoice').startsWith('はい');
-  const corp = radio('corp').startsWith('はい');
-  f.corpName.disabled = !corp;
-  const b = document.getElementById('corp-badge');
-  b.textContent = corp ? '必須' : '任意'; b.classList.toggle('opt', !corp);
-  stepItems[1].classList.toggle('skip', radio('minor') === 'いいえ');
-}
-form.addEventListener('change', syncConditional);
-
-document.getElementById('add-extra').addEventListener('click', e => {
-  const next = [f.extra2, f.extra3].find(i => i.hidden);
-  if (next) { next.hidden = false; next.focus(); }
-  if (!f.extra3.hidden) e.currentTarget.hidden = true;
-});
-
-// ---------- 스텝 이동 ----------
-function show(n) {
-  step = n;
-  panels.forEach(p => { p.hidden = p.dataset.step !== String(n); });
-  const done = n === 'done';
-  stepItems.forEach((li, i) => {
-    li.classList.toggle('done', (done || i + 1 < n) && !li.classList.contains('skip'));
-    li.classList.toggle('cur', i + 1 === n);
-  });
-  document.getElementById('stepper').style.setProperty('--p', done ? 3 : n - 1);
-  document.getElementById('stepper').hidden = done;
-  document.getElementById('intro').hidden = n !== 1;
-  document.getElementById('lead').hidden = n !== 1;
-  document.getElementById('page-title').textContent = done ? '応募完了' : '応募フォーム';
-  document.getElementById('actions').hidden = done;
-  document.getElementById('done-actions').hidden = !done;
-  btnPrev.hidden = n === 1 || done;
-  btnNext.textContent = n === 4 ? 'この内容で応募する' : '次へ進む';
-  document.getElementById('actions-help').hidden = n !== 1;
-  errBox.classList.remove('show');
-  if (n === 4) renderSummary();
+// ---------- 화면 전환 ----------
+function showDone() {
+  panels.forEach(p => { p.hidden = p.dataset.step !== 'done'; });
+  document.getElementById('intro').hidden = true;
+  document.getElementById('lead').hidden = true;
+  document.getElementById('page-title').textContent = '応募完了';
+  document.getElementById('actions').hidden = true;
+  document.getElementById('done-actions').hidden = false;
   window.scrollTo(0, 0);
+}
+const modal = document.getElementById('done-modal');
+function openModal() {
+  modal.hidden = false;
+  document.body.classList.add('modal-open');
+  document.getElementById('done-modal-close').focus();
+}
+function closeModal() {
+  modal.hidden = true;
+  document.body.classList.remove('modal-open');
   const panel = panels.find(p => !p.hidden); if (panel) panel.focus({ preventScroll: true });
 }
-btnNext.addEventListener('click', () => {
-  if (!validatePanel(step)) return;
-  if (step === 4) return submit();
-  show(step === 1 && !isMinor() ? 3 : step + 1);
-});
-btnPrev.addEventListener('click', () => show(step === 3 && !isMinor() ? 1 : step - 1));
-form.querySelector('[data-goto="1"]').addEventListener('click', () => show(1));
+document.getElementById('done-modal-close').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
 
-// ---------- 최종 확인 요약 ----------
-function renderSummary() {
-  const esc = s => s.replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
-  const rows = [
-    ['お名前', `${val('name')}（${val('kana')}）`],
-    ['電話番号', val('phone')],
-    ['メール', val('email')],
-    ['生年月日', `${f.by.value}年${f.bm.value}月${f.bd.value}日`],
-    ['学校・学年', val('school')],
-    ['代表アカウント', `${radio('channel').replace(' （', '（')} ／ ${val('handle')}\n${val('accUrl')}`],
-  ];
-  const extras = ['extra1','extra2','extra3'].map(val).filter(Boolean);
-  if (extras.length) rows.push(['追加アカウント', extras.join('\n')]);
-  if (val('wishlist')) rows.push(['ほしい物リスト', val('wishlist')]);
-  if (isMinor()) rows.push(['保護者', `${val('gName')}（${radio('relation') === 'other' ? val('relationOther') : radio('relation')}）\n${val('gPhone')} ／ ${val('gEmail')}`]);
-  if (radio('corp').startsWith('はい')) rows.push(['法人名', val('corpName')]);
-  rows.push(['振込先', bankText()]);
-  document.getElementById('summary').innerHTML = rows.map(([k, v]) => `<div class="kv"><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
-}
-const bankText = () => `${val('bank')} / ${val('branch')} / ${radio('accType')} / ${val('accNo')} / ${val('holder')}`;
+btnNext.addEventListener('click', () => { if (validate()) submit(); });
+// 입력칸에서 Enter를 눌러도 페이지가 새로고침되지 않게
+form.addEventListener('submit', e => e.preventDefault());
 
 // ---------- 전송 ----------
 const collect = () => ({
-  name: val('name'), kana: val('kana'), phone: val('phone'), email: val('email'),
+  name: val('name'), email: val('email'),
   birth: `${f.by.value}-${f.bm.value}-${f.bd.value}`,
-  school: val('school'), minor: radio('minor'), channel: radio('channel'),
-  handle: val('handle'), accUrl: val('accUrl'),
-  extras: ['extra1','extra2','extra3'].map(val).filter(Boolean),
-  wishlist: val('wishlist'),
-  gName: isMinor() ? val('gName') : '', gKana: isMinor() ? val('gKana') : '',
-  relation: !isMinor() ? '' : radio('relation') === 'other' ? val('relationOther') : radio('relation'),
-  gPhone: isMinor() ? val('gPhone') : '', gEmail: isMinor() ? val('gEmail') : '',
-  invoice: radio('invoice'),
-  invoiceNo: radio('invoice').startsWith('はい') ? 'T' + val('invoiceNo').replace(/^T/i, '').replace(/[\s-]/g, '') : '',
-  sole: radio('sole'), corp: radio('corp'),
-  corpName: radio('corp').startsWith('はい') ? val('corpName') : '',
-  bank: val('bank'), branch: val('branch'), accType: radio('accType'), accNo: val('accNo'), holder: val('holder'),
-  agreeTerms: f.agreeTerms.checked, agreePrivacy: f.agreePrivacy.checked, confirmed: f.confirmed.checked,
+  channel: radio('channel'), accUrl: val('accUrl'),
+  agree: f.agree.checked,
   website: val('website'),
 });
-async function sendToAppsScript() {
-  // text/plain으로 보내야 CORS 사전 요청(preflight) 없이 전송되고, 응답(JSON)도 읽을 수 있다
-  const r = await fetch(APPS_SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(collect()) });
-  const res = await r.json();
-  if (!res.ok) throw new Error(res.error + (res.fields ? ':' + res.fields.join(',') : ''));
-}
-async function sendToGoogleForm() {
-  const p = new URLSearchParams();
-  const put = (k, v) => { if (v) p.append(k, v); };
-  put(E.name, val('name')); put(E.kana, val('kana')); put(E.phone, val('phone')); put(E.email, val('email'));
-  put(E.birth + '_year', f.by.value); put(E.birth + '_month', f.bm.value); put(E.birth + '_day', f.bd.value);
-  put(E.school, val('school')); put(E.minor, radio('minor')); put(E.channel, radio('channel'));
-  put(E.handle, val('handle')); put(E.accUrl, val('accUrl'));
-  ['extra1','extra2','extra3'].map(val).filter(Boolean).forEach((u, i) => put(E.extra[i], u));
-  put(E.wishlist, val('wishlist'));
-  if (isMinor()) {
-    put(E.gName, val('gName')); put(E.gKana, val('gKana'));
-    if (radio('relation') === 'other') { put(E.relation, '__other_option__'); put(E.relation + '.other_option_response', val('relationOther')); }
-    else put(E.relation, radio('relation'));
-    put(E.gPhone, val('gPhone')); put(E.gEmail, val('gEmail'));
-  }
-  put(E.invoice, radio('invoice')); put(E.sole, radio('sole')); put(E.corp, radio('corp'));
-  // 구글폼에 인보이스 등록번호 전용 질문이 없어서 法人名 칸에 함께 기록한다
-  const inv = radio('invoice').startsWith('はい') ? 'インボイス登録番号：T' + val('invoiceNo').replace(/^T/i, '').replace(/[\s-]/g, '') : '';
-  const corpName = radio('corp').startsWith('はい') ? val('corpName') : '';
-  put(E.corpName, [corpName, inv].filter(Boolean).join(' ／ '));
-  put(E.bank, bankText());
-  put(E.agreeTerms, '同意する'); put(E.agreePrivacy, '同意する'); put(E.confirmed, '確認しました');
-  p.append('pageHistory', isMinor() ? '0,1,2,3' : '0,2,3');
-  // 구글폼은 CORS 응답을 주지 않으므로 no-cors로 보낸다(응답 본문은 읽을 수 없음)
-  await fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: p });
-}
 async function submit() {
   btnNext.disabled = true; btnNext.textContent = '送信中…';
+  errBox.classList.remove('show');
   try {
-    await (APPS_SCRIPT_URL ? sendToAppsScript() : sendToGoogleForm());
+    // text/plain으로 보내야 CORS 사전 요청(preflight) 없이 전송되고, 응답(JSON)도 읽을 수 있다
+    const r = await fetch(APPS_SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(collect()) });
+    const res = await r.json();
+    if (!res.ok) throw new Error(res.error + (res.fields ? ':' + res.fields.join(',') : ''));
     clearDraft();
     bridge.emit('scholarship-apply-submitted', { snsChannel: SNS_CHANNEL_CODE[radio('channel')], minor: isMinor() });
-    document.getElementById('done-minor').hidden = !isMinor();
-    show('done');
+    showDone();
+    openModal();
   } catch (e) {
     errBox.innerHTML = '送信できませんでした。通信環境をご確認のうえ、もう一度お試しください。<br>解決しない場合は socratutor_branded@socra.ai までご連絡ください。';
     errBox.classList.add('show');
-    btnNext.textContent = 'この内容で応募する';
   } finally {
-    btnNext.disabled = false;
+    btnNext.disabled = false; btnNext.textContent = 'この内容で応募する';
   }
 }
 
 // ---------- 임시 저장 (새로고침해도 입력이 남도록, 이 브라우저 탭에서만) ----------
-const SKIP = ['agreeTerms','agreePrivacy','confirmed','website'];
+const SKIP = ['agree', 'website'];
 function saveDraft() {
   const data = {};
   for (const el of f) {
@@ -787,15 +503,11 @@ function loadDraft() {
     if (el instanceof RadioNodeList) { const r = form.querySelector(`input[name="${k}"][value="${CSS.escape(v)}"]`); if (r) r.checked = true; }
     else el.value = v;
   }
-  ['extra2','extra3'].forEach(n => { if (val(n)) f[n].hidden = false; });
-  if (!f.extra3.hidden) document.getElementById('add-extra').hidden = true;
 }
 function clearDraft() { try { sessionStorage.removeItem(DRAFT_KEY); } catch (e) {} }
 form.addEventListener('input', saveDraft);
 
 loadDraft();
-syncConditional();
-show(1);
 
 // ---------- 부모(socratutor.ai) 브릿지 ----------
 // 응모 완료를 부모에게 알려 GA·광고 픽셀 전환을 부모 GTM이 보내게 하고, 링크 이동도 부모에게 맡긴다.

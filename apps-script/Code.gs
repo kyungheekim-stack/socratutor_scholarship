@@ -5,7 +5,7 @@
  * 배포: 배포 → 새 배포 → 웹 앱 / 실행 계정: 나 / 액세스 권한: 모든 사용자
  *
  * 열은 순서가 아니라 1행의 열 제목으로 찾는다. 제목이 없는 열은 맨 오른쪽에 자동으로 만든다.
- * 같은 제목이 여러 번 있으면(その他の追加アカウントURL ×3) 왼쪽부터 차례로 채운다.
+ * 웹 신청서(1페이지)에서 받는 항목만 기록하고, 나머지 열은 비워 둔다(관리 시트에서 직접 입력).
  */
 
 const SHEET_ID = '1XVf06-WFqs2RzzoTdg4aGxXZkClQ4VWLpEXKsnHAu5A';
@@ -50,6 +50,8 @@ const H = {
 
 const MAX_LEN = 500;
 
+// 2026-10 개편: 웹 신청서는 1페이지(이름·메일·생년월일·채널·계정 URL·동의)만 받는다.
+// 나머지 열(후리가나·전화·학교·보호자·계좌·인보이스 등)은 비워 두고, 관리 시트에서 직접 입력한다.
 function doPost(e) {
   let d;
   try {
@@ -76,26 +78,28 @@ function doPost(e) {
   return json_({ ok: true });
 }
 
-// 동작 확인용: 웹 앱 URL을 브라우저로 열면 {"ok":true,"service":"apply"} 가 보이면 정상
+// 동작 확인용: 웹 앱 URL을 브라우저로 열면 {"ok":true,"service":"apply","v":2} 가 보이면 정상
 function doGet() {
-  return json_({ ok: true, service: 'apply' });
+  return json_({ ok: true, service: 'apply', v: 2 });
 }
 
 function validate_(d) {
   const s = k => String(d[k] == null ? '' : d[k]).trim();
   const bad = [];
-  const need = ['name', 'kana', 'phone', 'email', 'school', 'minor', 'channel', 'handle', 'accUrl',
-    'invoice', 'sole', 'corp', 'bank', 'branch', 'accType', 'accNo', 'holder'];
-  need.forEach(k => { if (!s(k)) bad.push(k); });
+  ['name', 'email', 'channel', 'accUrl'].forEach(k => { if (!s(k)) bad.push(k); });
   if (s('email') && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s('email'))) bad.push('email');
   if (!/^\d{4}-\d{1,2}-\d{1,2}$/.test(s('birth'))) bad.push('birth');
-  if (!/^\d{4}$/.test(s('bank'))) bad.push('bank');
-  if (!/^\d{3}$/.test(s('branch'))) bad.push('branch');
-  if (!/^\d{7,8}$/.test(s('accNo'))) bad.push('accNo');
-  if (s('minor') === 'はい') ['gName', 'gKana', 'relation', 'gPhone', 'gEmail'].forEach(k => { if (!s(k)) bad.push(k); });
-  if (d.agreeTerms !== true || d.agreePrivacy !== true || d.confirmed !== true) bad.push('agree');
+  if (s('accUrl') && !/^https?:\/\/\S+$/.test(s('accUrl'))) bad.push('accUrl');
+  if (d.agree !== true) bad.push('agree');
   Object.keys(d).forEach(k => { if (String(d[k]).length > MAX_LEN) bad.push(k); });
   return [...new Set(bad)];
+}
+
+// 신청일 기준 만 나이 < 18 → 'はい'
+function minor_(y, m, day, now) {
+  let age = now.getFullYear() - y;
+  if (now.getMonth() + 1 < m || (now.getMonth() + 1 === m && now.getDate() < day)) age--;
+  return age < 18 ? 'はい' : 'いいえ';
 }
 
 function writeRow_(d) {
@@ -103,52 +107,29 @@ function writeRow_(d) {
   if (!sh) throw new Error('sheet not found');
   const s = k => String(d[k] == null ? '' : d[k]).trim();
   const [y, m, day] = s('birth').split('-').map(Number);
-  const minor = s('minor') === 'はい';
-  const extras = (Array.isArray(d.extras) ? d.extras : []).map(String).filter(Boolean).slice(0, 3);
+  const now = new Date();
 
-  // [열 제목, 값] — 같은 제목은 나오는 순서대로 다음 열에 들어간다
+  // [열 제목, 값] — 웹 신청서에서 받는 항목만 기록한다
   const cells = [
-    [H.ts, new Date()],
-    [H.name, s('name')], [H.kana, s('kana')], [H.phone, phone_(s('phone'))], [H.email, s('email')],
+    [H.ts, now],
+    [H.name, s('name')],
+    [H.email, s('email')],
     [H.birth, new Date(y, m - 1, day, 12)], // 정오로 저장 → 스크립트·시트 시간대가 달라도 날짜가 하루 밀리지 않음
-    [H.school, s('school')], [H.minor, s('minor')], [H.channel, s('channel')],
-    [H.handle, s('handle')], [H.accUrl, s('accUrl')],
-    [H.extra, extras[0] || ''], [H.extra, extras[1] || ''], [H.extra, extras[2] || ''],
-    [H.wishlist, s('wishlist')],
-    [H.gName, minor ? s('gName') : ''], [H.gKana, minor ? s('gKana') : ''], [H.relation, minor ? s('relation') : ''],
-    [H.gPhone, minor ? phone_(s('gPhone')) : ''], [H.gEmail, minor ? s('gEmail') : ''],
-    [H.invoice, s('invoice')], [H.sole, s('sole')], [H.corp, s('corp')], [H.corpName, s('corpName')],
-    [H.bankAll, [s('bank'), s('branch'), s('accType'), s('accNo'), s('holder')].join(' / ')],
-    [H.agreeTerms, '同意する'], [H.agreePrivacy, '同意する'], [H.confirmed, '確認しました'],
-    [H.bank, s('bank')], [H.branch, s('branch')], [H.accType, s('accType')], [H.accNo, s('accNo')], [H.holder, s('holder')],
-    [H.invoiceNo, s('invoiceNo')],
-    [H.source, 'web'],
+    [H.minor, minor_(y, m, day, now)],      // 생년월일로 자동 판별
+    [H.channel, s('channel')],
+    [H.accUrl, s('accUrl')],
+    [H.agreeTerms, '同意する'], [H.agreePrivacy, '同意する'],
+    [H.source, 'web-v2'],
   ];
 
-  // 열 제목 → 열 번호 목록 (없는 제목은 맨 오른쪽에 추가)
-  let lastCol = Math.max(sh.getLastColumn(), 1);
-  const headers = sh.getRange(1, 1, 1, lastCol).getValues()[0].map(String);
-  const need = {};
-  cells.forEach(([h]) => { need[h] = (need[h] || 0) + 1; });
-  Object.keys(need).forEach(h => {
-    const have = headers.filter(x => x === h).length;
-    for (let i = have; i < need[h]; i++) {
-      headers.push(h);
-      sh.getRange(1, headers.length).setValue(h);
-    }
-  });
-  // 열 번호 → [값, 서식]
+  // 열 제목 → 열 번호 (없는 제목은 맨 오른쪽에 추가)
+  const headers = sh.getRange(1, 1, 1, Math.max(sh.getLastColumn(), 1)).getValues()[0].map(String);
   const byCol = {};
-  const used = {};
   cells.forEach(([h, v]) => {
-    const nth = used[h] = (used[h] || 0) + 1;
-    for (let i = 0, c = 0; i < headers.length; i++) {
-      if (headers[i] === h && ++c === nth) {
-        // 문자열은 '@'(텍스트)로 저장 → 0으로 시작하는 전화번호·은행 코드가 숫자로 바뀌지 않게
-        byCol[i + 1] = [v, v instanceof Date ? (h === H.ts ? 'yyyy/mm/dd hh:mm:ss' : 'yyyy/mm/dd') : '@'];
-        break;
-      }
-    }
+    let c = headers.indexOf(h) + 1;
+    if (!c) { headers.push(h); c = headers.length; sh.getRange(1, c).setValue(h); }
+    // 문자열은 '@'(텍스트)로 저장
+    byCol[c] = [v, v instanceof Date ? (h === H.ts ? 'yyyy/mm/dd hh:mm:ss' : 'yyyy/mm/dd') : '@'];
   });
 
   // 새 행 = 타임스탬프 열의 마지막 값 다음 줄 (다른 열의 수식 결과에 영향받지 않게)
@@ -159,7 +140,7 @@ function writeRow_(d) {
   r += 1;
   if (r > sh.getMaxRows()) sh.insertRowsAfter(sh.getMaxRows(), 1);
 
-  // 우리 열에만 쓴다 (연속된 열끼리 묶어서 기록, 다른 열의 수식은 건드리지 않음)
+  // 우리 열에만 쓴다 (연속된 열끼리 묶어서 기록)
   const cols = Object.keys(byCol).map(Number).sort((a, b) => a - b);
   for (let i = 0; i < cols.length;) {
     let j = i;
@@ -167,24 +148,13 @@ function writeRow_(d) {
     const run = cols.slice(i, j + 1);
     const range = sh.getRange(r, run[0], 1, run.length);
     range.setNumberFormats([run.map(c => byCol[c][1])]);
-    // 표(Form_Responses) 열은 열 형식이 텍스트 서식보다 우선해서 0으로 시작하는 숫자가 잘린다 → 숫자처럼 보이는 값은 ' 를 붙여 텍스트로 고정
+    // 표(Form_Responses) 열은 열 형식이 텍스트 서식보다 우선 → 숫자처럼 보이는 값은 ' 를 붙여 텍스트로 고정
     range.setValues([run.map(c => {
       const v = byCol[c][0];
       return typeof v === 'string' && /^[\d.,+\-\/ :]+$/.test(v) ? "'" + v : v;
     })]);
     i = j + 1;
   }
-}
-
-// 전화번호를 하이픈 형식으로 통일 (09012345678 → 090-1234-5678).
-// 하이픈이 없으면 표(Form_Responses) 열이 숫자로 바꿔 앞자리 0이 사라지기 때문.
-function phone_(v) {
-  const d = String(v).replace(/[^\d]/g, '');
-  if (d.length === 11) return d.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3');            // 携帯 090/080/070 등
-  if (d.length === 10) return /^0[36]/.test(d)
-    ? d.replace(/^(\d{2})(\d{4})(\d{4})$/, '$1-$2-$3')                                     // 03·06 지역번호
-    : d.replace(/^(\d{3})(\d{3})(\d{4})$/, '$1-$2-$3');
-  return String(v);
 }
 
 function json_(o) {
