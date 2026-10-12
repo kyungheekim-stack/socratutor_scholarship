@@ -10,6 +10,7 @@
 
 const SHEET_ID = '1XVf06-WFqs2RzzoTdg4aGxXZkClQ4VWLpEXKsnHAu5A';
 const SHEET_GID = 1049153251; // [1] 신청폼
+const MIRROR_GID = 1952557098; // -> 신청폼 미러링 한국어 문항 (행 번호가 [1]과 같음)
 
 const H = {
   ts: '타임스탬프',
@@ -50,8 +51,8 @@ const H = {
 
 const MAX_LEN = 500;
 
-// 2026-10 개편: 웹 신청서는 1페이지(이름·메일·생년월일·채널·계정 URL·동의)만 받는다.
-// 나머지 열(후리가나·전화·학교·보호자·계좌·인보이스 등)은 비워 두고, 관리 시트에서 직접 입력한다.
+// 2026-10 개편: 웹 신청서는 1페이지(이름·휴대폰·메일·생년월일·채널·계정 URL·동의)만 받는다.
+// 나머지 열(후리가나·학교·보호자·계좌·인보이스 등)은 비워 두고, 관리 시트에서 직접 입력한다.
 function doPost(e) {
   let d;
   try {
@@ -86,7 +87,8 @@ function doGet() {
 function validate_(d) {
   const s = k => String(d[k] == null ? '' : d[k]).trim();
   const bad = [];
-  ['name', 'email', 'channel', 'accUrl'].forEach(k => { if (!s(k)) bad.push(k); });
+  ['name', 'phone', 'email', 'channel', 'accUrl'].forEach(k => { if (!s(k)) bad.push(k); });
+  if (s('phone') && !/^0[789]0\d{8}$/.test(s('phone').replace(/\D/g, ''))) bad.push('phone'); // 휴대폰(070/080/090)만
   if (s('email') && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s('email'))) bad.push('email');
   if (!/^\d{4}-\d{1,2}-\d{1,2}$/.test(s('birth'))) bad.push('birth');
   if (s('accUrl') && !/^https?:\/\/\S+$/.test(s('accUrl'))) bad.push('accUrl');
@@ -113,6 +115,7 @@ function writeRow_(d) {
   const cells = [
     [H.ts, now],
     [H.name, s('name')],
+    [H.phone, phone_(s('phone'))],
     [H.email, s('email')],
     [H.birth, new Date(y, m - 1, day, 12)], // 정오로 저장 → 스크립트·시트 시간대가 달라도 날짜가 하루 밀리지 않음
     [H.minor, minor_(y, m, day, now)],      // 생년월일로 자동 판별
@@ -155,6 +158,26 @@ function writeRow_(d) {
     })]);
     i = j + 1;
   }
+
+  // 미러링 시트의 「연락처」 열(직접 입력 열)에도 같은 행에 휴대폰 번호를 넣는다
+  writeMirrorPhone_(r, phone_(s('phone')));
+}
+
+function writeMirrorPhone_(r, phone) {
+  const mir = SpreadsheetApp.openById(SHEET_ID).getSheets().find(x => x.getSheetId() === MIRROR_GID);
+  if (!mir) return;
+  const heads = mir.getRange(1, 1, 1, mir.getLastColumn()).getValues()[0].map(String);
+  const c = heads.findIndex(h => h.includes('연락처')) + 1;
+  if (!c) return;
+  const cell = mir.getRange(r, c);
+  if (cell.getFormula() || cell.getValue() !== '') return; // 수식이나 기존 값은 덮어쓰지 않음
+  cell.setNumberFormat('@').setValue(phone);
+}
+
+// 휴대폰 번호를 090-1234-5678 형식으로 (하이픈이 없으면 표 열이 숫자로 바꿔 앞자리 0이 사라짐)
+function phone_(v) {
+  const d = String(v).replace(/\D/g, '');
+  return d.length === 11 ? d.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3') : String(v);
 }
 
 function json_(o) {

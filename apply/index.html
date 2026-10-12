@@ -255,6 +255,11 @@ body.modal-open{overflow:hidden}
             <input class="input" id="name" name="name" autocomplete="name" placeholder="例：山田太郎">
             <p class="err">本名を、スペースを入れずにご記入ください。</p>
           </div>
+          <div class="field" data-v="mobile">
+            <label class="label" for="phone">電話番号（携帯）<span class="badge">必須</span></label>
+            <input class="input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="例：090-1234-5678">
+            <p class="err">携帯電話の番号（070・080・090から始まる11桁）をご記入ください。</p>
+          </div>
           <div class="field" data-v="email">
             <label class="label" for="email">メールアドレス<span class="badge">必須</span></label>
             <input class="input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="例：example@socra.ai">
@@ -392,9 +397,12 @@ function isMinor() {
 }
 
 // ---------- 검증 ----------
+const digits = v => v.replace(/[０-９]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xFEE0)).replace(/\D/g, '');
 const rules = {
   kanjiName: el => val(el) !== '' && !/\s/.test(f[el].value.trim()),
   email: el => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val(el)),
+  // 휴대폰만: 070/080/090 + 8자리 (하이픈·공백·전각 숫자 허용)
+  mobile: el => /^0[789]0\d{8}$/.test(digits(val(el))),
   url: el => /^https?:\/\/\S+$/.test(val(el)),
 };
 function check(field) {
@@ -458,7 +466,7 @@ form.addEventListener('submit', e => e.preventDefault());
 
 // ---------- 전송 ----------
 const collect = () => ({
-  name: val('name'), email: val('email'),
+  name: val('name'), phone: digits(val('phone')), email: val('email'),
   birth: `${f.by.value}-${f.bm.value}-${f.bd.value}`,
   channel: radio('channel'), accUrl: val('accUrl'),
   agree: f.agree.checked,
