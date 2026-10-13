@@ -524,7 +524,7 @@ loadDraft();
 // iframe 안에서는 픽셀 쿠키가 third-party가 되어 Safari 등에서 전환이 잡히지 않는다.
 // 프로토콜은 socra-ai-web 저장소 docs/contracts/iframe-bridge.md 를 따른다.
 const SNS_CHANNEL_CODE = { 'Instagram': 'instagram', 'TikTok': 'tiktok', 'X （Twitter）': 'x', 'YouTube': 'youtube' };
-const bridge = window.scholarshipBridge;
+const bridge = window.scholarshipBridge || { emit() {} };
 
 // ---------- 링크 ----------
 document.querySelectorAll('a[href^="http"]').forEach(a => {
