@@ -1,0 +1,38 @@
+/* 안전 영역은 부모가 CSS px로 보낸다. 배경은 유지하고 콘텐츠만 안쪽으로 옮긴다. */
+:root { --host-safe-area-top: 0px; --host-safe-area-bottom: 0px; }
+html[data-scholarship-webview] { scroll-padding-top: var(--host-safe-area-top); }
+html[data-scholarship-webview] .hero {
+  border-top: var(--host-safe-area-top) solid transparent;
+  background-origin: border-box;
+}
+html[data-scholarship-webview] .cta::before,
+html[data-scholarship-webview] .cta::after {
+  bottom: calc(-1 * var(--host-safe-area-bottom));
+}
+html[data-scholarship-webview] .footer,
+html[data-scholarship-webview] .cta {
+  border-bottom: var(--host-safe-area-bottom) solid transparent;
+}
+html[data-scholarship-webview][data-scholarship-page="apply"] .home-btn {
+  top: calc(16px + var(--host-safe-area-top));
+}
+html[data-scholarship-webview] .modal,
+html[data-scholarship-webview] .lightbox {
+  padding-top: calc(20px + var(--host-safe-area-top));
+  padding-bottom: calc(20px + var(--host-safe-area-bottom));
+}
+html[data-scholarship-webview] .modal-card {
+  max-height: calc(100dvh - var(--host-safe-area-top) - var(--host-safe-area-bottom) - 40px);
+  overflow-y: auto;
+}
+html[data-scholarship-webview] .lightbox img {
+  max-height: min(88vh, calc(100dvh - var(--host-safe-area-top) - var(--host-safe-area-bottom) - 40px));
+}
+html[data-scholarship-webview] .lightbox .close {
+  top: calc(14px + var(--host-safe-area-top));
+}
+@media (min-width: 960px) {
+  html[data-scholarship-webview][data-scholarship-page="apply"] .home-btn {
+    top: calc(20px + var(--host-safe-area-top));
+  }
+}
