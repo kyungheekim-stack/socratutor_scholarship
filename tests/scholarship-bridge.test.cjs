@@ -19,7 +19,7 @@ function createChild(page = 'landing', embedded = true) {
   vm.runInNewContext(source, { window, document: { documentElement: root,
     addEventListener: (name, listener) => { listeners[name] = listener; } },
     addEventListener: (name, listener) => { listeners[name] = listener; },
-    crypto: { randomUUID: () => 'document-1' }, setTimeout: () => {}, URL,
+    crypto: { randomUUID: () => 'document-1' }, setTimeout: () => {}, requestAnimationFrame: fn => fn(), URL,
     location: { origin: 'https://socratutor-scholarship.vercel.app' }, Element: Anchor });
   const send = (message, origin = 'https://socra-ai-web-stg.vercel.app', sender = parent) => listeners.message?.({ source: sender, origin,
     data: { channel: 'socra-iframe-bridge', version: 1, sessionId: 'session-1', ...message } });
@@ -88,4 +88,23 @@ test('다른 origin·문서·version의 welcome은 연결로 인정하지 않는
   child.send({ kind: 'welcome', documentId: 'other' });
   child.send({ kind: 'welcome', documentId: 'document-1', version: 2 });
   assert.equal(child.window.scholarshipBridge.connected, false);
+});
+
+
+test('모드와 안전 영역을 모두 반영한 뒤에만 표시 준비를 알린다', async () => {
+  const child = createChild(); child.connect(); child.context(true);
+  await Promise.resolve();
+  assert.equal(child.messages.some(({message}) => message.name === 'scholarship-layout-ready'), false);
+  child.send({kind:'event', name:'host-safe-area-changed', payload:{safeArea:{top:0,bottom:34}}});
+  await Promise.resolve();
+  assert.deepEqual(JSON.parse(JSON.stringify(child.messages.at(-1).message.payload)), {isWebView:true,safeArea:{top:0,bottom:34}});
+  assert.equal(child.messages.at(-1).message.name, 'scholarship-layout-ready');
+});
+
+test('초기 레이아웃 준비 중 변경된 inset은 최신 값만 응답한다', async () => {
+  const child = createChild(); child.connect(); child.context(true);
+  for (const bottom of [34,24]) child.send({kind:'event',name:'host-safe-area-changed',payload:{safeArea:{top:0,bottom}}});
+  await Promise.resolve();
+  const ready = child.messages.filter(({message})=>message.name==='scholarship-layout-ready');
+  assert.equal(ready.length,1);assert.equal(ready[0].message.payload.safeArea.bottom,24);
 });

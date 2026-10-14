@@ -9,6 +9,7 @@
   ];
   const documentId = crypto.randomUUID();
   let origin = null, sessionId = null, seq = 0, isWebView = false;
+  let hasContext = false, safeArea = null, layoutRevision = 0;
   const post = message => window.parent.postMessage({ channel: CHANNEL, ...message }, origin);
   const bridge = {
     get connected() { return sessionId !== null; },
@@ -18,6 +19,15 @@
     request(name, payload) {
       if (sessionId) post({ kind: 'request', version: 1, sessionId, id: `${documentId}-${++seq}`, name, payload });
     },
+  };
+  const notifyLayoutReady = () => {
+    if (!hasContext || !safeArea) return;
+    const revision = ++layoutRevision;
+    const fontsReady = document.fonts?.ready ?? Promise.resolve();
+    fontsReady.then(() => requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (revision !== layoutRevision || !sessionId) return;
+      bridge.emit('scholarship-layout-ready', { isWebView, safeArea });
+    })));
   };
   window.scholarshipBridge = bridge;
 
@@ -29,7 +39,9 @@
     if (message.kind === 'welcome') {
       if (message.documentId !== documentId || message.version !== 1 ||
           typeof message.sessionId !== 'string' || !message.sessionId || message.sessionId.length > 128) return;
-      if (sessionId !== message.sessionId) isWebView = false;
+      if (sessionId !== message.sessionId) {
+        isWebView = false; hasContext = false; safeArea = null; layoutRevision++;
+      }
       origin = event.origin;
       sessionId = message.sessionId;
       post({ kind: 'ready', version: 1, sessionId });
@@ -39,13 +51,17 @@
     if (message.name === 'host-scholarship-context-changed') {
       if (typeof message.payload?.isWebView !== 'boolean') return;
       isWebView = message.payload.isWebView;
+      hasContext = true;
       document.documentElement.toggleAttribute('data-scholarship-webview', isWebView);
+      notifyLayoutReady();
     }
     if (message.name === 'host-safe-area-changed') {
-      const safeArea = message.payload?.safeArea;
-      if (!safeArea || ![safeArea.top, safeArea.bottom].every(value => Number.isFinite(value) && value >= 0)) return;
+      const nextSafeArea = message.payload?.safeArea;
+      if (!nextSafeArea || ![nextSafeArea.top, nextSafeArea.bottom].every(value => Number.isFinite(value) && value >= 0)) return;
+      safeArea = { top: nextSafeArea.top, bottom: nextSafeArea.bottom };
       document.documentElement.style.setProperty('--host-safe-area-top', `${safeArea.top}px`);
       document.documentElement.style.setProperty('--host-safe-area-bottom', `${safeArea.bottom}px`);
+      notifyLayoutReady();
     }
   });
   let tries = 0;
