@@ -14,7 +14,7 @@ html[data-scholarship-webview] .cta {
   border-bottom: var(--host-safe-area-bottom) solid transparent;
 }
 html[data-scholarship-webview][data-scholarship-page="apply"] .home-btn {
-  top: calc(16px + var(--host-safe-area-top));
+  display: none;
 }
 html[data-scholarship-webview] .modal,
 html[data-scholarship-webview] .lightbox {
@@ -30,9 +30,4 @@ html[data-scholarship-webview] .lightbox img {
 }
 html[data-scholarship-webview] .lightbox .close {
   top: calc(14px + var(--host-safe-area-top));
-}
-@media (min-width: 960px) {
-  html[data-scholarship-webview][data-scholarship-page="apply"] .home-btn {
-    top: calc(20px + var(--host-safe-area-top));
-  }
 }
