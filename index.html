@@ -56,8 +56,16 @@ ol{list-style:none}
 .em-pink{color:#e4405f}
 .em-blue{color:var(--blue-550)}
 
-/* 게시물 비주얼(카드·프로필·코인·+100円 말풍선을 Figma에서 한 장으로 내보냄, 배경 투명) */
-.hero-visual{position:absolute;left:90px;top:268px;width:290px;height:auto}
+/* 게시물 비주얼: 카드·프로필·코인은 이미지(Figma 내보내기), +100円 말풍선은 코드 — Figma 좌표(335×200 기준) 그대로 */
+.hero-visual{position:absolute;left:90px;top:268px;width:335px;height:200px;transform:scale(.838);transform-origin:top left}
+.hero-visual .base{position:absolute;left:0;top:0;width:335px;height:auto}
+.yen{position:absolute;left:calc(var(--x) * 1px);top:calc(var(--y) * 1px);padding:calc(var(--pt) * 1px) calc(var(--pl) * 1px);border-radius:99px;background:#fff;
+  box-shadow:0 2px 6px rgba(58,130,219,.22);font-size:calc(var(--fs) * 1px);font-weight:700;line-height:1.5;color:#e4405f;white-space:nowrap;
+  --rd:calc(var(--r) * -1deg); transform-origin:top left;transform:rotate(var(--rd));opacity:var(--op);
+  animation:yen-up .38s cubic-bezier(.2,.9,.3,1.25) both;animation-delay:calc(250ms + var(--i) * 110ms)}
+/* 첫 진입 시 코인 쪽(아래)부터 하나씩 빠르게 떠오름 */
+@keyframes yen-up{from{opacity:0;transform:translateY(12px) rotate(var(--rd)) scale(.6)}to{opacity:var(--op);transform:rotate(var(--rd))}}
+@media (prefers-reduced-motion:reduce){.yen{animation:none}}
 
 /* ---------- Section common ---------- */
 .sec-head{display:flex;align-items:flex-start;height:17px;padding-left:48px}
@@ -203,7 +211,7 @@ ol{list-style:none}
   .col{width:auto;margin:0;zoom:1}
 
   /* Hero */
-  .hero .col{height:auto;padding:28px 20px 8px}
+  .hero .col{height:auto;padding:28px 20px 24px}
   .badge{position:relative;left:auto;top:auto;width:61px;height:29px}
   .badge i{left:7.5px;top:10px;width:7.5px;height:7.5px}
   .badge span{left:19px;top:4px;font-size:11px}
@@ -214,7 +222,7 @@ ol{list-style:none}
   .hero-h2 .l2{letter-spacing:inherit}
   .hero-chip{position:static;display:inline-block;margin-top:16px;padding:5px 12px;font-size:11px}
   .hero-sub{position:static;font-size:12px;line-height:1.65;white-space:normal}
-  .hero-visual{position:static;display:block;width:346px;max-width:none;margin-top:30px}
+  .hero-visual{position:relative;left:auto;top:auto;margin-top:29px;transform:none}
 
   /* Section common */
   .about{padding-top:56px}
@@ -317,10 +325,7 @@ ol{list-style:none}
   .footer-links a{font-size:10px;line-height:1.65;text-align:right}
   .footer .copy{margin:0;font-size:10px}
 }
-/* 폭이 아주 좁은 폰: 비주얼이 화면 밖으로 나가지 않게 */
-@media (max-width:385px){
-  .hero-visual{width:calc(100vw - 29px)}
-}
+
 </style>
 <link rel="stylesheet" href="/assets/scholarship-embed.css">
 </head>
@@ -336,7 +341,10 @@ ol{list-style:none}
       <p class="hero-chip">大学生・高校生・中学生みんなOK！</p>
       <p class="hero-sub">先着100名特典の<b class="em-pink">参考書も無料でもらえて</b>、<br>自分のリンクで登録した<br>友だちの数だけ<b class="em-blue">おこづかいもGET！</b></p>
 
-      <img class="hero-visual" src="assets/hero-visual.png" alt="勉強垢の投稿から、+100円がどんどん貯まるイメージ" width="346" height="216">
+      <div class="hero-visual" role="img" aria-label="勉強垢の投稿から、+100円がどんどん貯まるイメージ">
+        <img class="base" src="assets/hero-visual-base.png" alt="" width="335" height="216">
+        <div aria-hidden="true"><span class="yen" style="--x:262;--y:4;--r:-8;--op:0.18;--fs:7;--pt:2;--pl:6;--i:7">+100円</span><span class="yen" style="--x:298;--y:14;--r:10;--op:0.28;--fs:8;--pt:3;--pl:7;--i:6">+100円</span><span class="yen" style="--x:270;--y:34;--r:-4;--op:0.38;--fs:8;--pt:3;--pl:7;--i:5">+100円</span><span class="yen" style="--x:240;--y:50;--r:12;--op:0.5;--fs:10;--pt:4;--pl:9;--i:4">+100円</span><span class="yen" style="--x:288;--y:64;--r:5;--op:0.62;--fs:9;--pt:3;--pl:8;--i:3">+100円</span><span class="yen" style="--x:252;--y:82;--r:-10;--op:0.75;--fs:10;--pt:4;--pl:9;--i:2">+100円</span><span class="yen" style="--x:276;--y:100;--r:7;--op:0.9;--fs:11;--pt:4;--pl:9;--i:1">+100円</span><span class="yen" style="--x:240;--y:122;--r:-5;--op:1;--fs:12;--pt:4;--pl:10;--i:0">+100円</span></div>
+      </div>
     </div>
   </section>
 
@@ -493,6 +501,16 @@ ol{list-style:none}
 </footer>
 
 <script src="/assets/scholarship-bridge.js"></script>
+<script>
+// 폭이 좁은 폰(375px 미만): 히어로 비주얼(335×200 좌표)을 화면 폭에 맞춰 축소
+(function(){
+  const v=document.querySelector('.hero-visual'); if(!v) return;
+  const fit=()=>{ const w=document.documentElement.clientWidth;
+    if(w<375){ const k=(w-40)/335; v.style.transform='scale('+k+')'; v.style.transformOrigin='top left'; v.style.marginBottom=(200*(k-1))+'px'; }
+    else { v.style.transform=''; v.style.marginBottom=''; } };
+  fit(); addEventListener('resize',fit);
+})();
+</script>
 <script>
 // 태블릿·PC: 440px 웹 디자인을 화면 폭에 맞춰 확대 (MAX_WIDTH까지). 휴대폰(768px 미만)은 모바일 레이아웃이라 확대하지 않음
 const DESIGN_WIDTH = 440, MAX_WIDTH = 760, MOBILE_MAX = 767.98;
