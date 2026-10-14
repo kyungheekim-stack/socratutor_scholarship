@@ -36,7 +36,7 @@ ol{list-style:none}
 
 /* ---------- Hero ---------- */
 .hero{background:linear-gradient(153.05deg,#fdfdfd 2.29%,#b3e0ff 99.7%);overflow:hidden}
-.hero .col{height:295px}
+.hero .col{height:460px}
 .badge{position:absolute;left:54px;top:33px;width:49px;height:23px;border:1px solid var(--pink-700);border-radius:30px;background:rgba(255,255,255,.1)}
 .badge i{position:absolute;left:6px;top:8px;width:6px;height:6px;animation:blink 1.4s ease-in-out infinite}
 /* 반짝임: 점이 깜빡이며 바깥으로 퍼지는 링 */
@@ -56,17 +56,8 @@ ol{list-style:none}
 .em-pink{color:#e4405f}
 .em-blue{color:var(--blue-550)}
 
-.bubble{position:absolute;border-radius:232px;overflow:hidden;border:.5px solid #e4e4e4;box-shadow:0 0 10.4px rgba(0,0,0,.13);transform-origin:top left}
-/* SNS 아이콘: 서브 카피 오른쪽에 작게 모아 둠 */
-.b-ig{left:313px;top:194px;transform:scale(.62);width:66px;height:66px;background:rgba(255,255,255,.8)}
-.b-ig img{position:absolute;left:11.5px;top:12.5px;width:40px;height:40px;object-fit:cover;opacity:.8}
-.b-x{left:377px;top:223px;transform:scale(.61);width:41px;height:41px;background:rgba(255,255,255,.45);border-width:.25px}
-.b-x img{position:absolute;left:10.75px;top:11.75px;width:19px;height:17px;object-fit:cover;opacity:.45}
-.b-tt{left:358px;top:150px;transform:scale(.66);width:79px;height:79px;background:rgba(255,255,255,.6)}
-.b-tt .clip{position:absolute;left:16.5px;top:16.5px;width:44px;height:44px;overflow:hidden;opacity:.6}
-.b-tt .clip img{position:absolute;left:-7.66%;top:-7.59%;width:118.02%;height:117.09%}
-.b-yt{left:354px;top:253px;transform:scale(.585);width:41px;height:41px;background:rgba(255,255,255,.3)}
-.b-yt img{position:absolute;left:7.5px;top:11.5px;width:25.705px;height:18px;object-fit:cover;opacity:.3}
+/* 게시물 비주얼(카드·프로필·코인·+100円 말풍선을 Figma에서 한 장으로 내보냄, 배경 투명) */
+.hero-visual{position:absolute;left:90px;top:268px;width:290px;height:auto}
 
 /* ---------- Section common ---------- */
 .sec-head{display:flex;align-items:flex-start;height:17px;padding-left:48px}
@@ -212,7 +203,7 @@ ol{list-style:none}
   .col{width:auto;margin:0;zoom:1}
 
   /* Hero */
-  .hero .col{height:auto;padding:28px 20px 42px}
+  .hero .col{height:auto;padding:28px 20px 8px}
   .badge{position:relative;left:auto;top:auto;width:61px;height:29px}
   .badge i{left:7.5px;top:10px;width:7.5px;height:7.5px}
   .badge span{left:19px;top:4px;font-size:11px}
@@ -223,11 +214,7 @@ ol{list-style:none}
   .hero-h2 .l2{letter-spacing:inherit}
   .hero-chip{position:static;display:inline-block;margin-top:16px;padding:5px 12px;font-size:11px}
   .hero-sub{position:static;font-size:12px;line-height:1.65;white-space:normal}
-  .bubble{transform-origin:top right}
-  .b-tt{left:auto;right:26.7px;top:152px;transform:scale(.595)}
-  .b-ig{left:auto;right:78px;top:192px;transform:scale(.56)}
-  .b-x{left:auto;right:34px;top:218px;transform:scale(.56)}
-  .b-yt{left:auto;right:56.4px;top:246px;transform:scale(.524)}
+  .hero-visual{position:static;display:block;width:346px;max-width:none;margin-top:30px}
 
   /* Section common */
   .about{padding-top:56px}
@@ -330,9 +317,9 @@ ol{list-style:none}
   .footer-links a{font-size:10px;line-height:1.65;text-align:right}
   .footer .copy{margin:0;font-size:10px}
 }
-/* 폭이 아주 좁은 폰(360px 이하): 서브 카피와 겹치지 않게 SNS 아이콘을 더 작게, 오른쪽으로 */
-@media (max-width:360px){
-  .b-tt{right:14px;transform:scale(.5)} .b-ig{right:58px;transform:scale(.46)} .b-x{right:20px;transform:scale(.46)} .b-yt{right:40px;transform:scale(.44)}
+/* 폭이 아주 좁은 폰: 비주얼이 화면 밖으로 나가지 않게 */
+@media (max-width:385px){
+  .hero-visual{width:calc(100vw - 29px)}
 }
 </style>
 <link rel="stylesheet" href="/assets/scholarship-embed.css">
@@ -349,10 +336,7 @@ ol{list-style:none}
       <p class="hero-chip">大学生・高校生・中学生みんなOK！</p>
       <p class="hero-sub">先着100名特典の<b class="em-pink">参考書も無料でもらえて</b>、<br>自分のリンクで登録した<br>友だちの数だけ<b class="em-blue">おこづかいもGET！</b></p>
 
-      <div class="bubble b-tt" aria-hidden="true"><div class="clip"><img src="assets/tiktok.png" alt=""></div></div>
-      <div class="bubble b-ig" aria-hidden="true"><img src="assets/instagram.png" alt=""></div>
-      <div class="bubble b-x" aria-hidden="true"><img src="assets/x.png" alt=""></div>
-      <div class="bubble b-yt" aria-hidden="true"><img src="assets/youtube.png" alt=""></div>
+      <img class="hero-visual" src="assets/hero-visual.png" alt="勉強垢の投稿から、+100円がどんどん貯まるイメージ" width="346" height="216">
     </div>
   </section>
 
