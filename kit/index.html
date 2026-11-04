@@ -162,6 +162,101 @@ b,strong{font-weight:700}
 
 html[data-scholarship-webview] .viewer{padding-top:calc(16px + var(--host-safe-area-top));padding-bottom:calc(32px + var(--host-safe-area-bottom))}
 
+/* ================= v3 (2026-11) : 큰 글씨 · SNS 로고 · 목업→소재 레이아웃 ================= */
+.sec-head h2{font-size:20px}
+.hero .lead{font-size:13px}
+.quick > p{font-size:12px}
+.quick-links .l{font-size:13px}
+.quick-links .lg{flex:none;width:22px;height:22px;border-radius:5px;object-fit:contain}
+.callout .t{font-size:13px}
+.callout .b{font-size:12px}
+.callout.tip .b{font-size:13px}
+.check p{font-size:12px}
+.contact > p{font-size:12px}
+.guide-link b,.guide-link span{font-size:12px}
+.lv{font-size:11px}
+.pc-head b{font-size:13px}
+.btn{font-size:13px}
+.tabs button{font-size:12px}
+
+/* SNS 탭 (로고 위, 이름 아래) */
+.tabs.sns{border-radius:18px}
+.tabs.sns button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 4px 6px;border-radius:14px;font-size:11px}
+.tabs.sns img{width:20px;height:20px;object-fit:contain;opacity:.55}
+.tabs.sns button[aria-selected="true"] img{opacity:1}
+
+/* SNS 카드 */
+.pf-card{gap:0;padding:0;overflow:hidden;border-radius:14px}
+.pf-head{display:flex;flex-direction:column;gap:12px;padding:16px 16px 14px}
+.pf-name{font-size:18px;gap:10px}
+.pf-name img{width:26px;height:26px;border-radius:6px;object-fit:contain}
+.pf-card > .panel{gap:0}
+.pf-body{display:flex;flex-direction:column;gap:18px;padding:16px 16px 18px}
+
+/* 게시 이미지(목업) → 이 소재를 사용(원본) */
+.compare{display:flex;align-items:center;gap:8px;padding:4px 16px}
+.cmp-l,.cmp-r{display:flex;flex-direction:column;gap:6px}
+.cmp-l{flex:none;align-items:center}
+.cmp-l > b{font-size:11px;line-height:1.5;color:var(--gray-700)}
+.cmp-r{flex:1;min-width:0;max-width:260px}
+.cmp-r .chip{align-self:flex-start;padding:2px 9px;border-radius:99px;background:var(--red-500);font-size:11px;line-height:1.5;color:#fff}
+.cmp-arr{flex:none;width:22px;height:22px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M3 11h14M12 5.5L17.5 11 12 16.5' stroke='%233a82db' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E") center/22px no-repeat}
+.src-img{width:100%;height:auto;object-fit:cover;object-position:top;border-radius:10px;border:.5px solid rgba(58,130,219,.25)}
+.src-car{position:relative}
+.src-car .track{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;border-radius:10px;scrollbar-width:none}
+.src-car .track::-webkit-scrollbar{display:none}
+.src-car img{flex:none;width:100%;height:auto;object-fit:cover;object-position:top;scroll-snap-align:start;border-radius:10px;border:.5px solid rgba(58,130,219,.25)}
+.src-car .cnt{position:absolute;top:8px;right:8px;padding:2px 7px;border-radius:99px;background:rgba(14,39,89,.7);font-size:10px;font-weight:700;line-height:1.5;color:#fff}
+.cmp-r .vwrap{border-radius:10px;overflow:hidden}
+.cmp-r video{width:100%;aspect-ratio:9/16;object-fit:cover;object-position:top;display:block;border-radius:10px;background:#000}
+.vtag{position:absolute;top:8px;left:8px;padding:2px 8px;border-radius:99px;background:rgba(0,0,0,.55);font-size:10px;font-weight:700;line-height:1.5;color:#fff;pointer-events:none;transition:opacity .2s}
+.vwrap.playing .vtag{opacity:0}
+.swipe{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:500;line-height:1.5;color:var(--gray-700)}
+.swipe i{display:inline-flex;align-items:center;gap:4px;flex:none}
+.swipe i::before{content:"";width:18px;height:7px;border-radius:4px;background:var(--blue-550)}
+.swipe i::after{content:"";width:7px;height:7px;border-radius:50%;background:#c8d2e1}
+
+/* 간결한 단계 */
+.csteps{display:flex;flex-direction:column;gap:14px}
+.csteps li{display:flex;gap:10px;align-items:flex-start}
+.cn{flex:none;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:99px;background:var(--blue-500);font-size:11px;font-weight:700;color:#fff}
+.csteps h4{font-size:13px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.csteps p{font-size:11.5px;font-weight:400;line-height:1.6;color:var(--gray-800)}
+
+/* 복사 박스 */
+.copybox{padding:16px}
+.cb-label{font-size:10px}
+.cb-btn{font-size:11px}
+.cb-text{font-size:13px}
+
+/* ---------- 휴대폰 목업 ---------- */
+.phone{width:100px;height:206px;padding:3px;border-radius:16px;background:#141418;flex:none}
+.phone .scr{position:relative;width:100%;height:100%;border-radius:13px;overflow:hidden;background:#fff center top/cover no-repeat;font-style:normal}
+.phone i{font-style:normal}
+.phone .who{position:absolute;top:10px;left:5px;display:flex;align-items:center;gap:3px;font-size:5px;font-weight:700;color:#fff}
+.phone .who b{width:9px;height:9px;border-radius:50%;background:#d62976}
+.phone .who.dark{position:static;color:#141418;margin:8px 5px 4px}
+.phone .who.dark b{background:#788296}
+.story .scr::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.12)}
+.story .bars{position:absolute;top:5px;left:5px;right:5px;display:flex;gap:2px}
+.story .bars b{flex:1;height:1.5px;border-radius:1px;background:#fff}
+.story .bars b + b{opacity:.5}
+.story .st{position:absolute;left:8px;right:8px;top:92px;display:flex;flex-direction:column;align-items:center;gap:5px}
+.story .st p{padding:4px 5px;border-radius:5px;background:rgba(255,255,255,.92);font-size:5px;font-weight:700;line-height:1.4;color:#141418}
+.story .sticker{padding:3px 6px;border-radius:99px;background:#fff;font-size:5px;font-weight:700;color:var(--blue-550);white-space:nowrap}
+.feed img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top}
+.feed .ico,.xp .ico{display:block;margin:3px 5px;font-size:7px;color:#141418}
+.feed p,.xp p{margin:0 5px;font-size:5px;font-weight:500;line-height:1.4;color:#141418;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.video .scr::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(transparent,rgba(0,0,0,.65))}
+.video .side{position:absolute;right:6px;top:104px;z-index:1;font-size:9px;line-height:1.9;color:#fff;text-align:center}
+.video .pl{position:absolute;left:36px;top:80px;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.85) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M9 7v8l6-4z' fill='%233a82db'/%3E%3C/svg%3E") center/22px no-repeat}
+.video .cap{position:absolute;left:5px;right:22px;bottom:8px;z-index:1;color:#fff}
+.video .cap b{display:block;font-size:5.5px}
+.video .cap p{font-size:5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.xp em{display:block;margin:2px 5px;font-style:normal;font-size:5px;color:var(--blue-550)}
+.xp .two{display:flex;gap:3px;margin:4px 5px}
+.xp .two img{width:50%;aspect-ratio:41/52;object-fit:cover;object-position:top;border-radius:4px}
+
 </style>
 <link rel="stylesheet" href="/assets/scholarship-embed.css">
 </head>
@@ -173,15 +268,15 @@ html[data-scholarship-webview] .viewer{padding-top:calc(16px + var(--host-safe-a
   <div class="wrap">
     <div class="title-row"><img src="/guide/assets/logo-tutor.svg" alt="Socra Tutor" width="172" height="20"><span>奨学生</span></div>
     <h1>Contents Kit</h1>
-    <p class="lead">はじめての投稿は、このキットだけでOK！<br><b>問題を選ぶ → Socra Tutorに質問して撮る → コピペで投稿</b><br>の3ステップで完了します。<br>投稿するSNSを選んで、そのまま進めてください。</p>
+    <p class="lead">はじめての投稿は、このキットだけでOK！<br><b>問題を選ぶ → 質問して撮る → コピペで投稿</b><br>の3ステップで完了します。<br>投稿するSNSを選んで、そのまま進めてください。</p>
     <nav class="quick" aria-label="投稿するSNSを選んで Go">
       <p>投稿するSNSを選んで Go</p>
       <div class="quick-links">
         <a href="#problem"><span class="n">1</span><span class="l">問題を選んで保存する</span><span class="arr">↓</span></a>
-        <a href="#instagram"><span class="n">2</span><span class="l">Instagram（ストーリーズ・投稿・リール）</span><span class="arr">↓</span></a>
-        <a href="#tiktok"><span class="n">3</span><span class="l">TikTok</span><span class="arr">↓</span></a>
-        <a href="#x"><span class="n">4</span><span class="l">X</span><span class="arr">↓</span></a>
-        <a href="#youtube"><span class="n">5</span><span class="l">YouTube（ショート・動画）</span><span class="arr">↓</span></a>
+        <a href="#instagram"><img class="lg" src="/kit/assets/instagram.svg" alt=""><span class="l">Instagram（ストーリーズ・投稿・リール）</span><span class="arr">↓</span></a>
+        <a href="#tiktok"><img class="lg" src="/kit/assets/tiktok.svg" alt=""><span class="l">TikTok</span><span class="arr">↓</span></a>
+        <a href="#x"><img class="lg" src="/kit/assets/x.png" alt=""><span class="l">X</span><span class="arr">↓</span></a>
+        <a href="#youtube"><img class="lg" src="/kit/assets/youtube.png" alt=""><span class="l">YouTube（ショート・動画）</span><span class="arr">↓</span></a>
       </div>
     </nav>
   </div>
@@ -191,10 +286,10 @@ html[data-scholarship-webview] .viewer{padding-top:calc(16px + var(--host-safe-a
 <!-- ================= 1. Problem ================= -->
 <section class="sec" id="problem">
   <div class="wrap g24">
-    <div class="sec-head"><img src="/assets/light.png" alt=""><h2>問題を選んで保存する</h2><span>|   Problem</span></div>
+    <div class="sec-head"><img src="/assets/light.png" alt=""><h2>問題を選んで保存する</h2></div>
     <div class="callout hl"><p class="t">自分の学年に合う問題を1つ選ぼう</p><p class="b">タップすると大きく表示されます。画像を保存したら、Socra Tutor で「アルバム」から読み込んで質問してください。</p></div>
     <div class="picker">
-      <div class="tabs" role="tablist" data-tabs="level"><button type="button" role="tab" id="tab-lv-mid" aria-controls="panel-lv-mid" aria-selected="true" tabindex="0">中学生</button><button type="button" role="tab" id="tab-lv-high" aria-controls="panel-lv-high" aria-selected="false" tabindex="-1">高校生</button><button type="button" role="tab" id="tab-lv-uni" aria-controls="panel-lv-uni" aria-selected="false" tabindex="-1">大学生</button></div>
+      <div class="tabs" role="tablist" data-tabs="level"><button type="button" role="tab" id="tab-lv-mid" aria-controls="panel-lv-mid" aria-selected="true" tabindex="0"><span>中学生</span></button><button type="button" role="tab" id="tab-lv-high" aria-controls="panel-lv-high" aria-selected="false" tabindex="-1"><span>高校生</span></button><button type="button" role="tab" id="tab-lv-uni" aria-controls="panel-lv-uni" aria-selected="false" tabindex="-1"><span>大学生</span></button></div>
       <div class="panel" role="tabpanel" id="panel-lv-mid" aria-labelledby="tab-lv-mid">
         <div class="pcard">
           <div class="pc-head"><span class="lv">中学生</span><b>数学｜連立方程式</b></div>
@@ -219,21 +314,14 @@ html[data-scholarship-webview] .viewer{padding-top:calc(16px + var(--host-safe-a
 <!-- ================= 2. Post ================= -->
 <section class="sec tint" id="post">
   <div class="wrap g24">
-    <div class="sec-head"><img src="/assets/light.png" alt=""><h2>SNS別に投稿する</h2><span>|   Post</span></div>
+    <div class="sec-head"><img src="/assets/light.png" alt=""><h2>SNS別に投稿する</h2></div>
     <div class="callout"><p class="t">どのSNSでも流れは同じ</p><p class="b">① 質問した画面をスクショ（または画面収録）<br>② 下のテキストをコピーして貼り付け<br>③ 自分の専用リンクを設置して投稿</p></div>
     <div class="picker" id="platforms">
-      <div class="tabs" role="tablist" data-tabs="platform"><button type="button" role="tab" id="tab-instagram" aria-controls="panel-instagram" aria-selected="true" tabindex="0">Instagram</button><button type="button" role="tab" id="tab-tiktok" aria-controls="panel-tiktok" aria-selected="false" tabindex="-1">TikTok</button><button type="button" role="tab" id="tab-x" aria-controls="panel-x" aria-selected="false" tabindex="-1">X</button><button type="button" role="tab" id="tab-youtube" aria-controls="panel-youtube" aria-selected="false" tabindex="-1">YouTube</button></div>
-      <div class="panel" role="tabpanel" id="panel-instagram" aria-labelledby="tab-instagram">
-          <div class="pf-card">
-            <h3 class="pf-name"><i style="background:#d62976"></i>Instagram</h3>
-            <div class="tabs" role="tablist" data-tabs="format"><button type="button" role="tab" id="tab-ig-story" aria-controls="panel-ig-story" aria-selected="true" tabindex="0">ストーリーズ</button><button type="button" role="tab" id="tab-ig-feed" aria-controls="panel-ig-feed" aria-selected="false" tabindex="-1">フィード</button><button type="button" role="tab" id="tab-ig-reel" aria-controls="panel-ig-reel" aria-selected="false" tabindex="-1">リール</button></div>
-            <div class="panel" role="tabpanel" id="panel-ig-story" aria-labelledby="tab-ig-story"><div class="exs"><figure class="ex"><b>例）</b><img src="/kit/assets/story.jpg" alt="Instagram story example" style="aspect-ratio:9/16" loading="lazy"></figure></div><ol class="steps"><li class="step"><span class="pill">STEP 1</span><div class="body"><h4>問題を質問して、回答画面をスクショ</h4><p>回答が全部見えるところまでスクロールしてから撮ろう</p></div></li><li class="step"><span class="pill">STEP 2</span><div class="body"><h4>テキストをコピーして貼り付け</h4><p>ストーリーズの「Aa」テキストに、下の文章をそのまま貼り付け</p></div></li><li class="step"><span class="pill">STEP 3</span><div class="body"><h4>リンクスタンプで専用リンクを追加</h4><p>スタンプ → リンク → 自分の専用リンクを貼り付け</p></div></li><li class="step"><span class="pill">STEP 4</span><div class="body"><h4>投稿して完了！</h4><p>@socra_tutor をメンションするとさらに◎</p></div></li></ol><div class="copybox"><div class="cb-top"><span class="cb-label">テキスト</span><button type="button" class="cb-btn" data-copy>📋 コピー</button></div><p class="cb-text">#PR #socra_tutor 最近これ使ってるんだけど、わからない問題撮るだけでAI御三家が答えと解説出してくれるの助かる…🥹<br>無料だよ👇</p></div></div>
-            <div class="panel" role="tabpanel" id="panel-ig-feed" aria-labelledby="tab-ig-feed" hidden><div class="exs two"><figure class="ex"><b>1枚目：問題</b><img src="/kit/assets/ig-1.jpg" alt="Instagram feed example 1" style="aspect-ratio:4/5" loading="lazy"></figure><figure class="ex"><b>2枚目：回答</b><img src="/kit/assets/ig-2.jpg" alt="Instagram feed example 2" style="aspect-ratio:4/5" loading="lazy"></figure></div><ol class="steps"><li class="step"><span class="pill">STEP 1</span><div class="body"><h4>問題と回答をスクショ</h4><p>1枚目は問題、2枚目は回答がよく見えるように</p></div></li><li class="step"><span class="pill">STEP 2</span><div class="body"><h4>キャプションをコピーして投稿</h4><p>@socra_tutor をタグ付けするとさらに◎</p></div></li><li class="step"><span class="pill">STEP 3</span><div class="body"><h4>プロフィールに専用リンクを追加</h4><p>プロフィールを編集 → リンク → 外部リンクを追加</p></div></li></ol><div class="copybox"><div class="cb-top"><span class="cb-label">キャプション</span><button type="button" class="cb-btn" data-copy>📋 コピー</button></div><p class="cb-text">#PR #socra_tutor 最近これ使ってるんだけど、わからない問題撮るだけでAI御三家が答えと解説出してくれるの助かる…🥹<br>無料だからプロフのリンクから見てみて🔗</p></div></div>
-            <div class="panel" role="tabpanel" id="panel-ig-reel" aria-labelledby="tab-ig-reel" hidden><div class="exs"><figure class="ex ex-video"><b>▶ 動画の例</b><div class="vwrap"><video src="/kit/assets/example.mp4" poster="/kit/assets/story.jpg" playsinline muted loop preload="metadata"></video><button type="button" class="vplay" aria-label="動画を再生する"><span></span></button></div></figure></div><ol class="steps"><li class="step"><span class="pill">STEP 1</span><div class="body"><h4>画面収録をONにして質問</h4><p>問題を撮って質問し、回答をしっかり見せてから収録をOFF</p></div></li><li class="step"><span class="pill">STEP 2</span><div class="body"><h4>リールで動画を選んで、キャプションを貼り付け</h4><p>@socra_tutor をタグ付けするとさらに◎</p></div></li><li class="step"><span class="pill">STEP 3</span><div class="body"><h4>プロフィールに専用リンクを追加</h4><p>フィード投稿と同じリンクでOK</p></div></li></ol><div class="copybox"><div class="cb-top"><span class="cb-label">キャプション</span><button type="button" class="cb-btn" data-copy>📋 コピー</button></div><p class="cb-text">#PR #socra_tutor 最近これ使ってるんだけど、わからない問題撮るだけでAI御三家が答えと解説出してくれるの助かる…🥹<br>無料だからプロフのリンクから見てみて🔗</p></div></div>
-          </div></div>
-      <div class="panel" role="tabpanel" id="panel-tiktok" aria-labelledby="tab-tiktok" hidden><div class="pf-card"><h3 class="pf-name"><i style="background:#111"></i>TikTok</h3><div class="exs"><figure class="ex ex-video"><b>▶ 動画の例</b><div class="vwrap"><video src="/kit/assets/example.mp4" poster="/kit/assets/story.jpg" playsinline muted loop preload="metadata"></video><button type="button" class="vplay" aria-label="動画を再生する"><span></span></button></div></figure></div><ol class="steps"><li class="step"><span class="pill">STEP 1</span><div class="body"><h4>画面収録をONにして質問</h4><p>問題を撮って質問し、回答をしっかり見せてから収録をOFF</p></div></li><li class="step"><span class="pill">STEP 2</span><div class="body"><h4>動画を投稿して、キャプションを貼り付け</h4><p>投稿設定の「コンテンツの開示設定」もONに</p></div></li><li class="step"><span class="pill">STEP 3</span><div class="body"><h4>プロフィールのウェブサイト欄に専用リンクを追加</h4><p>プロフィールを編集 → ウェブサイト</p></div></li></ol><div class="copybox"><div class="cb-top"><span class="cb-label">キャプション</span><button type="button" class="cb-btn" data-copy>📋 コピー</button></div><p class="cb-text">#PR #socra_tutor わからない問題、AI御三家に一気に聞いてみた結果👀<br>アプリはプロフのリンクから🔗<br>#勉強垢 #受験生 #おすすめ</p></div><div class="callout notice"><p class="b">ウェブサイト欄が表示されない場合は、Instagram・X での投稿もあわせて行ってください。</p></div></div></div>
-      <div class="panel" role="tabpanel" id="panel-x" aria-labelledby="tab-x" hidden><div class="pf-card"><h3 class="pf-name"><i style="background:#111"></i>X</h3><div class="exs two"><figure class="ex"><b>1枚目：問題</b><img src="/kit/assets/x-1.jpg" alt="X post example 1" style="aspect-ratio:7/8" loading="lazy"></figure><figure class="ex"><b>2枚目：回答</b><img src="/kit/assets/x-2.jpg" alt="X post example 2" style="aspect-ratio:7/8" loading="lazy"></figure></div><ol class="steps"><li class="step"><span class="pill">STEP 1</span><div class="body"><h4>問題を質問して、回答画面をスクショ</h4><p>問題と回答の2枚があるとわかりやすい</p></div></li><li class="step"><span class="pill">STEP 2</span><div class="body"><h4>ポストをコピーして貼り付け</h4><p>画像を添付して、下の文章を本文に貼り付け</p></div></li><li class="step"><span class="pill">STEP 3</span><div class="body"><h4>最後の行に専用リンクを貼り付けて投稿</h4><p>ポストをプロフィールに固定するとさらに◎</p></div></li></ol><div class="copybox"><div class="cb-top"><span class="cb-label">ポスト</span><button type="button" class="cb-btn" data-copy>📋 コピー</button></div><p class="cb-text">#PR #socra_tutor 課題で詰んでたときにこれ見つけた私、天才では？？<br>撮るだけでAI御三家が答えと解説出してくれる。しかも無料。なんで誰も教えてくれなかったの<br>（ここに専用リンクを貼り付け）</p></div></div></div>
-      <div class="panel" role="tabpanel" id="panel-youtube" aria-labelledby="tab-youtube" hidden><div class="pf-card"><h3 class="pf-name"><i style="background:#e62117"></i>YouTube</h3><div class="exs"><figure class="ex ex-video"><b>▶ 動画の例</b><div class="vwrap"><video src="/kit/assets/example.mp4" poster="/kit/assets/story.jpg" playsinline muted loop preload="metadata"></video><button type="button" class="vplay" aria-label="動画を再生する"><span></span></button></div></figure></div><ol class="steps"><li class="step"><span class="pill">STEP 1</span><div class="body"><h4>画面収録をONにして質問</h4><p>問題を撮って質問し、回答をしっかり見せてから収録をOFF</p></div></li><li class="step"><span class="pill">STEP 2</span><div class="body"><h4>動画をアップロードして、タイトル・概要欄を貼り付け</h4><p>ショートは「キャプションを追加」の内容がタイトルになります</p></div></li><li class="step"><span class="pill">STEP 3</span><div class="body"><h4>「有料プロモーション」にチェック</h4><p>アップロード画面の設定から</p></div></li><li class="step"><span class="pill">STEP 4</span><div class="body"><h4>チャンネルとコメントに専用リンクを設置</h4><p>ショートの概要欄のリンクはタップできないため</p></div></li></ol><div class="copybox"><div class="cb-top"><span class="cb-label">タイトル</span><button type="button" class="cb-btn" data-copy>📋 コピー</button></div><p class="cb-text">わからない問題、撮るだけでAI御三家が解説してくれる🥹</p></div><div class="copybox"><div class="cb-top"><span class="cb-label">概要欄</span><button type="button" class="cb-btn" data-copy>📋 コピー</button></div><p class="cb-text">#PR #socra_tutor 最近これ使ってるんだけど、わからない問題撮るだけでAI御三家が答えと解説出してくれるの助かる…🥹<br>無料だから、チャンネルのリンクをタップするか、コメントのリンクをブラウザにコピペしてみて！🔗<br>#勉強垢 #勉強記録 #受験生 #shorts</p></div></div></div>
+      <div class="tabs sns" role="tablist" data-tabs="platform"><button type="button" role="tab" id="tab-instagram" aria-controls="panel-instagram" aria-selected="true" tabindex="0"><img src="/kit/assets/instagram.svg" alt=""><span>Instagram</span></button><button type="button" role="tab" id="tab-tiktok" aria-controls="panel-tiktok" aria-selected="false" tabindex="-1"><img src="/kit/assets/tiktok.svg" alt=""><span>TikTok</span></button><button type="button" role="tab" id="tab-x" aria-controls="panel-x" aria-selected="false" tabindex="-1"><img src="/kit/assets/x.png" alt=""><span>X</span></button><button type="button" role="tab" id="tab-youtube" aria-controls="panel-youtube" aria-selected="false" tabindex="-1"><img src="/kit/assets/youtube.png" alt=""><span>YouTube</span></button></div>
+      <div class="panel" role="tabpanel" id="panel-instagram" aria-labelledby="tab-instagram"><div class="pf-card"><div class="pf-head"><h3 class="pf-name"><img src="/kit/assets/instagram.svg" alt="">Instagram</h3><div class="tabs" role="tablist" data-tabs="format"><button type="button" role="tab" id="tab-ig-story" aria-controls="panel-ig-story" aria-selected="true" tabindex="0"><span>ストーリーズ</span></button><button type="button" role="tab" id="tab-ig-feed" aria-controls="panel-ig-feed" aria-selected="false" tabindex="-1"><span>フィード</span></button><button type="button" role="tab" id="tab-ig-reel" aria-controls="panel-ig-reel" aria-selected="false" tabindex="-1"><span>リール</span></button></div></div><div class="panel" role="tabpanel" id="panel-ig-story" aria-labelledby="tab-ig-story"><div class="compare"><div class="cmp-l"><b>投稿イメージ</b><div class="phone story"><div class="scr" style="background-image:url(/kit/assets/story.jpg)"><i class="bars"><b></b><b></b></i><i class="who"><b></b>your_account</i><div class="st"><p>#PR #socra_tutor 最近これ使ってるんだけど、わからない問題撮るだけでAI御三家が答えと解説出してくれるの助かる…🥹 無料だよ👇</p><span class="sticker">🔗 SOCRATUTOR.AI</span></div></div></div></div><span class="cmp-arr" aria-hidden="true"></span><div class="cmp-r"><b class="chip">この素材を使う</b><img class="src-img" src="/kit/assets/story.jpg" alt="Story" style="aspect-ratio:9/16" loading="lazy"></div></div><div class="pf-body"><ol class="csteps"><li><span class="cn">1</span><div><h4>問題を質問して、回答画面をスクショ</h4><p>回答が全部見えるところまでスクロールしてから撮ろう</p></div></li><li><span class="cn">2</span><div><h4>テキストをコピーして貼り付け</h4><p>ストーリーズの「Aa」テキストに、下の文章をそのまま貼り付け</p></div></li><li><span class="cn">3</span><div><h4>リンクスタンプで専用リンクを追加</h4><p>スタンプ → リンク → 自分の専用リンクを貼り付け</p></div></li><li><span class="cn">4</span><div><h4>投稿して完了！</h4><p>@socra_tutor をメンションするとさらに◎</p></div></li></ol><div class="copybox"><div class="cb-top"><span class="cb-label">テキスト</span><button type="button" class="cb-btn" data-copy>📋 コピー</button></div><p class="cb-text">#PR #socra_tutor 最近これ使ってるんだけど、わからない問題撮るだけでAI御三家が答えと解説出してくれるの助かる…🥹<br>無料だよ👇</p></div></div></div><div class="panel" role="tabpanel" id="panel-ig-feed" aria-labelledby="tab-ig-feed" hidden><div class="compare"><div class="cmp-l"><b>投稿イメージ</b><div class="phone feed"><div class="scr"><i class="who dark"><b></b>your_account</i><img src="/kit/assets/ig-1.jpg" alt=""><i class="ico">♡ 💬 ➤</i><p>#PR #socra_tutor 最近これ使ってるんだけど、わからない問題撮るだけでAI御三家が答えと解説出してくれるの助かる…🥹 無料だからプロフのリンクから見てみて🔗</p></div></div></div><span class="cmp-arr" aria-hidden="true"></span><div class="cmp-r"><b class="chip">この素材を使う</b><div class="src-car"><div class="track"><img src="/kit/assets/ig-1.jpg" alt="Feed 1" style="aspect-ratio:4/5" loading="lazy"><img src="/kit/assets/ig-2.jpg" alt="Feed 2" style="aspect-ratio:4/5" loading="lazy"></div><span class="cnt">1 / 2</span></div></div></div><div class="pf-body"><p class="swipe"><i></i>素材は2枚（スワイプで2枚目）</p><ol class="csteps"><li><span class="cn">1</span><div><h4>問題と回答をスクショ</h4><p>1枚目は問題、2枚目は回答がよく見えるように</p></div></li><li><span class="cn">2</span><div><h4>キャプションをコピーして投稿</h4><p>@socra_tutor をタグ付けするとさらに◎</p></div></li><li><span class="cn">3</span><div><h4>プロフィールに専用リンクを追加</h4><p>プロフィールを編集 → リンク → 外部リンクを追加</p></div></li></ol><div class="copybox"><div class="cb-top"><span class="cb-label">キャプション</span><button type="button" class="cb-btn" data-copy>📋 コピー</button></div><p class="cb-text">#PR #socra_tutor 最近これ使ってるんだけど、わからない問題撮るだけでAI御三家が答えと解説出してくれるの助かる…🥹<br>無料だからプロフのリンクから見てみて🔗</p></div></div></div><div class="panel" role="tabpanel" id="panel-ig-reel" aria-labelledby="tab-ig-reel" hidden><div class="compare"><div class="cmp-l"><b>投稿イメージ</b><div class="phone video"><div class="scr" style="background-image:url(/kit/assets/story.jpg)"><i class="side">♡<br>💬<br>➤</i><span class="pl"></span><div class="cap"><b>@your_account</b><p>#PR #socra_tutor 最近これ使ってるんだけど、わからない問題撮るだけでAI御三家が答えと解説出してくれるの助かる…🥹 無料だからプロフのリンクから見てみて🔗</p></div></div></div></div><span class="cmp-arr" aria-hidden="true"></span><div class="cmp-r"><b class="chip">この素材を使う</b><div class="vwrap"><video src="/kit/assets/example.mp4" poster="/kit/assets/story.jpg" playsinline muted loop preload="metadata"></video><button type="button" class="vplay" aria-label="動画を再生する"><span></span></button><span class="vtag">▶ タップで再生</span></div></div></div><div class="pf-body"><ol class="csteps"><li><span class="cn">1</span><div><h4>画面収録をONにして質問</h4><p>問題を撮って質問し、回答をしっかり見せてから収録をOFF</p></div></li><li><span class="cn">2</span><div><h4>リールで動画を選んで、キャプションを貼り付け</h4><p>@socra_tutor をタグ付けするとさらに◎</p></div></li><li><span class="cn">3</span><div><h4>プロフィールに専用リンクを追加</h4><p>フィード投稿と同じリンクでOK</p></div></li></ol><div class="copybox"><div class="cb-top"><span class="cb-label">キャプション</span><button type="button" class="cb-btn" data-copy>📋 コピー</button></div><p class="cb-text">#PR #socra_tutor 最近これ使ってるんだけど、わからない問題撮るだけでAI御三家が答えと解説出してくれるの助かる…🥹<br>無料だからプロフのリンクから見てみて🔗</p></div></div></div></div></div>
+      <div class="panel" role="tabpanel" id="panel-tiktok" aria-labelledby="tab-tiktok" hidden><div class="pf-card"><div class="pf-head"><h3 class="pf-name"><img src="/kit/assets/tiktok.svg" alt="">TikTok</h3></div><div class="compare"><div class="cmp-l"><b>投稿イメージ</b><div class="phone video"><div class="scr" style="background-image:url(/kit/assets/story.jpg)"><i class="side">♡<br>💬<br>➤</i><span class="pl"></span><div class="cap"><b>@your_account</b><p>#PR #socra_tutor わからない問題、AI御三家に一気に聞いてみた結果👀 アプリはプロフのリンクから🔗 #勉強垢 #受験生 #おすすめ</p></div></div></div></div><span class="cmp-arr" aria-hidden="true"></span><div class="cmp-r"><b class="chip">この素材を使う</b><div class="vwrap"><video src="/kit/assets/example.mp4" poster="/kit/assets/story.jpg" playsinline muted loop preload="metadata"></video><button type="button" class="vplay" aria-label="動画を再生する"><span></span></button><span class="vtag">▶ タップで再生</span></div></div></div><div class="pf-body"><ol class="csteps"><li><span class="cn">1</span><div><h4>画面収録をONにして質問</h4><p>問題を撮って質問し、回答をしっかり見せてから収録をOFF</p></div></li><li><span class="cn">2</span><div><h4>動画を投稿して、キャプションを貼り付け</h4><p>投稿設定の「コンテンツの開示設定」もONに</p></div></li><li><span class="cn">3</span><div><h4>プロフィールのウェブサイト欄に専用リンクを追加</h4><p>プロフィールを編集 → ウェブサイト</p></div></li></ol><div class="copybox"><div class="cb-top"><span class="cb-label">キャプション</span><button type="button" class="cb-btn" data-copy>📋 コピー</button></div><p class="cb-text">#PR #socra_tutor わからない問題、AI御三家に一気に聞いてみた結果👀<br>アプリはプロフのリンクから🔗<br>#勉強垢 #受験生 #おすすめ</p></div><div class="callout notice"><p class="b">ウェブサイト欄が表示されない場合は、Instagram・X での投稿もあわせて行ってください。</p></div></div></div></div>
+      <div class="panel" role="tabpanel" id="panel-x" aria-labelledby="tab-x" hidden><div class="pf-card"><div class="pf-head"><h3 class="pf-name"><img src="/kit/assets/x.png" alt="">X</h3></div><div class="compare"><div class="cmp-l"><b>投稿イメージ</b><div class="phone xp"><div class="scr"><i class="who dark"><b></b>your_account</i><p>#PR #socra_tutor 課題で詰んでたときにこれ見つけた私、天才では？？ 撮るだけでAI御三家が答えと解説出してくれる。しかも無料。なんで誰も教えてくれなかったの</p><em>socratutor.ai/…</em><div class="two"><img src="/kit/assets/x-1.jpg" alt=""><img src="/kit/assets/x-2.jpg" alt=""></div><i class="ico">💬 🔁 ♡</i></div></div></div><span class="cmp-arr" aria-hidden="true"></span><div class="cmp-r"><b class="chip">この素材を使う</b><div class="src-car"><div class="track"><img src="/kit/assets/x-1.jpg" alt="X 1" style="aspect-ratio:7/8" loading="lazy"><img src="/kit/assets/x-2.jpg" alt="X 2" style="aspect-ratio:7/8" loading="lazy"></div><span class="cnt">1 / 2</span></div></div></div><div class="pf-body"><p class="swipe"><i></i>素材は2枚（スワイプで2枚目）</p><ol class="csteps"><li><span class="cn">1</span><div><h4>問題を質問して、回答画面をスクショ</h4><p>問題と回答の2枚があるとわかりやすい</p></div></li><li><span class="cn">2</span><div><h4>ポストをコピーして貼り付け</h4><p>画像を添付して、下の文章を本文に貼り付け</p></div></li><li><span class="cn">3</span><div><h4>最後の行に専用リンクを貼り付けて投稿</h4><p>ポストをプロフィールに固定するとさらに◎</p></div></li></ol><div class="copybox"><div class="cb-top"><span class="cb-label">ポスト</span><button type="button" class="cb-btn" data-copy>📋 コピー</button></div><p class="cb-text">#PR #socra_tutor 課題で詰んでたときにこれ見つけた私、天才では？？<br>撮るだけでAI御三家が答えと解説出してくれる。しかも無料。なんで誰も教えてくれなかったの<br>（ここに専用リンクを貼り付け）</p></div></div></div></div>
+      <div class="panel" role="tabpanel" id="panel-youtube" aria-labelledby="tab-youtube" hidden><div class="pf-card"><div class="pf-head"><h3 class="pf-name"><img src="/kit/assets/youtube.png" alt="">YouTube</h3></div><div class="compare"><div class="cmp-l"><b>投稿イメージ</b><div class="phone video"><div class="scr" style="background-image:url(/kit/assets/story.jpg)"><i class="side">♡<br>💬<br>➤</i><span class="pl"></span><div class="cap"><b>@your_account</b><p>#PR #socra_tutor 最近これ使ってるんだけど、わからない問題撮るだけでAI御三家が答えと解説出してくれるの助かる…🥹 無料だから、チャンネルのリンクをタップするか、コメントのリンクをブラウザにコピペしてみて！🔗 #勉強垢 #勉強記録 #受験生 #shorts</p></div></div></div></div><span class="cmp-arr" aria-hidden="true"></span><div class="cmp-r"><b class="chip">この素材を使う</b><div class="vwrap"><video src="/kit/assets/example.mp4" poster="/kit/assets/story.jpg" playsinline muted loop preload="metadata"></video><button type="button" class="vplay" aria-label="動画を再生する"><span></span></button><span class="vtag">▶ タップで再生</span></div></div></div><div class="pf-body"><ol class="csteps"><li><span class="cn">1</span><div><h4>画面収録をONにして質問</h4><p>問題を撮って質問し、回答をしっかり見せてから収録をOFF</p></div></li><li><span class="cn">2</span><div><h4>動画をアップロードして、タイトル・概要欄を貼り付け</h4><p>ショートは「キャプションを追加」の内容がタイトルになります</p></div></li><li><span class="cn">3</span><div><h4>「有料プロモーション」にチェック</h4><p>アップロード画面の設定から</p></div></li><li><span class="cn">4</span><div><h4>チャンネルとコメントに専用リンクを設置</h4><p>ショートの概要欄のリンクはタップできないため</p></div></li></ol><div class="copybox"><div class="cb-top"><span class="cb-label">タイトル</span><button type="button" class="cb-btn" data-copy>📋 コピー</button></div><p class="cb-text">わからない問題、撮るだけでAI御三家が解説してくれる🥹</p></div><div class="copybox"><div class="cb-top"><span class="cb-label">概要欄</span><button type="button" class="cb-btn" data-copy>📋 コピー</button></div><p class="cb-text">#PR #socra_tutor 最近これ使ってるんだけど、わからない問題撮るだけでAI御三家が答えと解説出してくれるの助かる…🥹<br>無料だから、チャンネルのリンクをタップするか、コメントのリンクをブラウザにコピペしてみて！🔗<br>#勉強垢 #勉強記録 #受験生 #shorts</p></div></div></div></div>
     </div>
   </div>
 </section>
@@ -241,7 +329,7 @@ html[data-scholarship-webview] .viewer{padding-top:calc(16px + var(--host-safe-a
 <!-- ================= 3. Check ================= -->
 <section class="sec" id="check">
   <div class="wrap g24">
-    <div class="sec-head"><img src="/assets/light.png" alt=""><h2>投稿前チェック</h2><span>|   Check</span></div>
+    <div class="sec-head"><img src="/assets/light.png" alt=""><h2>投稿前チェック</h2></div>
     <div class="stack g8">
       <div class="check"><p>「#PR #socra_tutor」が文章のいちばん最初に入っている</p></div>
       <div class="check"><p>専用リンクを受け取ったままコピペした（一部が欠けると実績が集計されません）</p></div>
@@ -347,6 +435,12 @@ document.querySelectorAll('.vwrap').forEach(w => {
   w.addEventListener('click', () => { v.paused ? v.play().catch(() => {}) : v.pause(); });
   v.addEventListener('play', () => w.classList.add('playing'));
   v.addEventListener('pause', () => w.classList.remove('playing'));
+});
+
+// ---------- 소재 슬라이드: 몇 번째 장인지 표시 ----------
+document.querySelectorAll('.src-car').forEach(c => {
+  const tr = c.querySelector('.track'), cnt = c.querySelector('.cnt'), n = tr.children.length;
+  tr.addEventListener('scroll', () => { cnt.textContent = `${Math.round(tr.scrollLeft / tr.clientWidth) + 1} / ${n}`; }, { passive: true });
 });
 
 // ---------- 복사 ----------
