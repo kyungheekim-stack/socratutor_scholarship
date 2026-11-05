@@ -318,6 +318,8 @@ html[data-scholarship-webview] .viewer{padding-top:calc(16px + var(--host-safe-a
 .cmp-r .vwrap::after{content:"";position:absolute;inset:0;z-index:3;border:1px solid var(--line-soft);border-radius:10px;pointer-events:none}
 .cmp-r .vplay{border-radius:10px}
 .cmp-r video{background:#fff}
+/* v4.5 : iOS Safari — 카드에 overflow:hidden·마스크를 걸지 않음 (둥근 모서리 클리핑이 테두리 아래쪽을 흐리게 지우는 버그 회피) */
+.pf-card{overflow:visible;-webkit-mask-image:none;transform:none}
 
 :root{--ff:'Noto Sans KR','Noto Sans JP',sans-serif}
 
