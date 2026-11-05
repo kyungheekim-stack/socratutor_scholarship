@@ -309,6 +309,12 @@ html[data-scholarship-webview] .viewer{padding-top:calc(16px + var(--host-safe-a
 .hl-chip{left:20%;top:auto;bottom:34.8%;transform:none}
 .hl-chip::before{left:5px;top:auto;bottom:-6px;margin:0;width:10px;height:7px;border:0;background:var(--red-500);clip-path:polygon(0 0,100% 0,20% 100%)}
 
+/* v4.3 : 릴스·TikTok·YouTube(영상·그라데이션 목업)에서 카드 외곽선이 가려지는 문제 —
+   외곽선을 카드 맨 위 레이어에 그리고, Safari의 둥근 모서리 클리핑 버그를 막는다 */
+.pf-card{position:relative;isolation:isolate;border:0}
+.pf-card::after{content:"";position:absolute;inset:0;z-index:5;border:1px solid var(--line-soft);border-radius:inherit;pointer-events:none}
+.phone .scr,.cmp-r .vwrap,.pf-card{-webkit-mask-image:-webkit-radial-gradient(white,black);transform:translateZ(0)}
+
 </style>
 <link rel="stylesheet" href="/assets/scholarship-embed.css">
 </head>
