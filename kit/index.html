@@ -305,6 +305,9 @@ html[data-scholarship-webview] .viewer{padding-top:calc(16px + var(--host-safe-a
 .hl-chip::before{content:"";position:absolute;left:-5px;top:50%;margin-top:-4px;border:4px solid transparent;border-right:5px solid var(--red-500);border-left:0}
 @keyframes hlp{0%,100%{box-shadow:0 0 0 0 rgba(249,92,120,.45)}50%{box-shadow:0 0 0 4px rgba(249,92,120,0)}}
 @media (prefers-reduced-motion:reduce){.hl-ring{animation:none}}
+/* v4.2 : 라벨을 썸네일 우상단으로, 꼬리를 말풍선 아래 경계에 붙임 */
+.hl-chip{left:20%;top:auto;bottom:34.8%;transform:none}
+.hl-chip::before{left:5px;top:auto;bottom:-6px;margin:0;width:10px;height:7px;border:0;background:var(--red-500);clip-path:polygon(0 0,100% 0,20% 100%)}
 
 </style>
 <link rel="stylesheet" href="/assets/scholarship-embed.css">
