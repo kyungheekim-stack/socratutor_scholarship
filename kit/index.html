@@ -294,6 +294,18 @@ html[data-scholarship-webview] .viewer{padding-top:calc(16px + var(--host-safe-a
 .ask-col img{width:100%;aspect-ratio:145/296;object-fit:cover;object-position:top;border-radius:12px;border:.5px solid rgba(58,130,219,.25)}
 .sec-head .sn{font-size:12px;font-weight:700;color:#fff;white-space:normal}
 
+/* v4.1 : 하위 스텝 숫자는 연한 배경+테두리 (큰 스텝은 진한 파랑) · 예시 이미지 간격 · 문제 이미지 강조 */
+.cn,.ask-card .sn{background:#e8f2fe;border:1px solid var(--blue-500);color:var(--blue-550)}
+.ask-col{gap:16px}
+.ask-col > h4{margin-bottom:-8px}
+.ask-img{position:relative}
+.ask-img img{width:100%;aspect-ratio:145/296;object-fit:cover;object-position:top;border-radius:12px;border:.5px solid rgba(58,130,219,.25)}
+.hl-ring{position:absolute;left:6.2%;top:67.6%;width:19.3%;height:9.8%;border:2px solid var(--red-500);border-radius:6px;background:rgba(249,92,120,.08);animation:hlp 1.6s ease-in-out infinite}
+.hl-chip{position:absolute;left:31%;top:72.3%;transform:translateY(-50%);padding:3px 7px;border-radius:99px;background:var(--red-500);font-size:9.5px;font-weight:700;line-height:1.3;color:#fff;white-space:nowrap}
+.hl-chip::before{content:"";position:absolute;left:-5px;top:50%;margin-top:-4px;border:4px solid transparent;border-right:5px solid var(--red-500);border-left:0}
+@keyframes hlp{0%,100%{box-shadow:0 0 0 0 rgba(249,92,120,.45)}50%{box-shadow:0 0 0 4px rgba(249,92,120,0)}}
+@media (prefers-reduced-motion:reduce){.hl-ring{animation:none}}
+
 </style>
 <link rel="stylesheet" href="/assets/scholarship-embed.css">
 </head>
@@ -352,7 +364,7 @@ html[data-scholarship-webview] .viewer{padding-top:calc(16px + var(--host-safe-a
     <div class="sec-head"><span class="sn">2</span><h2>Socra Tutorで質問してスクショ</h2></div>
     <div class="ask-card">
       <div class="ask-1"><a class="ask-icon" href="https://socratutor.ai/landing" target="_blank" rel="noopener"><img src="/kit/assets/ask-1.png" alt="Socra Tutor アプリ"></a><div><h4><span class="sn">1</span>Socra Tutorをインストールして登録</h4><p>ロゴをタップすると、インストールページにすぐ移動できます</p></div></div>
-      <div class="ask-23"><div class="ask-col"><h4><span class="sn">2</span>質問する</h4><p>写真追加ボタンから保存した問題画像を選んで、質問ボタンを押してください</p><img src="/kit/assets/ask-2.jpg" alt="質問画面" loading="lazy"></div><div class="ask-col"><h4><span class="sn">3</span>スクショする</h4><p>回答が表示されたら、画面全体をスクショしてください</p><img src="/kit/assets/ask-3.jpg" alt="回答画面" loading="lazy"></div></div>
+      <div class="ask-23"><div class="ask-col"><h4><span class="sn">2</span>質問する</h4><p>写真追加ボタンから保存した問題画像を選んで、質問ボタンを押してください</p><div class="ask-img"><img src="/kit/assets/ask-2.jpg" alt="質問画面" loading="lazy"><span class="hl-ring" aria-hidden="true"></span><span class="hl-chip">問題画像</span></div></div><div class="ask-col"><h4><span class="sn">3</span>スクショする</h4><p>回答が表示されたら、画面全体をスクショしてください</p><div class="ask-img"><img src="/kit/assets/ask-3.jpg" alt="回答画面" loading="lazy"></div></div></div>
     </div>
   </div>
 </section>
