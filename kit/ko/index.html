@@ -314,6 +314,10 @@ html[data-scholarship-webview] .viewer{padding-top:calc(16px + var(--host-safe-a
 .pf-card{position:relative;isolation:isolate;border:0}
 .pf-card::after{content:"";position:absolute;inset:0;z-index:5;border:1px solid var(--line-soft);border-radius:inherit;pointer-events:none}
 .phone .scr,.cmp-r .vwrap,.pf-card{-webkit-mask-image:-webkit-radial-gradient(white,black);transform:translateZ(0)}
+/* v4.4 : 영상 소재 박스에도 외곽선 (재생 전 어두운 오버레이에 테두리가 묻히지 않게 맨 위에 그림) */
+.cmp-r .vwrap::after{content:"";position:absolute;inset:0;z-index:3;border:1px solid var(--line-soft);border-radius:10px;pointer-events:none}
+.cmp-r .vplay{border-radius:10px}
+.cmp-r video{background:#fff}
 
 :root{--ff:'Noto Sans KR','Noto Sans JP',sans-serif}
 
