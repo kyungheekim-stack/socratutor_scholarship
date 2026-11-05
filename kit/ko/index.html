@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ko" data-scholarship-page="kit">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Socra Tutor 장학생 Contents Kit</title>
+<meta name="description" content="Socra Tutor 장학생의 첫 게시물에 쓸 수 있는 문제 이미지, 게시 순서, 복붙용 텍스트를 모은 키트입니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=IBM+Plex+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Figma 「Contents Kit — Mobile (375)」 기준. 토큰·공통 컴포넌트는 /guide 와 동일 */
+:root{
+  --blue-50:#eef6ff; --blue-500:#4c9ef3; --blue-550:#3a82db; --blue-700:#0e2759;
+  --gray-50:#f4f6f9; --gray-bg:#f7f9fc; --gray-700:#5d617c; --gray-800:#464a65; --gray-900:#30344f;
+  --red-500:#f95c78; --red-600:#e4405f;
+  --line:rgba(58,130,219,.55); --line-soft:rgba(58,130,219,.35);
+  --ff:'Noto Sans JP',sans-serif; --ff-plex:'IBM Plex Sans KR','Noto Sans JP',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{background:#fff;font-family:var(--ff);color:var(--gray-900);-webkit-font-smoothing:antialiased}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:left}
+ul,ol{list-style:none}
+b,strong{font-weight:700}
+[hidden]{display:none!important}
+
+.sec{padding:20px 20px 50px;scroll-margin-top:0}
+.sec.tint{background:var(--gray-bg)}
+.wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column}
+.stack{display:flex;flex-direction:column}
+.g8{gap:8px}.g24{gap:24px}
+
+.sec-head{display:flex;align-items:center;gap:6px}
+.sec-head img{width:16px;height:16px;flex:none}
+.sec-head h2{font-size:18px;font-weight:700;line-height:1.4;letter-spacing:-.02em;color:var(--gray-900)}
+.sec-head span{font-size:10px;font-weight:500;line-height:1.5;color:var(--gray-700);white-space:pre}
+
+.callout{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-radius:10px;background:var(--gray-50)}
+.callout .t{font-size:11px;font-weight:700;line-height:1.5;color:var(--blue-550)}
+.callout .b{font-size:10px;font-weight:500;line-height:1.7;color:var(--gray-900)}
+.callout.hl{background:var(--blue-50);border:.5px solid rgba(58,130,219,.4)}
+.callout.warn{background:#fff2f5;border:.5px solid rgba(249,92,120,.4)}
+.callout.warn .t{color:var(--red-600)}
+.callout.notice{background:#fff9e6;border:.5px solid rgba(245,180,0,.4)}
+.callout.tip .b{font-size:11px;font-weight:700;color:var(--blue-550)}
+
+.check{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border-radius:8px;background:#fff;border:.5px solid var(--line-soft)}
+.check::before{content:"";flex:none;width:13px;height:13px;margin-top:2px;border:1.2px solid var(--blue-500);border-radius:3px}
+.check p{font-size:10px;font-weight:500;line-height:1.7;color:var(--blue-700)}
+
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:.5px solid var(--line)}
+.pill{flex:none;padding:3px 10px;border-radius:99px;background:var(--blue-500);font-family:var(--ff-plex);font-size:11px;font-weight:600;line-height:1.5;color:#fff;white-space:nowrap}
+.step .body{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.step .body h4{font-size:12px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.step .body p{font-size:10px;font-weight:400;line-height:1.7;color:var(--gray-800)}
+
+/* ---------- Hero (guide와 동일) ---------- */
+.hero{position:relative;padding:55px 20px 32px}
+.home-btn{position:absolute;top:16px;right:16px;display:flex;align-items:center;gap:4px;padding:7px 12px 7px 10px;border-radius:99px;background:rgba(255,255,255,.9);border:.5px solid var(--line-soft);filter:drop-shadow(0 2px 4px rgba(58,130,219,.15))}
+.home-btn img{width:16px;height:16px}
+.home-btn img + img{width:18px;height:18px}
+.title-row{display:flex;align-items:center;gap:8px}
+.title-row img{width:172px;height:20px}
+.title-row span{font-size:22px;font-weight:900;line-height:1;letter-spacing:-.02em;color:var(--blue-700)}
+.hero h1{margin-top:4px;font-size:28px;font-weight:900;line-height:1.35;letter-spacing:-.02em;color:var(--blue-550)}
+.hero .lead{margin-top:16px;font-size:11px;font-weight:500;line-height:1.75;color:var(--gray-900)}
+.quick{margin-top:28px;display:flex;flex-direction:column;gap:6px}
+.quick > p{font-size:10px;font-weight:700;line-height:1.5;color:var(--gray-700)}
+.quick-links{display:flex;flex-wrap:wrap;gap:8px}
+.quick-links a{flex:1 1 0;min-width:220px;display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;background:rgba(255,255,255,.85);border:.5px solid var(--line-soft);box-shadow:0 4px 12px rgba(58,130,219,.12)}
+.quick-links .n{flex:none;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:99px;background:var(--blue-500);font-size:10px;font-weight:700;line-height:1;color:#fff}
+.quick-links .l{flex:1;font-size:11px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.quick-links .arr{font-size:12px;font-weight:700;line-height:1;color:var(--blue-550)}
+.quick-links a:hover{border-color:var(--blue-550)}
+
+/* ---------- 탭 ---------- */
+.picker{display:flex;flex-direction:column;gap:12px;scroll-margin-top:12px}
+.tabs{display:flex;gap:4px;padding:4px;border-radius:99px;background:#ecf0f6}
+.tabs button{flex:1 1 0;min-width:0;padding:8px 4px;border-radius:99px;text-align:center;font-size:11px;font-weight:500;line-height:1.5;color:var(--gray-700);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background .15s,color .15s}
+.tabs button[aria-selected="true"]{background:#fff;font-weight:700;color:var(--blue-700);box-shadow:0 2px 6px rgba(13,38,89,.12)}
+.tabs button:focus-visible{outline:2px solid var(--blue-550);outline-offset:1px}
+.panel{display:flex;flex-direction:column;gap:12px}
+
+/* ---------- 문제 카드 ---------- */
+.pcard{display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:10px;background:#fff;border:.5px solid var(--line-soft);box-shadow:0 4px 12px rgba(58,130,219,.12)}
+.pc-head{display:flex;align-items:center;gap:8px}
+.lv{flex:none;padding:2px 9px;border-radius:99px;background:var(--blue-700);font-size:10px;font-weight:700;line-height:1.5;color:#fff}
+.pc-head b{font-size:11px;line-height:1.5;color:var(--blue-700)}
+.pc-img{display:block;width:100%;padding:0;border-radius:6px;overflow:hidden;border:.5px solid #dce2eb;background:#fff;cursor:zoom-in}
+.pc-img img{width:100%;height:auto}
+.pc-btns{display:flex;gap:8px}
+.btn{flex:1 1 0;display:flex;align-items:center;justify-content:center;padding:9px 8px;border-radius:99px;font-size:11px;font-weight:700;line-height:1.5;text-align:center}
+.btn.ghost{background:#fff;border:1px solid rgba(58,130,219,.6);color:var(--blue-550)}
+.btn.solid{background:var(--blue-550);color:#fff}
+.btn.dim{background:rgba(255,255,255,.12);color:#fff}
+.btn:active{transform:translateY(1px)}
+
+/* ---------- SNS 카드 ---------- */
+.pf-card{display:flex;flex-direction:column;gap:14px;padding:18px 16px 20px;border-radius:12px;background:#fff;border:.5px solid var(--line-soft)}
+.pf-name{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;line-height:1.4;color:var(--blue-700)}
+.pf-name i{flex:none;width:8px;height:8px;border-radius:50%}
+.exs{display:flex;gap:8px}
+.ex{display:flex;flex-direction:column;gap:6px;width:112px}
+.exs.two .ex{flex:1 1 0;width:auto;max-width:200px}
+.ex-video{width:120px}
+.ex > b{font-size:10px;line-height:1.5;color:var(--red-500)}
+.ex img,.ex video{width:100%;height:auto;object-fit:cover;border-radius:8px;border:.5px solid rgba(58,130,219,.25);background:var(--gray-50)}
+.ex video{aspect-ratio:9/16}
+.vwrap{position:relative;cursor:pointer}
+.vplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(6,14,32,.28);transition:opacity .2s}
+.vplay span{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.94) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5.5v13l11-6.5z' fill='%233a82db'/%3E%3C/svg%3E") 55% 50%/22px no-repeat;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.vwrap.playing .vplay{opacity:0}
+
+/* ---------- 복사 박스 ---------- */
+.copybox{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:10px;background:var(--gray-50)}
+.cb-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cb-label{padding:2px 8px;border-radius:99px;background:var(--blue-50);font-size:9px;font-weight:700;line-height:1.5;color:var(--blue-550)}
+.cb-btn{flex:none;padding:5px 12px;border-radius:99px;background:var(--blue-550);font-size:10px;font-weight:700;line-height:1.5;color:#fff}
+.cb-btn.done{background:#2fb36b}
+.cb-text{font-size:11px;font-weight:500;line-height:1.7;color:var(--blue-700);-webkit-user-select:text;user-select:text;overflow-wrap:anywhere}
+
+/* ---------- 3. Check ---------- */
+.guide-link{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:10px;background:var(--blue-700)}
+.guide-link b{font-size:11px;line-height:1.5;color:#fff}
+.guide-link span{flex:none;font-size:11px;font-weight:700;line-height:1.5;color:#8cbefa}
+
+/* ---------- 문의 ---------- */
+.contact{display:flex;flex-direction:column;gap:10px;padding:20px;border-radius:12px;background:var(--blue-700);color:#fff}
+.contact h4{font-size:16px;font-weight:700;line-height:1.5}
+.contact .mail{display:flex;gap:8px;align-items:center;padding:10px 14px;border-radius:8px;background:rgba(255,255,255,.1);border:.5px solid rgba(184,226,255,.45);font-size:12px;font-weight:700;line-height:1.5}
+.contact .mail b{flex:1;min-width:0;color:#b8e2ff;overflow-wrap:anywhere}
+.contact > p{font-size:10px;font-weight:500;line-height:1.7;opacity:.9}
+
+/* ---------- 문제 크게 보기 ---------- */
+.viewer{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:16px 16px 32px;border:0;background:rgba(6,14,32,.97);color:#fff;overflow:hidden}
+.viewer::backdrop{background:rgba(6,14,32,.94)}
+.viewer[open]{display:flex;flex-direction:column;justify-content:space-between}
+.v-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.v-title{font-size:12px;line-height:1.5}
+.v-close{flex:none;width:36px;height:36px;border-radius:99px;background:rgba(255,255,255,.15);font-size:14px;font-weight:700;text-align:center}
+.v-img{display:flex;flex-direction:column;align-items:center;gap:12px;max-width:640px;width:100%;margin:0 auto}
+.v-img img{width:100%;height:auto;max-height:70vh;object-fit:contain;border-radius:8px;background:#fff}
+.v-img p{font-size:10px;font-weight:500;line-height:1.5;color:#aab4c8}
+.v-actions{display:flex;flex-direction:column;gap:8px;max-width:640px;width:100%;margin:0 auto}
+.v-actions .btn{flex:none;padding:13px 8px;font-size:12px}
+
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);padding:9px 16px;border-radius:99px;background:rgba(14,39,89,.92);font-size:11px;font-weight:700;line-height:1.5;color:#fff;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:10;max-width:calc(100% - 40px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- Footer ---------- */
+.footer{background:#060e20;padding:28px 20px 32px}
+.footer .wrap{flex-direction:row;justify-content:space-between;align-items:flex-start;gap:56px}
+.footer .inner{flex:1;min-width:0;max-width:420px;display:flex;flex-direction:column;gap:12px}
+.footer .logo{width:78px;height:14.3px}
+.footer p{font-family:var(--ff-plex);font-size:8px;line-height:1.65;color:#b5b7c6;white-space:pre-wrap}
+.footer .copy{font-size:10px;line-height:1.5}
+.footer .top{flex:none;font-size:10px;font-weight:700;line-height:1.65;color:#fff;white-space:nowrap}
+
+html[data-scholarship-webview] .viewer{padding-top:calc(16px + var(--host-safe-area-top));padding-bottom:calc(32px + var(--host-safe-area-bottom))}
+
+/* ================= v3 (2026-11) : 큰 글씨 · SNS 로고 · 목업→소재 레이아웃 ================= */
+.sec-head h2{font-size:20px}
+.hero .lead{font-size:13px}
+.quick > p{font-size:12px}
+.quick-links .l{font-size:13px}
+.quick-links .lg{flex:none;width:22px;height:22px;border-radius:5px;object-fit:contain}
+.callout .t{font-size:13px}
+.callout .b{font-size:12px}
+.callout.tip .b{font-size:13px}
+.check p{font-size:12px}
+.contact > p{font-size:12px}
+.guide-link b,.guide-link span{font-size:12px}
+.lv{font-size:11px}
+.pc-head b{font-size:13px}
+.btn{font-size:13px}
+.tabs button{font-size:12px}
+
+/* SNS 탭 (로고 위, 이름 아래) */
+.tabs.sns{border-radius:18px}
+.tabs.sns button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 4px 6px;border-radius:14px;font-size:11px}
+.tabs.sns img{width:20px;height:20px;object-fit:contain;opacity:.55}
+.tabs.sns button[aria-selected="true"] img{opacity:1}
+
+/* SNS 카드 */
+.pf-card{gap:0;padding:0;overflow:hidden;border-radius:14px}
+.pf-head{display:flex;flex-direction:column;gap:12px;padding:16px 16px 14px}
+.pf-name{font-size:18px;gap:10px}
+.pf-name img{width:26px;height:26px;border-radius:6px;object-fit:contain}
+.pf-card > .panel{gap:0}
+.pf-body{display:flex;flex-direction:column;gap:18px;padding:16px 16px 18px}
+
+/* 게시 이미지(목업) → 이 소재를 사용(원본) */
+.compare{display:flex;align-items:center;gap:8px;padding:4px 16px}
+.cmp-l,.cmp-r{display:flex;flex-direction:column;gap:6px}
+.cmp-l{flex:none;align-items:center}
+.cmp-l > b{font-size:11px;line-height:1.5;color:var(--gray-700)}
+.cmp-r{flex:1;min-width:0;max-width:260px}
+.cmp-r .chip{align-self:flex-start;padding:2px 9px;border-radius:99px;background:var(--red-500);font-size:11px;line-height:1.5;color:#fff}
+.cmp-arr{flex:none;width:22px;height:22px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M3 11h14M12 5.5L17.5 11 12 16.5' stroke='%233a82db' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E") center/22px no-repeat}
+.src-img{width:100%;height:auto;object-fit:cover;object-position:top;border-radius:10px;border:.5px solid rgba(58,130,219,.25)}
+.src-car{position:relative}
+.src-car .track{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;border-radius:10px;scrollbar-width:none}
+.src-car .track::-webkit-scrollbar{display:none}
+.src-car img{flex:none;width:100%;height:auto;object-fit:cover;object-position:top;scroll-snap-align:start;border-radius:10px;border:.5px solid rgba(58,130,219,.25)}
+.src-car .cnt{position:absolute;top:8px;right:8px;padding:2px 7px;border-radius:99px;background:rgba(14,39,89,.7);font-size:10px;font-weight:700;line-height:1.5;color:#fff}
+.cmp-r .vwrap{border-radius:10px;overflow:hidden}
+.cmp-r video{width:100%;aspect-ratio:9/16;object-fit:cover;object-position:top;display:block;border-radius:10px;background:#000}
+.vtag{position:absolute;top:8px;left:8px;padding:2px 8px;border-radius:99px;background:rgba(0,0,0,.55);font-size:10px;font-weight:700;line-height:1.5;color:#fff;pointer-events:none;transition:opacity .2s}
+.vwrap.playing .vtag{opacity:0}
+.swipe{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:500;line-height:1.5;color:var(--gray-700)}
+.swipe i{display:inline-flex;align-items:center;gap:4px;flex:none}
+.swipe i::before{content:"";width:18px;height:7px;border-radius:4px;background:var(--blue-550)}
+.swipe i::after{content:"";width:7px;height:7px;border-radius:50%;background:#c8d2e1}
+
+/* 간결한 단계 */
+.csteps{display:flex;flex-direction:column;gap:14px}
+.csteps li{display:flex;gap:10px;align-items:flex-start}
+.cn{flex:none;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:99px;background:var(--blue-500);font-size:11px;font-weight:700;color:#fff}
+.csteps h4{font-size:13px;font-weight:700;line-height:1.5;color:var(--blue-700)}
+.csteps p{font-size:11.5px;font-weight:400;line-height:1.6;color:var(--gray-800)}
+
+/* 복사 박스 */
+.copybox{padding:16px}
+.cb-label{font-size:10px}
+.cb-btn{font-size:11px}
+.cb-text{font-size:13px}
+
+/* ---------- 휴대폰 목업 ---------- */
+.phone{width:100px;height:206px;padding:3px;border-radius:16px;background:#141418;flex:none}
+.phone .scr{position:relative;width:100%;height:100%;border-radius:13px;overflow:hidden;background:#fff center top/cover no-repeat;font-style:normal}
+.phone i{font-style:normal}
+.phone .who{position:absolute;top:10px;left:5px;display:flex;align-items:center;gap:3px;font-size:5px;font-weight:700;color:#fff}
+.phone .who b{width:9px;height:9px;border-radius:50%;background:#d62976}
+.phone .who.dark{position:static;color:#141418;margin:8px 5px 4px}
+.phone .who.dark b{background:#788296}
+.story .scr::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.12)}
+.story .bars{position:absolute;top:5px;left:5px;right:5px;display:flex;gap:2px}
+.story .bars b{flex:1;height:1.5px;border-radius:1px;background:#fff}
+.story .bars b + b{opacity:.5}
+.story .st{position:absolute;left:8px;right:8px;top:92px;display:flex;flex-direction:column;align-items:center;gap:5px}
+.story .st p{padding:4px 5px;border-radius:5px;background:rgba(255,255,255,.92);font-size:5px;font-weight:700;line-height:1.4;color:#141418}
+.story .sticker{padding:3px 6px;border-radius:99px;background:#fff;font-size:5px;font-weight:700;color:var(--blue-550);white-space:nowrap}
+.feed img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top}
+.feed .ico,.xp .ico{display:block;margin:3px 5px;font-size:7px;color:#141418}
+.feed p,.xp p{margin:0 5px;font-size:5px;font-weight:500;line-height:1.4;color:#141418;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.video .scr::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(transparent,rgba(0,0,0,.65))}
+.video .side{position:absolute;right:6px;top:104px;z-index:1;font-size:9px;line-height:1.9;color:#fff;text-align:center}
+.video .pl{position:absolute;left:36px;top:80px;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.85) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M9 7v8l6-4z' fill='%233a82db'/%3E%3C/svg%3E") center/22px no-repeat}
+.video .cap{position:absolute;left:5px;right:22px;bottom:8px;z-index:1;color:#fff}
+.video .cap b{display:block;font-size:5.5px}
+.video .cap p{font-size:5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.xp em{display:block;margin:2px 5px;font-style:normal;font-size:5px;color:var(--blue-550)}
+.xp .two{display:flex;gap:3px;margin:4px 5px}
+.xp .two img{width:50%;aspect-ratio:41/52;object-fit:cover;object-position:top;border-radius:4px}
+
+/* v3.1 : 목업 화면 9:16(양옆 잘림 없음) · 스토리 텍스트 박스 70% · X 내용 세로 가운데 */
+.phone{width:106px;height:184px}
+.story .st{top:78px}
+.story .st p{background:rgba(255,255,255,.7)}
+.video .side{top:88px;right:4px;text-shadow:0 0 3px rgba(0,0,0,.5)}
+.video .pl{left:39px;top:72px;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.xp .scr{display:flex;flex-direction:column;justify-content:center}
+.xp .two img{aspect-ratio:44/52}
+
+/* v3.2 : 2장 소재 넘기기 버튼 (PC 마우스에서도 넘길 수 있게) */
+.src-car .track{cursor:pointer;touch-action:pan-x pan-y}
+.car-btn{position:absolute;top:50%;width:28px;height:28px;margin-top:-14px;border-radius:50%;background:rgba(14,39,89,.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 5l7 7-7 7' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.car-btn.next{right:6px}
+.car-btn.prev{left:6px;transform:scaleX(-1)}
+.car-btn[hidden]{display:none}
+
+/* v4 : 3단계 플로우 (문제 → 질문·캡처 → 게시) */
+.sn{flex:none;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:99px;background:var(--blue-500);font-size:12px;font-weight:700;line-height:1;color:#fff}
+.sec-head{gap:8px}
+.hero .lead ol{list-style:decimal;margin:2px 0 2px 1.4em;font-weight:700}
+.hero .lead small,.quick-links small{font-size:10px}
+.quick-links .n{font-size:12px}
+.csteps li.cb-li{display:flex;flex-direction:column;gap:10px}
+.ask-card{display:flex;flex-direction:column;gap:18px;padding:18px 16px 20px;border-radius:14px;background:#fff;border:.5px solid var(--line-soft)}
+.ask-card h4{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;line-height:1.4;color:var(--blue-700)}
+.ask-card p{font-size:12px;font-weight:400;line-height:1.6;color:var(--gray-800)}
+.ask-1{display:flex;align-items:center;gap:14px;padding-bottom:18px;border-bottom:1px solid #e4e9f1}
+.ask-1 > div{display:flex;flex-direction:column;gap:4px}
+.ask-icon{flex:none;width:64px;height:64px;border-radius:16px;overflow:hidden;box-shadow:0 4px 12px rgba(58,130,219,.18);transition:transform .15s}
+.ask-icon:active{transform:scale(.95)}
+.ask-icon img{width:100%;height:100%;object-fit:cover}
+.ask-23{display:flex;gap:12px}
+.ask-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:8px}
+.ask-col p{flex:1}
+.ask-col img{width:100%;aspect-ratio:145/296;object-fit:cover;object-position:top;border-radius:12px;border:.5px solid rgba(58,130,219,.25)}
+.sec-head .sn{font-size:12px;font-weight:700;color:#fff;white-space:normal}
+
+/* v4.1 : 하위 스텝 숫자는 연한 배경+테두리 (큰 스텝은 진한 파랑) · 예시 이미지 간격 · 문제 이미지 강조 */
+.cn,.ask-card .sn{background:#e8f2fe;border:1px solid var(--blue-500);color:var(--blue-550)}
+.ask-col{gap:16px}
+.ask-col > h4{margin-bottom:-8px}
+.ask-img{position:relative}
+.ask-img img{width:100%;aspect-ratio:145/296;object-fit:cover;object-position:top;border-radius:12px;border:.5px solid rgba(58,130,219,.25)}
+.hl-ring{position:absolute;left:6.2%;top:67.6%;width:19.3%;height:9.8%;border:2px solid var(--red-500);border-radius:6px;background:rgba(249,92,120,.08);animation:hlp 1.6s ease-in-out infinite}
+.hl-chip{position:absolute;left:31%;top:72.3%;transform:translateY(-50%);padding:3px 7px;border-radius:99px;background:var(--red-500);font-size:9.5px;font-weight:700;line-height:1.3;color:#fff;white-space:nowrap}
+.hl-chip::before{content:"";position:absolute;left:-5px;top:50%;margin-top:-4px;border:4px solid transparent;border-right:5px solid var(--red-500);border-left:0}
+@keyframes hlp{0%,100%{box-shadow:0 0 0 0 rgba(249,92,120,.45)}50%{box-shadow:0 0 0 4px rgba(249,92,120,0)}}
+@media (prefers-reduced-motion:reduce){.hl-ring{animation:none}}
+/* v4.2 : 라벨을 썸네일 우상단으로, 꼬리를 말풍선 아래 경계에 붙임 */
+.hl-chip{left:20%;top:auto;bottom:34.8%;transform:none}
+.hl-chip::before{left:5px;top:auto;bottom:-6px;margin:0;width:10px;height:7px;border:0;background:var(--red-500);clip-path:polygon(0 0,100% 0,20% 100%)}
+
+/* v4.3 : 릴스·TikTok·YouTube(영상·그라데이션 목업)에서 카드 외곽선이 가려지는 문제 —
+   외곽선을 카드 맨 위 레이어에 그리고, Safari의 둥근 모서리 클리핑 버그를 막는다 */
+.pf-card{position:relative;isolation:isolate;border:0}
+.pf-card::after{content:"";position:absolute;inset:0;z-index:5;border:1px solid var(--line-soft);border-radius:inherit;pointer-events:none}
+.phone .scr,.cmp-r .vwrap,.pf-card{-webkit-mask-image:-webkit-radial-gradient(white,black);transform:translateZ(0)}
+/* v4.4 : 영상 소재 박스에도 외곽선 (재생 전 어두운 오버레이에 테두리가 묻히지 않게 맨 위에 그림) */
+.cmp-r .vwrap::after{content:"";position:absolute;inset:0;z-index:3;border:1px solid var(--line-soft);border-radius:10px;pointer-events:none}
+.cmp-r .vplay{border-radius:10px}
+.cmp-r video{background:#fff}
+/* v4.5 : iOS Safari — 카드에 overflow:hidden·마스크를 걸지 않음 (둥근 모서리 클리핑이 테두리 아래쪽을 흐리게 지우는 버그 회피) */
+.pf-card{overflow:visible;-webkit-mask-image:none;transform:none}
+
+:root{--ff:'Noto Sans KR','Noto Sans JP',sans-serif}
+
+</style>
+<link rel="stylesheet" href="/assets/scholarship-embed.css">
+</head>
+<body>
+
+<!-- ================= Hero ================= -->
+<header class="hero" id="top">
+  <a class="home-btn" href="https://socratutor.ai/event/scholarship" target="_top" aria-label="장학생 모집 페이지로 돌아가기"><img src="/guide/assets/icon-arrow-left.svg" alt=""><img src="/guide/assets/icon-home.svg" alt=""></a>
+  <div class="wrap">
+    <div class="title-row"><img src="/guide/assets/logo-tutor.svg" alt="Socra Tutor" width="172" height="20"><span>장학생</span></div>
+    <h1>첫 게시물 바로 올리기</h1>
+    <div class="lead">그대로 따라 하면 OK!<ol><li>문제 골라서 저장하고</li><li>Socra Tutor에 질문하고 캡처하고</li><li>캡션<small>(또는 게시글)</small> 복사+붙여넣기해 게시</li></ol>3단계면 끝나요. 아래 순서대로 진행해 주세요.</div>
+    <nav class="quick" aria-label="단계별 바로가기">
+      <p>단계별 바로가기</p>
+      <div class="quick-links">
+        <a href="#problem"><span class="n">1</span><span class="l">문제 골라 저장하기</span><span class="arr">↓</span></a>
+        <a href="#ask"><span class="n">2</span><span class="l">Socra Tutor에 질문하고 캡처하기</span><span class="arr">↓</span></a>
+        <a href="#post"><span class="n">3</span><span class="l">캡션<small>(또는 게시글)</small> 복사+붙여넣기해 게시하기</span><span class="arr">↓</span></a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ================= 1. Problem ================= -->
+<section class="sec" id="problem">
+  <div class="wrap g24">
+    <div class="sec-head"><span class="sn">1</span><h2>문제 골라서 저장하기</h2></div>
+    <div class="callout hl"><p class="t">내 학년에 맞는 문제를 하나 골라요</p><p class="b">누르면 크게 볼 수 있어요. 이미지를 저장한 뒤 Socra Tutor에서 「앨범」으로 불러와 질문해 주세요.</p></div>
+    <div class="picker">
+      <div class="tabs" role="tablist" data-tabs="level"><button type="button" role="tab" id="tab-lv-mid" aria-controls="panel-lv-mid" aria-selected="true" tabindex="0"><span>중학생</span></button><button type="button" role="tab" id="tab-lv-high" aria-controls="panel-lv-high" aria-selected="false" tabindex="-1"><span>고등학생</span></button><button type="button" role="tab" id="tab-lv-uni" aria-controls="panel-lv-uni" aria-selected="false" tabindex="-1"><span>대학생</span></button></div>
+      <div class="panel" role="tabpanel" id="panel-lv-mid" aria-labelledby="tab-lv-mid">
+        <div class="pcard">
+          <div class="pc-head"><span class="lv">중학생</span><b>수학 | 연립방정식</b></div>
+          <button type="button" class="pc-img" data-view="mid" aria-label="🔍 크게 보기"><img src="/kit/assets/problem-mid.png" alt="중학생용 문제: 연립방정식"></button>
+          <div class="pc-btns"><button type="button" class="btn ghost" data-view="mid">🔍 크게 보기</button><a class="btn solid" href="/kit/assets/problem-mid.png" download="socratutor_mid.png" data-save="mid">⬇ 저장하기</a></div>
+        </div></div><div class="panel" role="tabpanel" id="panel-lv-high" aria-labelledby="tab-lv-high" hidden>
+        <div class="pcard">
+          <div class="pc-head"><span class="lv">고등학생</span><b>수학Ⅰ | 이차함수</b></div>
+          <button type="button" class="pc-img" data-view="high" aria-label="🔍 크게 보기"><img src="/kit/assets/problem-high.png" alt="고등학생용 문제: 이차함수"></button>
+          <div class="pc-btns"><button type="button" class="btn ghost" data-view="high">🔍 크게 보기</button><a class="btn solid" href="/kit/assets/problem-high.png" download="socratutor_high.png" data-save="high">⬇ 저장하기</a></div>
+        </div></div><div class="panel" role="tabpanel" id="panel-lv-uni" aria-labelledby="tab-lv-uni" hidden>
+        <div class="pcard">
+          <div class="pc-head"><span class="lv">대학생</span><b>교양 | 레포트 과제</b></div>
+          <button type="button" class="pc-img" data-view="uni" aria-label="🔍 크게 보기"><img src="/kit/assets/problem-uni.png" alt="대학생용 과제: 레포트"></button>
+          <div class="pc-btns"><button type="button" class="btn ghost" data-view="uni">🔍 크게 보기</button><a class="btn solid" href="/kit/assets/problem-uni.png" download="socratutor_uni.png" data-save="uni">⬇ 저장하기</a></div>
+        </div></div>
+    </div>
+    <div class="callout hl tip"><p class="b">💡 내 교과서나 문제집 문제를 찍어서 질문해도 괜찮아요!</p></div>
+  </div>
+</section>
+
+<!-- ================= 2. Ask ================= -->
+<section class="sec tint" id="ask">
+  <div class="wrap g24">
+    <div class="sec-head"><span class="sn">2</span><h2>Socra Tutor에 질문하고 캡처하기</h2></div>
+    <div class="ask-card">
+      <div class="ask-1"><a class="ask-icon" href="https://socratutor.ai/landing" target="_blank" rel="noopener"><img src="/kit/assets/ask-1.png" alt="Socra Tutor 앱"></a><div><h4><span class="sn">1</span>Socra Tutor 설치 후 가입</h4><p>로고를 누르면 설치 페이지로 바로 갈 수 있어요</p></div></div>
+      <div class="ask-23"><div class="ask-col"><h4><span class="sn">2</span>질문하기</h4><p>사진 추가 버튼을 눌러 저장한 문제 이미지를 선택해, 질문하기 버튼을 누르세요</p><div class="ask-img"><img src="/kit/assets/ask-2.jpg" alt="질문 화면" loading="lazy"><span class="hl-ring" aria-hidden="true"></span><span class="hl-chip">문제 이미지</span></div></div><div class="ask-col"><h4><span class="sn">3</span>캡처하기</h4><p>답변이 나오면 화면 전체를 캡처하세요</p><div class="ask-img"><img src="/kit/assets/ask-3.jpg" alt="답변 화면" loading="lazy"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. Post ================= -->
+<section class="sec" id="post">
+  <div class="wrap g24">
+    <div class="sec-head"><span class="sn">3</span><h2>SNS별로 게시하기</h2></div>
+    <div class="callout"><p class="t">어떤 SNS든 흐름은 같아요</p><p class="b">① 캡처한 이미지 불러오기<br>② 아래 텍스트를 복사해서 붙여넣기<br>③ 내 전용 링크를 넣고 게시</p></div>
+    <div class="picker" id="platforms">
+      <div class="tabs sns" role="tablist" data-tabs="platform"><button type="button" role="tab" id="tab-instagram" aria-controls="panel-instagram" aria-selected="true" tabindex="0"><img src="/kit/assets/instagram.svg" alt=""><span>Instagram</span></button><button type="button" role="tab" id="tab-tiktok" aria-controls="panel-tiktok" aria-selected="false" tabindex="-1"><img src="/kit/assets/tiktok.svg" alt=""><span>TikTok</span></button><button type="button" role="tab" id="tab-x" aria-controls="panel-x" aria-selected="false" tabindex="-1"><img src="/kit/assets/x.png" alt=""><span>X</span></button><button type="button" role="tab" id="tab-youtube" aria-controls="panel-youtube" aria-selected="false" tabindex="-1"><img src="/kit/assets/youtube.png" alt=""><span>YouTube</span></button></div>
+      <div class="panel" role="tabpanel" id="panel-instagram" aria-labelledby="tab-instagram"><div class="pf-card"><div class="pf-head"><h3 class="pf-name"><img src="/kit/assets/instagram.svg" alt="">Instagram</h3><div class="tabs" role="tablist" data-tabs="format"><button type="button" role="tab" id="tab-ig-story" aria-controls="panel-ig-story" aria-selected="true" tabindex="0"><span>스토리</span></button><button type="button" role="tab" id="tab-ig-feed" aria-controls="panel-ig-feed" aria-selected="false" tabindex="-1"><span>피드</span></button><button type="button" role="tab" id="tab-ig-reel" aria-controls="panel-ig-reel" aria-selected="false" tabindex="-1"><span>릴스</span></button></div></div><div class="panel" role="tabpanel" id="panel-ig-story" aria-labelledby="tab-ig-story"><div class="compare"><div class="cmp-l"><b>게시 이미지</b><div class="phone story"><div class="scr" style="background-image:url(/kit/assets/story.jpg)"><i class="bars"><b></b><b></b></i><i class="who"><b></b>your_account</i><div class="st"><p>#PR #socra_tutor 요즘 이거 쓰는데, 모르는 문제 찍기만 하면 AI 고산케가 답이랑 해설 알려줘서 완전 도움 돼…🥹 무료야👇</p><span class="sticker">🔗 SOCRATUTOR.AI</span></div></div></div></div><span class="cmp-arr" aria-hidden="true"></span><div class="cmp-r"><b class="chip">이 소재를 사용</b><img class="src-img" src="/kit/assets/story.jpg" alt="Story" style="aspect-ratio:9/16" loading="lazy"></div></div><div class="pf-body"><ol class="csteps"><li><span class="cn">1</span><div><h4>캡처한 이미지 불러오기</h4><p>스토리 만들기에서 캡처한 답변 화면을 선택해요</p></div></li><li><span class="cn">2</span><div><h4>텍스트를 복사해서 붙여넣기</h4><p>스토리 「Aa」 텍스트에 아래 문장을 그대로 붙여넣기</p></div></li><li class="cb-li"><div class="copybox"><div class="cb-top"><span class="cb-label">텍스트</span><button type="button" class="cb-btn" data-copy>📋 복사</button></div><p class="cb-text">#PR #socra_tutor 요즘 이거 쓰는데, 모르는 문제 찍기만 하면 AI 고산케가 답이랑 해설 알려줘서 완전 도움 돼…🥹 무료야👇</p></div></li><li><span class="cn">3</span><div><h4>링크 스티커로 전용 링크 추가</h4><p>스티커 → 링크 → 내 전용 링크 붙여넣기</p></div></li><li><span class="cn">4</span><div><h4>게시하면 완료!</h4><p>@socra_tutor 를 언급하면 더 좋아요</p></div></li></ol></div></div><div class="panel" role="tabpanel" id="panel-ig-feed" aria-labelledby="tab-ig-feed" hidden><div class="compare"><div class="cmp-l"><b>게시 이미지</b><div class="phone feed"><div class="scr"><i class="who dark"><b></b>your_account</i><img src="/kit/assets/ig-1.jpg" alt=""><i class="ico">♡ 💬 ➤</i><p>#PR #socra_tutor 요즘 이거 쓰는데, 모르는 문제 찍기만 하면 AI 고산케가 답이랑 해설 알려줘서 완전 도움 돼…🥹 무료니까 프로필 링크에서 봐봐🔗</p></div></div></div><span class="cmp-arr" aria-hidden="true"></span><div class="cmp-r"><b class="chip">이 소재를 사용</b><div class="src-car"><div class="track"><img src="/kit/assets/ig-1.jpg" alt="Feed 1" style="aspect-ratio:4/5" loading="lazy"><img src="/kit/assets/ig-2.jpg" alt="Feed 2" style="aspect-ratio:4/5" loading="lazy"></div><span class="cnt">1 / 2</span><button type="button" class="car-btn prev" aria-label="prev" hidden></button><button type="button" class="car-btn next" aria-label="next"></button></div></div></div><div class="pf-body"><p class="swipe"><i></i>소재는 2장 (밀어서 2장째)</p><ol class="csteps"><li><span class="cn">1</span><div><h4>캡처한 이미지 불러오기</h4><p>저장한 문제 이미지와 답변 캡처, 2장을 선택해요</p></div></li><li><span class="cn">2</span><div><h4>캡션을 복사해서 게시</h4><p>@socra_tutor 를 태그하면 더 좋아요</p></div></li><li class="cb-li"><div class="copybox"><div class="cb-top"><span class="cb-label">캡션</span><button type="button" class="cb-btn" data-copy>📋 복사</button></div><p class="cb-text">#PR #socra_tutor 요즘 이거 쓰는데, 모르는 문제 찍기만 하면 AI 고산케가 답이랑 해설 알려줘서 완전 도움 돼…🥹 무료니까 프로필 링크에서 봐봐🔗</p></div></li><li><span class="cn">3</span><div><h4>프로필에 전용 링크 추가</h4><p>프로필 편집 → 링크 → 외부 링크 추가</p></div></li></ol></div></div><div class="panel" role="tabpanel" id="panel-ig-reel" aria-labelledby="tab-ig-reel" hidden><div class="compare"><div class="cmp-l"><b>게시 이미지</b><div class="phone video"><div class="scr" style="background-image:url(/kit/assets/example2.jpg)"><i class="side">♡<br>💬<br>➤</i><span class="pl"></span><div class="cap"><b>@your_account</b><p>#PR #socra_tutor 요즘 이거 쓰는데, 모르는 문제 찍기만 하면 AI 고산케가 답이랑 해설 알려줘서 완전 도움 돼…🥹 무료니까 프로필 링크에서 봐봐🔗</p></div></div></div></div><span class="cmp-arr" aria-hidden="true"></span><div class="cmp-r"><b class="chip">이 소재를 사용</b><div class="vwrap"><video src="/kit/assets/example2.mp4" poster="/kit/assets/example2.jpg" playsinline muted loop preload="metadata"></video><button type="button" class="vplay" aria-label="동영상 재생"><span></span></button><span class="vtag">▶ 눌러서 재생</span></div></div></div><div class="pf-body"><ol class="csteps"><li><span class="cn">1</span><div><h4>캡처한 이미지 불러오기</h4><p>릴스 만들기에서 캡처한 이미지를 선택해요</p></div></li><li><span class="cn">2</span><div><h4>캡션을 붙여넣고 게시</h4><p>@socra_tutor 를 태그하면 더 좋아요</p></div></li><li class="cb-li"><div class="copybox"><div class="cb-top"><span class="cb-label">캡션</span><button type="button" class="cb-btn" data-copy>📋 복사</button></div><p class="cb-text">#PR #socra_tutor 요즘 이거 쓰는데, 모르는 문제 찍기만 하면 AI 고산케가 답이랑 해설 알려줘서 완전 도움 돼…🥹 무료니까 프로필 링크에서 봐봐🔗</p></div></li><li><span class="cn">3</span><div><h4>프로필에 전용 링크 추가</h4><p>피드 게시물과 같은 링크면 돼요</p></div></li></ol></div></div></div></div>
+      <div class="panel" role="tabpanel" id="panel-tiktok" aria-labelledby="tab-tiktok" hidden><div class="pf-card"><div class="pf-head"><h3 class="pf-name"><img src="/kit/assets/tiktok.svg" alt="">TikTok</h3></div><div class="compare"><div class="cmp-l"><b>게시 이미지</b><div class="phone video"><div class="scr" style="background-image:url(/kit/assets/example2.jpg)"><i class="side">♡<br>💬<br>➤</i><span class="pl"></span><div class="cap"><b>@your_account</b><p>#PR #socra_tutor 모르는 문제, AI 고산케한테 한꺼번에 물어본 결과👀 앱은 프로필 링크에서🔗 #공부계정 #수험생 #추천</p></div></div></div></div><span class="cmp-arr" aria-hidden="true"></span><div class="cmp-r"><b class="chip">이 소재를 사용</b><div class="vwrap"><video src="/kit/assets/example2.mp4" poster="/kit/assets/example2.jpg" playsinline muted loop preload="metadata"></video><button type="button" class="vplay" aria-label="동영상 재생"><span></span></button><span class="vtag">▶ 눌러서 재생</span></div></div></div><div class="pf-body"><ol class="csteps"><li><span class="cn">1</span><div><h4>캡처한 이미지 불러오기</h4><p>업로드 화면에서 캡처한 이미지를 선택해요</p></div></li><li><span class="cn">2</span><div><h4>캡션을 붙여넣고 게시</h4><p>게시 설정의 「콘텐츠 공개 설정」도 켜기</p></div></li><li class="cb-li"><div class="copybox"><div class="cb-top"><span class="cb-label">캡션</span><button type="button" class="cb-btn" data-copy>📋 복사</button></div><p class="cb-text">#PR #socra_tutor 모르는 문제, AI 고산케한테 한꺼번에 물어본 결과👀 앱은 프로필 링크에서🔗 #공부계정 #수험생 #추천</p></div></li><li><span class="cn">3</span><div><h4>프로필 웹사이트 칸에 전용 링크 추가</h4><p>프로필 편집 → 웹사이트</p></div></li></ol><div class="callout notice"><p class="b">웹사이트 칸이 보이지 않으면 Instagram·X에도 함께 게시해 주세요.</p></div></div></div></div>
+      <div class="panel" role="tabpanel" id="panel-x" aria-labelledby="tab-x" hidden><div class="pf-card"><div class="pf-head"><h3 class="pf-name"><img src="/kit/assets/x.png" alt="">X</h3></div><div class="compare"><div class="cmp-l"><b>게시 이미지</b><div class="phone xp"><div class="scr"><i class="who dark"><b></b>your_account</i><p>#PR #socra_tutor 과제하다 막혔을 때 이거 찾아낸 나, 천재 아님?? 찍기만 하면 AI 고산케가 답이랑 해설 알려줌. 심지어 무료. 왜 아무도 안 알려줬냐고</p><em>socratutor.ai/…</em><div class="two"><img src="/kit/assets/x-1.jpg" alt=""><img src="/kit/assets/x-2.jpg" alt=""></div><i class="ico">💬 🔁 ♡</i></div></div></div><span class="cmp-arr" aria-hidden="true"></span><div class="cmp-r"><b class="chip">이 소재를 사용</b><div class="src-car"><div class="track"><img src="/kit/assets/x-1.jpg" alt="X 1" style="aspect-ratio:7/8" loading="lazy"><img src="/kit/assets/x-2.jpg" alt="X 2" style="aspect-ratio:7/8" loading="lazy"></div><span class="cnt">1 / 2</span><button type="button" class="car-btn prev" aria-label="prev" hidden></button><button type="button" class="car-btn next" aria-label="next"></button></div></div></div><div class="pf-body"><p class="swipe"><i></i>소재는 2장 (밀어서 2장째)</p><ol class="csteps"><li><span class="cn">1</span><div><h4>캡처한 이미지 불러오기</h4><p>포스트 작성 화면에서 이미지를 첨부해요</p></div></li><li><span class="cn">2</span><div><h4>포스트를 복사해서 붙여넣기</h4><p>아래 문장을 본문에 붙여넣기</p></div></li><li class="cb-li"><div class="copybox"><div class="cb-top"><span class="cb-label">포스트</span><button type="button" class="cb-btn" data-copy>📋 복사</button></div><p class="cb-text">#PR #socra_tutor 과제하다 막혔을 때 이거 찾아낸 나, 천재 아님??<br>찍기만 하면 AI 고산케가 답이랑 해설 알려줌. 심지어 무료. 왜 아무도 안 알려줬냐고<br>(여기에 전용 링크 붙여넣기)</p></div></li><li><span class="cn">3</span><div><h4>마지막 줄에 전용 링크를 붙여넣고 게시</h4><p>프로필에 고정하면 더 좋아요</p></div></li></ol></div></div></div>
+      <div class="panel" role="tabpanel" id="panel-youtube" aria-labelledby="tab-youtube" hidden><div class="pf-card"><div class="pf-head"><h3 class="pf-name"><img src="/kit/assets/youtube.png" alt="">YouTube</h3></div><div class="compare"><div class="cmp-l"><b>게시 이미지</b><div class="phone video"><div class="scr" style="background-image:url(/kit/assets/example2.jpg)"><i class="side">♡<br>💬<br>➤</i><span class="pl"></span><div class="cap"><b>@your_account</b><p>#PR #socra_tutor 요즘 이거 쓰는데, 모르는 문제 찍기만 하면 AI 고산케가 답이랑 해설 알려줘서 완전 도움 돼…🥹 무료니까 채널 링크를 누르거나, 댓글 링크를 브라우저에 복붙해봐!🔗 #공부계정 #공부기록 #수험생 #shorts</p></div></div></div></div><span class="cmp-arr" aria-hidden="true"></span><div class="cmp-r"><b class="chip">이 소재를 사용</b><div class="vwrap"><video src="/kit/assets/example2.mp4" poster="/kit/assets/example2.jpg" playsinline muted loop preload="metadata"></video><button type="button" class="vplay" aria-label="동영상 재생"><span></span></button><span class="vtag">▶ 눌러서 재생</span></div></div></div><div class="pf-body"><ol class="csteps"><li><span class="cn">1</span><div><h4>캡처한 이미지 불러오기</h4><p>쇼츠 만들기에서 캡처한 이미지를 선택해요</p></div></li><li><span class="cn">2</span><div><h4>제목·설명란 붙여넣기</h4><p>쇼츠는 「캡션 추가」에 쓴 내용이 제목이 돼요</p></div></li><li class="cb-li"><div class="copybox"><div class="cb-top"><span class="cb-label">제목</span><button type="button" class="cb-btn" data-copy>📋 복사</button></div><p class="cb-text">모르는 문제, 찍기만 하면 AI 고산케가 해설해 줘🥹</p></div><div class="copybox"><div class="cb-top"><span class="cb-label">설명란</span><button type="button" class="cb-btn" data-copy>📋 복사</button></div><p class="cb-text">#PR #socra_tutor 요즘 이거 쓰는데, 모르는 문제 찍기만 하면 AI 고산케가 답이랑 해설 알려줘서 완전 도움 돼…🥹 무료니까 채널 링크를 누르거나, 댓글 링크를 브라우저에 복붙해봐!🔗 #공부계정 #공부기록 #수험생 #shorts</p></div></li><li><span class="cn">3</span><div><h4>「유료 프로모션」 체크</h4><p>업로드 화면 설정에서</p></div></li><li><span class="cn">4</span><div><h4>채널과 댓글에 전용 링크 넣기</h4><p>쇼츠 설명란 링크는 누를 수 없어서</p></div></li></ol></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. Check ================= -->
+<section class="sec tint" id="check">
+  <div class="wrap g24">
+    <div class="sec-head"><img src="/assets/light-yellow.png" alt=""><h2>게시 전 체크</h2></div>
+    <div class="stack g8">
+      <div class="check"><p>「#PR #socra_tutor」가 문장 맨 앞에 들어가 있다</p></div>
+      <div class="check"><p>전용 링크를 받은 그대로 복붙했다 (일부가 빠지면 실적이 집계되지 않아요)</p></div>
+      <div class="check"><p>링크를 눌렀을 때 Socra Tutor 페이지가 열린다</p></div>
+      <div class="check"><p>프로필 (또는 스토리·본문)에 링크를 넣었다</p></div>
+    </div>
+    <div class="callout warn"><p class="t">이 키트는 「첫 게시물 1개」에만 써 주세요</p><p class="b">두 번째 게시물부터는 내 공부 기록과 함께 자유롭게 올려주세요. 어떤 과목을 질문해도 괜찮아요.</p></div>
+    <a class="guide-link" href="/guide/"><b>게시 규칙 더 자세히 보기</b><span>Creative Guide 보기 ↗</span></a>
+  </div>
+</section>
+
+<!-- ================= Contact ================= -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <h4>문의하기</h4>
+      <a class="mail" href="mailto:socratutor_branded@socra.ai"><span>📧</span><b>socratutor_branded@socra.ai</b></a>
+      <p>🕙 대응 시간: 일본 시간 평일 10:00~18:00<br>(토·일·공휴일 제외)</p>
+      <p>접수일로부터 3영업일 이내에 1차 답변을 드려요.</p>
+      <p>보호자분의 문의도 받고 있어요. 보호자 본인임이 확인되면 참여 현황과 보상 지급 현황을 안내해 드려요.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<dialog class="viewer" aria-label="문제 크게 보기">
+  <div class="v-top"><b class="v-title"></b><button type="button" class="v-close" aria-label="닫기">✕</button></div>
+  <div class="v-img"><img alt=""><p>두 손가락으로 확대할 수 있어요</p></div>
+  <div class="v-actions"><a class="btn solid" href="#" download data-save-viewer>⬇ 이미지 저장하기</a><button type="button" class="btn dim v-close2">닫기</button></div>
+</dialog>
+<div class="toast" role="status" aria-live="polite"></div>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="inner">
+      <img class="logo" src="/assets/logo-socra-ai-footer.svg" alt="Socra AI">
+      <p>회사명 : Socra AI Inc.  |  대표이사 : 朴修永  |  일본 대표 : 文鎔柱  |  문의 : socratutor_branded@socra.ai  |  소재지 : 東京都中央区銀座六丁目１０−１GinzaSix１３階</p>
+      <p class="copy">© Socra AI Inc. All rights reserved.</p>
+    </div>
+    <a class="top" href="#" aria-label="페이지 맨 위로">맨 위로 ▲</a>
+  </div>
+</footer>
+
+<script src="/assets/scholarship-bridge.js"></script>
+<script>
+const TXT = { copied: "복사했어요!", copyFail: "복사하지 못했어요. 길게 눌러 선택해 주세요.", saveHint: "이미지를 길게 눌러 저장해 주세요" };
+const LEVELS = {"mid":{"src":"/kit/assets/problem-mid.png","alt":"중학생용 문제: 연립방정식","title":"중학생｜수학 | 연립방정식","name":"socratutor_mid.png"},"high":{"src":"/kit/assets/problem-high.png","alt":"고등학생용 문제: 이차함수","title":"고등학생｜수학Ⅰ | 이차함수","name":"socratutor_high.png"},"uni":{"src":"/kit/assets/problem-uni.png","alt":"대학생용 과제: 레포트","title":"대학생｜교양 | 레포트 과제","name":"socratutor_uni.png"}};
+const inIframe = window.top !== window;
+
+// ---------- 토스트 ----------
+const toastEl = document.querySelector('.toast');
+let toastTimer;
+const toast = msg => {
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 1800);
+};
+
+// ---------- 탭 ----------
+const selectTab = btn => {
+  const list = btn.closest('[role=tablist]');
+  list.querySelectorAll('[role=tab]').forEach(t => {
+    const on = t === btn;
+    t.setAttribute('aria-selected', on);
+    t.tabIndex = on ? 0 : -1;
+    document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+  });
+  // 탭 전환 시 재생 중인 영상은 멈춘다
+  document.querySelectorAll('.panel[hidden] video').forEach(v => v.pause());
+};
+document.querySelectorAll('[role=tablist]').forEach(list => {
+  const tabs = [...list.querySelectorAll('[role=tab]')];
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => selectTab(t));
+    t.addEventListener('keydown', e => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      const next = tabs[(i + d + tabs.length) % tabs.length];
+      next.focus(); selectTab(next);
+    });
+  });
+});
+// 상단 바로가기·URL 해시(#tiktok 등)로 해당 SNS 탭을 연다
+const openPlatform = id => {
+  const tab = document.getElementById('tab-' + id);
+  if (!tab) return false;
+  selectTab(tab);
+  document.getElementById('platforms').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  return true;
+};
+document.querySelectorAll('.quick-links a').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    if (openPlatform(id)) e.preventDefault();
+  });
+});
+if (location.hash) openPlatform(location.hash.slice(1));
+
+// ---------- 예시 영상: 누르면 바로 재생 / 다시 누르면 정지 ----------
+document.querySelectorAll('.vwrap').forEach(w => {
+  const v = w.querySelector('video');
+  w.addEventListener('click', () => { v.paused ? v.play().catch(() => {}) : v.pause(); });
+  v.addEventListener('play', () => w.classList.add('playing'));
+  v.addEventListener('pause', () => w.classList.remove('playing'));
+});
+
+// ---------- 소재 슬라이드: 버튼·탭·스와이프로 넘기기 + 몇 번째 장인지 표시 ----------
+document.querySelectorAll('.src-car').forEach(c => {
+  const tr = c.querySelector('.track'), cnt = c.querySelector('.cnt'), n = tr.children.length;
+  const prev = c.querySelector('.prev'), next = c.querySelector('.next');
+  const idx = () => Math.round(tr.scrollLeft / tr.clientWidth);
+  const go = i => tr.scrollTo({ left: Math.max(0, Math.min(n - 1, i)) * tr.clientWidth, behavior: 'smooth' });
+  const sync = () => { const i = idx(); cnt.textContent = `${i + 1} / ${n}`; prev.hidden = i === 0; next.hidden = i === n - 1; };
+  tr.addEventListener('scroll', sync, { passive: true });
+  prev.addEventListener('click', () => go(idx() - 1));
+  next.addEventListener('click', () => go(idx() + 1));
+  tr.addEventListener('click', () => go(idx() === n - 1 ? 0 : idx() + 1)); // 이미지를 눌러도 다음 장
+});
+
+// ---------- 복사 ----------
+const fallbackCopy = text => {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.setAttribute('readonly', '');
+  ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+  document.body.appendChild(ta);
+  ta.select(); ta.setSelectionRange(0, text.length);
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch (e) {}
+  ta.remove();
+  return ok;
+};
+document.querySelectorAll('[data-copy]').forEach(btn => {
+  const label = btn.textContent;
+  btn.addEventListener('click', async () => {
+    const text = btn.closest('.copybox').querySelector('.cb-text').innerText.trim();
+    let ok = false;
+    try { await navigator.clipboard.writeText(text); ok = true; } catch (e) { ok = fallbackCopy(text); }
+    if (ok) {
+      btn.textContent = '✓ ' + TXT.copied; btn.classList.add('done');
+      setTimeout(() => { btn.textContent = label; btn.classList.remove('done'); }, 1600);
+    } else {
+      toast(TXT.copyFail);
+    }
+  });
+});
+
+// ---------- 문제 크게 보기 · 저장 ----------
+const viewer = document.querySelector('.viewer');
+const vImg = viewer.querySelector('img'), vTitle = viewer.querySelector('.v-title'), vSave = viewer.querySelector('[data-save-viewer]');
+const openViewer = key => {
+  const lv = LEVELS[key];
+  vImg.src = lv.src; vImg.alt = lv.alt; vTitle.textContent = lv.title;
+  vSave.href = lv.src; vSave.setAttribute('download', lv.name);
+  viewer.showModal();
+};
+document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => openViewer(b.dataset.view)));
+viewer.querySelectorAll('.v-close, .v-close2').forEach(b => b.addEventListener('click', () => viewer.close()));
+viewer.addEventListener('click', e => { if (e.target === viewer) viewer.close(); });
+// socratutor.ai 안(iframe)에서는 다운로드가 막힐 수 있어, 새 탭으로 이미지를 열어 길게 눌러 저장하게 한다
+const handleSave = e => {
+  if (!inIframe) return;
+  e.preventDefault();
+  window.open(e.currentTarget.href, '_blank', 'noopener');
+  toast(TXT.saveHint);
+};
+document.querySelectorAll('[data-save], [data-save-viewer]').forEach(a => a.addEventListener('click', handleSave));
+
+// ---------- 링크 ----------
+document.querySelectorAll('a[href^="http"]:not(.home-btn)').forEach(a => {
+  if (new URL(a.href).origin !== location.origin) { a.target = '_blank'; a.rel = 'noopener'; }
+});
+document.querySelector('.home-btn').addEventListener('click', e => {
+  if (!inIframe) return;
+  e.preventDefault();
+  const href = e.currentTarget.href;
+  try { window.top.location.href = href; }
+  catch (err) { window.open(href, '_blank', 'noopener'); }
+});
+
+</script>
+</body>
+</html>
